@@ -1,0 +1,1779 @@
+{% load static %}
+<!DOCTYPE html>
+<!--
+نویسنده: ساتراس وب
+محصولات نام: مترونیک
+محصولات Version: 8.2.0
+خرید: https://1.envato.market/EA4JP
+وب سایت: http://www.keenthemes.com
+تماس با ما: support@keenthemes.com
+دنبال کردن: www.twitter.com/keenthemes
+دریبل: www.dribbble.com/keenthemes
+Like: www.facebook.com/keenthemes
+لاینسس شده: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
+-->
+<html direction="rtl" dir="rtl" style="direction: rtl">
+<!--begin::Head-->
+<head>
+    <base href=""/>
+    <title>آسیا نگار گلسار</title>
+    <meta charset="utf-8"/>
+    <meta name="description"
+          content="The most advanced Bootstrap 5 Admin Theme with 40 unique prebuilt layouts on Themeforest trusted by 100,000 beginners and professionals. Multi-demo, حالت تیره, RTL support and complete React, Angular, Vue, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel versions. Grab your copy now and get life-time updates for free."/>
+    <meta name="keywords"
+          content="metronic, bootstrap, bootstrap 5, angular, VueJs, React, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel starter kits, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title"
+          content="مترونیک - پنل ادمین بوت استراپ Template, HTML, VueJS, React, Angular. Laravel, Asp.Net Core, روبی روی ریل, Spring Boot, Blazor, Django, Express.js, Node.js, Flask Admin داشبورد Theme & Template"/>
+    <meta property="og:url" content="#"/>
+    <meta property="og:site_name" content="#"/>
+    <link rel="canonical" href="#"/>
+    <link rel="shortcut icon" style="height: 10px;width: 10px" href="{% static "assets/logo1.jpg" %}"/>
+{#    assets/media/logos/favicon.ico#}
+    <!--begin::Fonts(mandatory for all pages)-->
+    <link rel="stylesheet" href="#"/>
+{#    <!--end::Fonts-->https://fonts.googleapis.com/cssfamily=Inter:300,400,500,600,700#}
+    <!--begin::Vendor Stylesheets(used for this page only)-->
+    <link href="{% static "assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" %}" rel="stylesheet"
+          type="text/css"/>
+    <link href="{% static "assets/plugins/custom/datatables/datatables.bundle.css" %}" rel="stylesheet"
+          type="text/css"/>
+    <!--end::Vendor Stylesheets-->
+    <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
+    <link href="{% static "assets/plugins/global/plugins.bundle.rtl.css" %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static "assets/css/style.bundle.rtl.css" %}" rel="stylesheet" type="text/css"/>
+    <!--end::Global Stylesheets Bundle-->
+    <script>// Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }</script>
+</head>
+<!--end::Head-->
+<!--begin::Body-->
+<body id="kt_app_body" data-kt-app-header-fixed-mobile="true" data-kt-app-toolbar-enabled="true" class="app-default">
+<!--begin::Theme mode setup on page load-->
+<script>var defaultThemeMode = "light";
+var thememode;
+if (document.documentElement) {
+    if (document.documentElement.hasAttribute("data-bs-theme-mode")) {
+        thememode = document.documentElement.getAttribute("data-bs-theme-mode");
+    } else {
+        if (localStorage.getitem("data-bs-theme") !== null) {
+            thememode = localStorage.getitem("data-bs-theme");
+        } else {
+            thememode = defaultThemeMode;
+        }
+    }
+    if (thememode === "system") {
+        // thememode = window.matchMedia("(prefers-color-scheme: dark)").matches
+        // "dark":"light";
+    }
+    document.documentElement.setAttribute("data-bs-theme", thememode);
+}</script>
+<!--end::Theme mode setup on page load-->
+<!--begin::اپلیکیشن-->
+<div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+    <!--begin::Page-->
+    <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
+        <!--begin::Header-->
+        <div id="kt_app_header" class="app-header" data-kt-sticky="true"
+             data-kt-sticky-activate="{default: false, lg: true}" data-kt-sticky-name="app-header-sticky"
+             data-kt-sticky-offset="{default: false, lg: '300px'}">
+            <!--begin::Header container-->
+            <div class="app-container container-xxl d-flex align-items-stretch justify-content-between"
+                 id="kt_app_header_container">
+                <!--begin::Header mobile toggle-->
+                <div class="d-flex align-items-center d-lg-none ms-n2 me-2" title="مشاهده">
+                    <div class="btn btn-icon btn-active-color-primary w-35px h-35px" id="kt_app_header_menu_toggle">
+                        <i class="ki-outline ki-abstract-14 fs-2"></i>
+                    </div>
+                </div>
+                <!--end::Header mobile toggle-->
+                <!--begin::Logo-->
+                <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-1 me-lg-13">
+                    <a href="#">
+                        <img   alt="Logo" src="{% static "assets/logo1.jpg" %}"
+                             class="h-30px w-150px rounded h-lg-30px theme-light-show"/>
+                        <img alt="Logo" src="{% static "assets/logo1.jpg" %}"
+                             class="h-30px w-150px rounded h-lg-30px theme-dark-show"/>
+                    </a>
+                </div>
+                <!--end::Logo-->
+{#            assets/media/logos/demo43-dark.svg#}
+                <!--begin::Header wrapper-->
+                <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1"
+                     id="kt_app_header_wrapper">
+                    <!--begin::Menu wrapper-->
+                    <div class="d-flex align-items-stretch" id="kt_app_header_menu_wrapper">
+                        <!--begin::Menu holder-->
+                        <div class="app-header-menu app-header-mobile-drawer align-items-stretch" data-kt-drawer="true"
+                             data-kt-drawer-name="app-header-menu" data-kt-drawer-activate="{default: true, lg: false}"
+                             data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}"
+                             data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_header_menu_toggle"
+                             data-kt-swapper="true" data-kt-swapper-mode="prepend"
+                             data-kt-swapper-parent="{default: '#kt_app_body', lg: '#kt_app_header_menu_wrapper'}">
+                            <!--begin::Menu-->
+                            <div class="menu menu-rounded menu-column menu-lg-row menu-active-bg menu-title-gray-600 menu-state-dark menu-arrow-gray-400 fw-semibold fw-semibold fs-6 align-items-stretch my-5 my-lg-0 px-2 px-lg-0"
+                                 id="#kt_app_header_menu" data-kt-menu="true">
+                                <!--begin:Menu item-->
+
+                                <div onclick="window.location.href='{% url 'index' %}';" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                                     data-kt-menu-placement="bottom-end" data-kt-menu-offset="-220,0"
+                                     class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                                    <!--begin:Menu link-->
+                                    <span class="menu-link">
+												<span class="menu-icon">
+													<i class="ki-outline ki-graph-3"></i>
+												</span>
+												<span ><a class="menu-title" href="{% url 'index' %}">داشبورد</a></span>
+{#												<span class="menu-arrow d-lg-none"></span>#}
+											</span>
+                                    <!--end:Menu link-->
+                                    <!--begin:Menu sub-->
+                                    <div class="menu-sub menu-sub-lg-down-accordion  p-0 w-100 w-lg-850px">
+                                        <!--begin:داشبورد ها menu-->
+
+                                        <!--end:داشبورد ها menu-->
+                                    </div>
+                                    <!--end:Menu sub-->
+                                </div>
+
+                                <!--end:Menu item-->
+                                <!--begin:Menu item-->
+                                <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                                     data-kt-menu-placement="bottom-end" data-kt-menu-offset="-400,0"
+                                     class="menu-item menu-lg-down-accordion me-0 me-lg-2">
+                                    <!--begin:Menu link-->
+                                    <span class="menu-link">
+												<span class="menu-icon">
+													<i class="ki-outline ki-category"></i>
+												</span>
+												<span class="menu-title">مدیریت</span>
+												<span class="menu-arrow d-lg-none"></span>
+											</span>
+                                    <!--end:Menu link-->
+                                    <!--begin:Menu sub-->
+                                    <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown p-0">
+                                        <!--begin:صفحات menu-->
+                                        <div class="menu-active-bg px-4 px-lg-0">
+                                            <!--begin:Tabs nav-->
+                                            <div class="d-flex w-100 overflow-auto">
+                                                <ul class="nav nav-stretch nav-line-tabs fw-bold fs-6 p-0 p-lg-10 flex-nowrap flex-grow-1">
+                                                    <!--begin:Nav item-->
+                                                    <li class="nav-item mx-lg-1">
+                                                        <a class="nav-link py-3 py-lg-6 active text-active-primary"
+                                                           href="#" data-bs-toggle="tab"
+                                                           data-bs-target="#kt_app_header_menu_pages_pages">مدیریت
+                                                            درخواست ها</a>
+                                                    </li>
+                                                    <!--end:Nav item-->
+                                                    <!--begin:Nav item-->
+                                                    <li class="nav-item mx-lg-1">
+                                                        <a class="nav-link py-3 py-lg-6 text-active-primary" href="#"
+                                                           data-bs-toggle="tab"
+                                                           data-bs-target="#kt_app_header_menu_pages_account">تنطیمات</a>
+                                                    </li>
+                                                    <!--end:Nav item-->
+                                                    <!--begin:Nav item-->
+                                                    <li class="nav-item mx-lg-1">
+                                                        <a class="nav-link py-3 py-lg-6 text-active-primary" href="#"
+                                                           data-bs-toggle="tab"
+                                                           data-bs-target="#kt_app_header_menu_pages_authentication">مدیریت
+                                                            کارها</a>
+                                                    </li>
+                                                    <!--end:Nav item-->
+                                                    <!--begin:Nav item-->
+                                                    <li class="nav-item mx-lg-1">
+                                                        <a class="nav-link py-3 py-lg-6 text-active-primary" href="#"
+                                                           data-bs-toggle="tab"
+                                                           data-bs-target="#kt_app_header_menu_pages_utilities">کاربری</a>
+                                                    </li>
+                                                    <!--end:Nav item-->
+                                                    <!--begin:Nav item-->
+
+                                                    <!--end:Nav item-->
+                                                </ul>
+                                            </div>
+                                            <!--end:Tabs nav-->
+                                            <!--begin:Tab content-->
+                                            <div class="tab-content py-4 py-lg-8 px-lg-7">
+                                                <!--begin:Tab pane-->
+                                                <div class="tab-pane active w-lg-1000px"
+                                                     id="kt_app_header_menu_pages_pages">
+                                                    <!--begin:Row-->
+                                                    <div class="row">
+                                                        <!--begin:Col-->
+                                                        <div class="col-lg-8">
+                                                            <!--begin:Row-->
+                                                            <div class="row">
+                                                                <!--begin:Col-->
+                                                                <div class="col-lg-3 mb-6 mb-lg-0">
+                                                                    <!--begin:Menu heading-->
+
+                                                                    <!--end:Menu heading-->
+                                                                    <!--begin:Menu item-->
+                                                                    {% if perms.base.view_order or perms.base.add_order %}
+                                                                        {% if perms.base.view_order %}
+                                                                            <div class="menu-item p-0 m-0">
+                                                                                <!--begin:Menu link-->
+                                                                                <a href="{% url 'orders_list' %}"
+                                                                                   class="menu-link">
+                                                                                    <span class="menu-title">لیست درخواست ها </span>
+                                                                                </a>
+                                                                                <!--end:Menu link-->
+                                                                            </div>
+                                                                            {% if not  request.user.is_superuser %}
+                                                                                <div class="menu-item p-0 m-0">
+                                                                                    <!--begin:Menu link-->
+                                                                                    <a href="{% url 'orders_completed_list' %}"
+                                                                                       class="menu-link">
+                                                                                        <span class="menu-title">لیست درخواست های تکمیل شده</span>
+                                                                                    </a>
+                                                                                    <!--end:Menu link-->
+                                                                                </div>
+                                                                            {% endif %}
+                                                                        {% endif %}
+
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        {% if perms.base.add_order %}
+                                                                            <div class="menu-item p-0 m-0">
+                                                                                <!--begin:Menu link-->
+                                                                                <a href="{% url 'order_add' %}"
+                                                                                   class="menu-link">
+                                                                                    <span class="menu-title">ایجاد درخواست</span>
+                                                                                </a>
+                                                                                <!--end:Menu link-->
+                                                                            </div>
+                                                                        {% endif %}
+                                                                    {% endif %}
+
+                                                                </div>
+                                                                <!--end:Col-->
+                                                                <!--begin:Col-->
+                                                                <div class="col-lg-3 mb-6 mb-lg-0">
+                                                                    <!--begin:Menu section-->
+                                                                    <div class="mb-6">
+                                                                        <!--begin:Menu heading-->
+                                                                        <h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4"></h4>
+
+                                                                    </div>
+                                                                    <!--end:Menu section-->
+                                                                    <!--begin:Menu section-->
+                                                                    <div class="mb-0">
+                                                                        <!--begin:Menu heading-->
+                                                                        <h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">
+                                                                        </h4>
+                                                                        <!--end:Menu heading-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+                                                                            <a href=""
+                                                                               class="menu-link">
+                                                                                <span class="menu-title"> </span>
+                                                                            </a>
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                    </div>
+                                                                    <!--end:Menu section-->
+                                                                </div>
+                                                                <!--end:Col-->
+                                                                <!--begin:Col-->
+                                                                <div class="col-lg-3 mb-6 mb-lg-0">
+                                                                    <!--begin:Menu section-->
+                                                                    <div class="mb-6">
+                                                                        <!--begin:Menu heading-->
+                                                                        <h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">
+                                                                        </h4>
+                                                                        <!--end:Menu heading-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                    </div>
+                                                                    <!--end:Menu section-->
+                                                                    <!--begin:Menu section-->
+                                                                    <div class="mb-6">
+                                                                        <!--begin:Menu heading-->
+                                                                        <h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">
+                                                                        </h4>
+                                                                        <!--end:Menu heading-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                    </div>
+                                                                    <!--end:Menu section-->
+                                                                    <!--begin:Menu section-->
+                                                                    <div class="mb-0">
+                                                                        <!--begin:Menu heading-->
+                                                                        <h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">
+                                                                        </h4>
+                                                                        <!--end:Menu heading-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                    </div>
+                                                                    <!--end:Menu section-->
+                                                                </div>
+                                                                <!--end:Col-->
+                                                                <!--begin:Col-->
+                                                                <div class="col-lg-3 mb-6 mb-lg-0">
+                                                                    <!--begin:Menu section-->
+                                                                    <div class="mb-0">
+                                                                        <!--begin:Menu heading-->
+                                                                        <h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">
+                                                                        </h4>
+                                                                        <!--end:Menu heading-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                    </div>
+                                                                    <!--end:Menu section-->
+                                                                </div>
+                                                                <!--end:Col-->
+                                                            </div>
+                                                            <!--end:Row-->
+                                                        </div>
+                                                        <!--end:Col-->
+                                                        <!--begin:Col-->
+                                                        {#                                                        <div class="col-lg-4">#}
+                                                        {#                                                            <img src="{% static 'assets/media/stock/600x600/img-82.jpg' %}"#}
+                                                        {#                                                                 class="rounded mw-100" alt=""/>#}
+                                                        {#                                                        </div>#}
+                                                        <!--end:Col-->
+                                                    </div>
+                                                    <!--end:Row-->
+                                                </div>
+                                                <!--end:Tab pane-->
+                                                <!--begin:Tab pane-->
+                                                <div class="tab-pane w-lg-600px" id="kt_app_header_menu_pages_account">
+                                                    <!--begin:Row-->
+                                                    <div class="row">
+                                                        <!--begin:Col-->
+                                                        <div class="col-lg-6 mb-6 mb-lg-0">
+                                                            <!--begin:Row-->
+                                                            <div class="row">
+                                                                <!--begin:Col-->
+                                                                <div class="col-lg-6">
+                                                                    <!--begin:Menu item-->
+                                                                    {% if perms.base.view_department %}
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+                                                                            <a href="{% url 'department_list' %}"
+                                                                               class="menu-link">
+                                                                                <span class="menu-title">مدیریت محیط ها</span>
+                                                                            </a>
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                    {% endif %}
+                                                                    <!--end:Menu item-->
+                                                                    <!--begin:Menu item-->
+                                                                    {% if perms.base.view_operation %}
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+                                                                            <a href="{% url 'operation_list' %}"
+                                                                               class="menu-link">
+                                                                                <span class="menu-title">مدیریت ماشین ها</span>
+                                                                            </a>
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                    {% endif %}
+                                                                    <!--end:Menu item-->
+                                                                    <!--begin:Menu item-->
+                                                                    {% if perms.base.view_part %}
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+                                                                            <a href="{% url 'machine_parts_list' %}"
+                                                                               class="menu-link">
+                                                                                <span class="menu-title">مدیریت قطعات</span>
+                                                                            </a>
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                    {% endif %}
+                                                                    <!--end:Menu item-->
+                                                                    <!--begin:Menu item-->
+                                                                    {% if perms.base.view_stuff %}
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+                                                                            <a href="{% url 'stuff_list' %}"
+                                                                               class="menu-link">
+                                                                                <span class="menu-title">مدیریت وسایل</span>
+                                                                            </a>
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                    {% endif %}
+                                                                    <!--end:Menu item-->
+                                                                    <!--begin:Menu item-->
+                                                                    {% if perms.base.view_station %}
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+                                                                            <a href="{% url 'station_list' %}"
+                                                                               class="menu-link">
+                                                                                <span class="menu-title">مدیریت ایستگاه ها </span>
+                                                                            </a>
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                    {% endif %}
+                                                                    <!--end:Menu item-->
+                                                                </div>
+                                                                <!--end:Col-->
+                                                                <!--begin:Col-->
+                                                                <div class="col-lg-6">
+                                                                    <!--begin:Menu item-->
+                                                                    {% if perms.base.view_subgroup %}
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+                                                                            <a href="{% url 'subgroup_list' %}"
+                                                                               class="menu-link">
+                                                                                <span class="menu-title">مدیریت زیر گروه ها</span>
+                                                                            </a>
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                    {% endif %}
+                                                                    <!--end:Menu item-->
+                                                                    <!--begin:Menu item-->
+                                                                    <div class="menu-item p-0 m-0">
+                                                                        <!--begin:Menu link-->
+
+                                                                        <!--end:Menu link-->
+                                                                    </div>
+                                                                    <!--end:Menu item-->
+                                                                    <!--begin:Menu item-->
+                                                                    <div class="menu-item p-0 m-0">
+                                                                        <!--begin:Menu link-->
+
+                                                                        <!--end:Menu link-->
+                                                                    </div>
+                                                                    <!--end:Menu item-->
+                                                                    <!--begin:Menu item-->
+                                                                    <div class="menu-item p-0 m-0">
+                                                                        <!--begin:Menu link-->
+
+                                                                        <!--end:Menu link-->
+                                                                    </div>
+                                                                    <!--end:Menu item-->
+                                                                </div>
+                                                                <!--end:Col-->
+                                                            </div>
+                                                            <!--end:Row-->
+                                                        </div>
+                                                        <!--end:Col-->
+                                                        <!--begin:Col-->
+                                                        <div class="col-lg-7">
+                                                            <img src="{% static 'assets/media/stock/900x600/46.jpg' %}"
+                                                                 class="rounded mw-100" alt=""/>
+                                                        </div>
+                                                        <!--end:Col-->
+                                                    </div>
+                                                    <!--end:Row-->
+                                                </div>
+                                                <!--end:Tab pane-->
+                                                <!--begin:Tab pane-->
+                                                <div class="tab-pane w-lg-1000px"
+                                                     id="kt_app_header_menu_pages_authentication">
+                                                    <!--begin:Row-->
+                                                    <div class="row">
+                                                        <!--begin:Col-->
+                                                        <div class="col-lg-3 mb-6 mb-lg-0">
+                                                            <!--begin:Menu section-->
+                                                            <div class="mb-6">
+                                                                <!--begin:Menu heading-->
+                                                                <h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">
+                                                                </h4>
+                                                                <!--end:Menu heading-->
+                                                                <!--begin:Menu item-->
+                                                                {% if perms.base.view_task %}
+                                                                    <div class="menu-item p-0 m-0">
+                                                                        <!--begin:Menu link-->
+                                                                        <a href="{% url 'tasks_list' %}"
+                                                                           class="menu-link">
+                                                                            <span class="menu-title">مدیریت کارها</span>
+                                                                        </a>
+                                                                        <!--end:Menu link-->
+                                                                    </div>
+                                                                {% endif %}
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                {% if perms.base.view_task %}
+                                                                    <div class="menu-item p-0 m-0">
+                                                                        <!--begin:Menu link-->
+                                                                        <a href="{% url 'sub_task_list' %}"
+                                                                           class="menu-link">
+                                                                            <span class="menu-title">مدیریت کارها و زیر مجموعه ها</span>
+                                                                        </a>
+                                                                        <!--end:Menu link-->
+                                                                    </div>
+                                                                {% endif %}
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                            </div>
+                                                            <!--end:Menu section-->
+                                                            <!--begin:Menu section-->
+                                                            <div class="mb-0">
+                                                                <!--begin:Menu heading-->
+                                                                <h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">
+                                                                </h4>
+                                                                <!--end:Menu heading-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                            </div>
+                                                            <!--end:Menu section-->
+                                                        </div>
+                                                        <!--end:Col-->
+                                                        <!--begin:Col-->
+                                                        <div class="col-lg-3 mb-6 mb-lg-0">
+                                                            <!--begin:Menu section-->
+                                                            <div class="mb-6">
+                                                                <!--begin:Menu heading-->
+                                                                <h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">
+                                                                </h4>
+                                                                <!--end:Menu heading-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                            </div>
+                                                            <!--end:Menu section-->
+                                                            <!--begin:Menu section-->
+                                                            <div class="mb-6">
+                                                                <!--begin:Menu heading-->
+                                                                <h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">
+                                                                </h4>
+                                                                <!--end:Menu heading-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                            </div>
+                                                            <!--end:Menu section-->
+                                                        </div>
+                                                        <!--end:Col-->
+                                                        <!--begin:Col-->
+                                                        <div class="col-lg-3 mb-6 mb-lg-0">
+                                                            <!--begin:Menu section-->
+                                                            <div class="mb-0">
+                                                                <!--begin:Menu heading-->
+                                                                <h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4"></h4>
+                                                                <!--end:Menu heading-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                            </div>
+                                                            <!--end:Menu section-->
+                                                        </div>
+                                                        <!--end:Col-->
+                                                        <!--begin:Col-->
+                                                        <div class="col-lg-3 mb-6 mb-lg-0">
+                                                            <!--begin:Menu section-->
+                                                            <div class="mb-0">
+                                                                <!--begin:Menu heading-->
+                                                                <h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">
+                                                                </h4>
+                                                                <!--end:Menu heading-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                                <!--begin:Menu item-->
+                                                                <div class="menu-item p-0 m-0">
+                                                                    <!--begin:Menu link-->
+
+                                                                    <!--end:Menu link-->
+                                                                </div>
+                                                                <!--end:Menu item-->
+                                                            </div>
+                                                            <!--end:Menu section-->
+                                                        </div>
+                                                        <!--end:Col-->
+                                                    </div>
+                                                    <!--end:Row-->
+                                                </div>
+                                                <!--end:Tab pane-->
+                                                <!--begin:Tab pane-->
+
+                                                <div class="tab-pane w-lg-1000px"
+                                                     id="kt_app_header_menu_pages_utilities">
+                                                    <!--begin:Row-->
+                                                    <div class="row">
+                                                        <!--begin:Col-->
+                                                        <div class="col-lg-7">
+                                                            <!--begin:Row-->
+                                                            <div class="row">
+                                                                <!--begin:Col-->
+                                                                <div class="col-lg-4 mb-6 mb-lg-0">
+                                                                    <!--begin:Menu section-->
+                                                                    <div class="mb-0">
+                                                                        <!--begin:Menu heading-->
+                                                                        <h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">
+                                                                        </h4>
+                                                                        <!--end:Menu heading-->
+                                                                        <!--begin:Menu item-->
+                                                                        {% if perms.users.view_user or perms.users.add_user %}
+                                                                            <div class="menu-item p-0 m-0">
+                                                                                <!--begin:Menu link-->
+                                                                                <a href="{% url 'users_list' %}"
+                                                                                   class="menu-link">
+                                                                                    <span class="menu-title">لیست کاربران</span>
+                                                                                </a>
+                                                                                <!--end:Menu link-->
+                                                                            </div>
+                                                                        {% endif %}
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        {% if perms.users.view_user or perms.users.add_user %}
+                                                                            <div class="menu-item p-0 m-0">
+                                                                                <!--begin:Menu link-->
+                                                                                <a href="{% url 'user_add' %}"
+                                                                                   class="menu-link">
+                                                                                    <span class="menu-title">ایجاد کاربر</span>
+                                                                                </a>
+                                                                                <!--end:Menu link-->
+                                                                            </div>
+                                                                        {% endif %}
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        {% if perms.auth.view_permission or perms.auth.add_permission %}
+                                                                            <div class="menu-item p-0 m-0">
+                                                                                <!--begin:Menu link-->
+                                                                                <a href="{% url 'roles_list' %}"
+                                                                                   class="menu-link">
+                                                                                    <span class="menu-title">نقش ها و دسترسی ها</span>
+                                                                                </a>
+                                                                                <!--end:Menu link-->
+                                                                            </div>
+                                                                        {% endif %}
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                    </div>
+                                                                    <!--end:Menu section-->
+                                                                </div>
+                                                                <!--end:Col-->
+                                                                <!--begin:Col-->
+                                                                <div class="col-lg-4 mb-6 mb-lg-0">
+                                                                    <!--begin:Menu section-->
+                                                                    <div class="mb-6">
+                                                                        <!--begin:Menu heading-->
+                                                                        <h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">
+                                                                        </h4>
+                                                                        <!--end:Menu heading-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                    </div>
+                                                                    <!--end:Menu section-->
+                                                                    <!--begin:Menu section-->
+                                                                    <div class="mb-0">
+                                                                        <!--begin:Menu heading-->
+                                                                        <h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">
+                                                                        </h4>
+                                                                        <!--end:Menu heading-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                    </div>
+                                                                    <!--end:Menu section-->
+                                                                </div>
+                                                                <!--end:Col-->
+                                                                <!--begin:Col-->
+                                                                <div class="col-lg-4 mb-6 mb-lg-0">
+                                                                    <!--begin:Menu section-->
+                                                                    <div class="mb-0">
+                                                                        <!--begin:Menu heading-->
+                                                                        <h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">
+                                                                        </h4>
+                                                                        <!--end:Menu heading-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                        <!--begin:Menu item-->
+                                                                        <div class="menu-item p-0 m-0">
+                                                                            <!--begin:Menu link-->
+
+                                                                            <!--end:Menu link-->
+                                                                        </div>
+                                                                        <!--end:Menu item-->
+                                                                    </div>
+                                                                    <!--end:Menu section-->
+                                                                </div>
+                                                                <!--end:Col-->
+                                                            </div>
+                                                            <!--end:Row-->
+                                                        </div>
+                                                        <!--end:Col-->
+                                                        <!--begin:Col-->
+                                                        <div class="col-lg-5 pe-lg-5">
+                                                            <img src="{% static 'assets/media/stock/600x600/img-84.jpg' %}"
+                                                                 class="rounded mw-100" alt=""/>
+                                                        </div>
+                                                        <!--end:Col-->
+                                                    </div>
+                                                    <!--end:Row-->
+                                                </div>
+                                                <!--end:Tab pane-->
+                                                <!--begin:Tab pane-->
+                                                <div class="tab-pane w-lg-500px" id="kt_app_header_menu_pages_widgets">
+                                                    <!--begin:Row-->
+                                                    <div class="row">
+                                                        <!--begin:Col-->
+                                                        <div class="col-lg-4 mb-6 mb-lg-0">
+                                                            <!--begin:Menu item-->
+                                                            <div class="menu-item p-0 m-0">
+                                                                <!--begin:Menu link-->
+
+                                                                <!--end:Menu link-->
+                                                            </div>
+                                                            <!--end:Menu item-->
+                                                            <!--begin:Menu item-->
+                                                            <div class="menu-item p-0 m-0">
+                                                                <!--begin:Menu link-->
+
+                                                                <!--end:Menu link-->
+                                                            </div>
+                                                            <!--end:Menu item-->
+                                                            <!--begin:Menu item-->
+                                                            <div class="menu-item p-0 m-0">
+                                                                <!--begin:Menu link-->
+
+                                                                <!--end:Menu link-->
+                                                            </div>
+                                                            <!--end:Menu item-->
+                                                            <!--begin:Menu item-->
+                                                            <div class="menu-item p-0 m-0">
+                                                                <!--begin:Menu link-->
+
+                                                                <!--end:Menu link-->
+                                                            </div>
+                                                            <!--end:Menu item-->
+                                                            <!--begin:Menu item-->
+                                                            <div class="menu-item p-0 m-0">
+                                                                <!--begin:Menu link-->
+
+                                                                <!--end:Menu link-->
+                                                            </div>
+                                                            <!--end:Menu item-->
+                                                            <!--begin:Menu item-->
+                                                            <div class="menu-item p-0 m-0">
+                                                                <!--begin:Menu link-->
+
+                                                                <!--end:Menu link-->
+                                                            </div>
+                                                            <!--end:Menu item-->
+                                                        </div>
+                                                        <!--end:Col-->
+                                                        <!--begin:Col-->
+                                                        <div class="col-lg-8">
+                                                            <img src="{% static 'assets/media/stock/900x600/44.jpg' %}"
+                                                                 class="rounded mw-100" alt=""/>
+                                                        </div>
+                                                        <!--end:Col-->
+                                                    </div>
+                                                    <!--end:Row-->
+                                                </div>
+                                                <!--end:Tab pane-->
+                                            </div>
+                                            <!--end:Tab content-->
+                                        </div>
+                                        <!--end:صفحات menu-->
+                                    </div>
+                                    <!--end:Menu sub-->
+                                </div>
+                                <!--end:Menu item-->
+                                <!--begin:Menu item-->
+                                {% if request.user.is_superuser %}
+                                    <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                                         data-kt-menu-placement="bottom-end" data-kt-menu-offset="22,0"
+                                         class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
+                                        <!--begin:Menu link-->
+                                        <span class="menu-link">
+												<span class="menu-icon">
+													<i class="ki-outline ki-graph-up"></i>
+												</span>
+												<span class="menu-title">گزارشات</span>
+												<span class="menu-arrow d-lg-none"></span>
+											</span>
+                                        <!--end:Menu link-->
+                                        <!--begin:Menu sub-->
+                                        <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-lg-2 py-lg-4 w-lg-250px">
+                                            <!--begin:Menu item-->
+                                            <div data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+                                                 data-kt-menu-placement="left-start"
+                                                 class="menu-item menu-lg-down-accordion">
+                                                <!--begin:Menu link-->
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link"
+                                                       href="{% url 'persons_report' %}">
+																		<span class="menu-bullet">
+																			<span class="bullet bullet-dot"></span>
+																		</span>
+                                                        <span class="menu-title">افراد</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                                <!--end:Menu link-->
+                                                <!--begin:Menu sub-->
+                                                <div class="menu-sub menu-sub-lg-down-accordion  menu-active-bg px-lg-2 py-lg-4 w-lg-225px">
+                                                    <!--begin:Menu item-->
+
+                                                    <!--end:Menu item-->
+                                                    <!--begin:Menu item-->
+
+                                                </div>
+                                                <!--end:Menu sub-->
+                                            </div>
+                                            <!--end:Menu item-->
+                                            <!--begin:Menu item-->
+                                            <div data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+                                                 data-kt-menu-placement="left-start"
+                                                 class="menu-item menu-lg-down-accordion">
+                                                <!--begin:Menu link-->
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link"
+                                                       href="{% url 'machines_report' %}">
+																		<span class="menu-bullet">
+																			<span class="bullet bullet-dot"></span>
+																		</span>
+                                                        <span class="menu-title">دستگاه ها</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                                <!--end:Menu link-->
+                                                <!--begin:Menu sub-->
+                                                <div class="menu-sub menu-sub-lg-down-accordion  menu-active-bg px-lg-2 py-lg-4 w-lg-225px">
+                                                    <!--begin:Menu item-->
+                                                    <div data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+                                                         data-kt-menu-placement="left-start"
+                                                         class="menu-item menu-lg-down-accordion">
+                                                        <!--begin:Menu link-->
+
+                                                        <!--end:Menu link-->
+                                                        <!--begin:Menu sub-->
+                                                        <div class="menu-sub menu-sub-lg-down-accordion  menu-active-bg px-lg-2 py-lg-4 w-lg-225px">
+                                                            <!--begin:Menu item-->
+                                                            <div class="menu-item">
+                                                                <!--begin:Menu link-->
+
+                                                                <!--end:Menu link-->
+                                                            </div>
+                                                            <!--end:Menu item-->
+                                                            <!--begin:Menu item-->
+                                                            <div class="menu-item">
+                                                                <!--begin:Menu link-->
+
+                                                                <!--end:Menu link-->
+                                                            </div>
+                                                            <!--end:Menu item-->
+                                                            <!--begin:Menu item-->
+                                                            <div class="menu-item">
+                                                                <!--begin:Menu link-->
+
+                                                                <!--end:Menu link-->
+                                                            </div>
+                                                            <!--end:Menu item-->
+                                                            <!--begin:Menu item-->
+                                                            <div class="menu-item">
+                                                                <!--begin:Menu link-->
+
+                                                                <!--end:Menu link-->
+                                                            </div>
+                                                            <!--end:Menu item-->
+                                                            <!--begin:Menu item-->
+                                                            <div class="menu-item">
+                                                                <!--begin:Menu link-->
+
+                                                                <!--end:Menu link-->
+                                                            </div>
+                                                            <!--end:Menu item-->
+                                                            <!--begin:Menu item-->
+                                                            <div class="menu-item">
+                                                                <!--begin:Menu link-->
+
+                                                                <!--end:Menu link-->
+                                                            </div>
+                                                            <!--end:Menu item-->
+                                                        </div>
+                                                        <!--end:Menu sub-->
+                                                    </div>
+                                                    <!--end:Menu item-->
+
+                                                    <!--end:Menu item-->
+                                                </div>
+                                                <!--end:Menu sub-->
+                                            </div>
+                                            <!--end:Menu item-->
+                                            <!--begin:Menu item-->
+                                            <div data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+                                                 data-kt-menu-placement="left-start"
+                                                 class="menu-item menu-lg-down-accordion">
+                                                <!--begin:Menu link-->
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link"
+                                                       href="{% url 'chart_report' %}">
+																		<span class="menu-bullet">
+																			<span class="bullet bullet-dot"></span>
+																		</span>
+                                                        <span class="menu-title">نموداری</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                                <!--end:Menu link-->
+                                                <!--begin:Menu sub-->
+                                                <div class="menu-sub menu-sub-lg-down-accordion  menu-active-bg px-lg-2 py-lg-4 w-lg-225px">
+                                                    <!--begin:Menu item-->
+                                                    <div class="menu-item">
+                                                        <!--begin:Menu link-->
+
+                                                        <!--end:Menu link-->
+                                                    </div>
+
+                                                </div>
+                                                <!--end:Menu sub-->
+                                            </div>
+                                            <!--end:Menu item-->
+                                            <!--begin:Menu item-->
+                                            <div data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+                                                 data-kt-menu-placement="left-start"
+                                                 class="menu-item menu-lg-down-accordion">
+                                                <!--begin:Menu link-->
+
+                                                <!--end:Menu link-->
+                                                <!--begin:Menu sub-->
+                                                <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-active-bg px-lg-2 py-lg-4 w-lg-225px">
+                                                    <!--begin:Menu item-->
+                                                    <div data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+                                                         data-kt-menu-placement="left-start"
+                                                         class="menu-item menu-lg-down-accordion">
+                                                        <!--begin:Menu link-->
+
+                                                        <!--end:Menu link-->
+                                                        <!--begin:Menu sub-->
+                                                        <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-active-bg px-lg-2 py-lg-4 w-lg-225px">
+                                                            <!--begin:Menu item-->
+                                                            <div class="menu-item">
+                                                                <!--begin:Menu link-->
+
+                                                                <!--end:Menu link-->
+                                                            </div>
+                                                            <!--end:Menu item-->
+                                                            <!--begin:Menu item-->
+                                                            <div class="menu-item">
+                                                                <!--begin:Menu link-->
+
+                                                                <!--end:Menu link-->
+                                                            </div>
+                                                            <!--end:Menu item-->
+                                                        </div>
+                                                        <!--end:Menu sub-->
+                                                    </div>
+                                                    <!--end:Menu item-->
+                                                    <!--begin:Menu item-->
+
+                                                    <!--end:Menu item-->
+                                                </div>
+                                                <!--end:Menu sub-->
+                                            </div>
+                                            <!--end:Menu item-->
+
+                                            <!--end:Menu item-->
+                                        </div>
+                                        <!--end:Menu sub-->
+                                    </div>
+                                {% endif %}
+                                <!--end:Menu item-->
+                                <!--begin:Menu item-->
+                                {% if perms.review.view_review or perms.users.add_review %}
+                                    <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                                         data-kt-menu-placement="bottom-end" data-kt-menu-offset="22,0"
+                                         class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
+                                        <!--begin:Menu link-->
+                                        <span class="menu-link">
+												<span class="menu-icon">
+													<i class="ki-outline ki-setting-2"></i>
+												</span>
+												<span class="menu-title">بازدیدها </span>
+												<span class="menu-arrow d-lg-none"></span>
+											</span>
+                                        <!--end:Menu link-->
+                                        <!--begin:Menu sub-->
+                                        <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-lg-4 py-lg-4 w-lg-200px">
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link"
+                                                   href="{% url 'review_list' %}"
+
+                                                   data-bs-placement="right">
+														<span class="menu-icon">
+															<i class="ki-outline ki-element-5 fs-2"></i>
+														</span>
+                                                    <span class="menu-title">لیست بازدید</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link"
+                                                   href="{% url 'review_add' %}"
+
+                                                   data-bs-placement="right">
+														<span class="menu-icon">
+															<i class="ki-outline ki-plus-square fs-2"></i>
+														</span>
+                                                    <span class="menu-title">ایجاد بازدید</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
+                                            <!--begin:Menu item-->
+                                            {% if perms.review.view_part %}
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link"
+                                                       href="{% url 'machine_list' %}"
+                                                       data-bs-placement="right">
+														<span class="menu-icon">
+															<i class="ki-outline ki-switch fs-2"></i>
+														</span>
+                                                        <span class="menu-title">مدیریت دستگاه ها</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            {% endif %}
+                                            <!--end:Menu item-->
+                                            <!--begin:Menu item-->
+                                            {% if perms.review.view_part %}
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link"
+                                                       href="{% url 'part_list' %}">
+														<span class="menu-icon">
+															<i class="ki-outline ki-parcel fs-2"></i>
+														</span>
+                                                        <span class="menu-title">مدیریت قطعات</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            {% endif %}
+                                            <!--end:Menu item-->
+                                        </div>
+                                        <!--end:Menu sub-->
+                                    </div>
+                                {% endif %}
+                                <!--end:Menu item-->
+                            </div>
+                            <!--end::Menu-->
+                        </div>
+                        <!--end::Menu holder-->
+                    </div>
+                    <!--end::Menu wrapper-->
+                    <!--begin::Navbar-->
+                    <div class="app-navbar flex-shrink-0">
+                        <!--begin::کاربر menu-->
+                        <div class="app-navbar-item" id="kt_header_user_menu_toggle">
+                            <!--begin::Menu wrapper-->
+                            <div class="d-flex align-items-center border border-dashed border-gray-300 rounded p-2"
+                                 data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
+                                 data-kt-menu-placement="bottom-end">
+                                <!--begin::user-->
+                                <div class="cursor-pointer symbol me-3 symbol-35px symbol-lg-45px">
+                                    {% if request.user.image.url %}
+                                        <img class="" src="{{ reqeust.user.image.url }}" alt="user"/>
+                                    {% else %}
+                                        <img class="" src="{% static 'assets/media/avatars/blank.png' %}" alt="user"/>
+                                    {% endif %}
+                                </div>
+                                <!--end::user-->
+                                <!--begin:Info-->
+                                <div class="me-4">
+
+                                    <a href=""
+                                       class="text-dark text-hover-primary fs-6 fw-bold">{{ request.user.get_full_name }}</a>
+                                    <a href="#"
+                                       class="text-gray-400 text-hover-primary fs-7 fw-bold d-block">@{{ request.user.username }}</a>
+                                </div>
+                                <!--end:Info-->
+                                <i class="ki-outline ki-down fs-2 text-gray-500 pt-1"></i>
+                            </div>
+                            <!--begin::کاربر account menu-->
+                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px"
+                                 data-kt-menu="true">
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-3">
+                                    <div class="menu-content d-flex align-items-center px-3">
+                                        <!--begin::Avatar-->
+                                        <div class="symbol symbol-50px me-5">
+                                            {% if request.user.image.url %}
+                                                <img class="" src="{{ reqeust.user.image.url }}" alt="user"/>
+                                            {% else %}
+                                                <img class="" src="{% static 'assets/media/avatars/blank.png' %}"
+                                                     alt="user"/>
+                                            {% endif %}
+                                        </div>
+                                        <!--end::Avatar-->
+                                        <!--begin::کاربرname-->
+                                        {% if request.user.is_superuser %}
+                                            <div class="d-flex flex-column">
+                                                <div class="fw-bold d-flex align-items-center fs-5">{{ request.user.get_full_name }}
+                                                    <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">مدیر</span>
+                                                </div>
+                                                <a href="#"
+                                                   class="fw-semibold text-muted text-hover-primary fs-7">@{{ request.user.username }}</a>
+                                            </div>
+                                        {% else %}
+                                            <div class="d-flex flex-column">
+                                                <div class="fw-bold d-flex align-items-center fs-5">{{ request.user.get_full_name }}
+                                                    <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">{{ request.user.profile.role.name }}</span>
+                                                </div>
+                                                <a href="#"
+                                                   class="fw-semibold text-muted text-hover-primary fs-7">@{{ request.user.username }}</a>
+                                            </div>
+                                        {% endif %}
+                                        <!--end::کاربرname-->
+                                    </div>
+                                </div>
+                                <!--end::Menu item-->
+                                <!--begin::Menu separator-->
+                                <div class="separator my-2"></div>
+                                <!--end::Menu separator-->
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-5">
+                                    <a href="{% url 'profile' %}" class="menu-link px-5">پروفایل
+                                        من</a>
+                                </div>
+                                <!--end::Menu item-->
+                                <!--begin::Menu item-->
+
+                                <!--begin::Menu item-->
+
+                                <!--end::Menu item-->
+                                <!--begin::Menu separator-->
+                                <div class="separator my-2"></div>
+                                <!--end::Menu separator-->
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                                     data-kt-menu-placement="left-start" data-kt-menu-offset="-15px, 0">
+                                    <a href="#" class="menu-link px-5">
+												<span class="menu-title position-relative">حالت
+												<span class="ms-5 position-absolute translate-middle-y top-50 end-0">
+													<i class="ki-outline ki-night-day theme-light-show fs-2"></i>
+													<i class="ki-outline ki-moon theme-dark-show fs-2"></i>
+												</span></span>
+                                    </a>
+                                    <!--begin::Menu-->
+                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-title-gray-700 menu-icon-gray-500 menu-active-bg menu-state-color fw-semibold py-4 fs-base w-150px"
+                                         data-kt-menu="true" data-kt-element="theme-mode-menu">
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3 my-0">
+                                            <a href="#" class="menu-link px-3 py-2" data-kt-element="mode"
+                                               data-kt-value="light">
+														<span class="menu-icon" data-kt-element="icon">
+															<i class="ki-outline ki-night-day fs-2"></i>
+														</span>
+                                                <span class="menu-title">روشن</span>
+                                            </a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3 my-0">
+                                            <a href="#" class="menu-link px-3 py-2" data-kt-element="mode"
+                                               data-kt-value="dark">
+														<span class="menu-icon" data-kt-element="icon">
+															<i class="ki-outline ki-moon fs-2"></i>
+														</span>
+                                                <span class="menu-title">تیره</span>
+                                            </a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3 my-0">
+                                            <a href="#" class="menu-link px-3 py-2" data-kt-element="mode"
+                                               data-kt-value="system">
+														<span class="menu-icon" data-kt-element="icon">
+															<i class="ki-outline ki-screen fs-2"></i>
+														</span>
+                                                <span class="menu-title">سیستم</span>
+                                            </a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                    </div>
+                                    <!--end::Menu-->
+                                </div>
+                                <!--end::Menu item-->
+                                <!--begin::Menu item-->
+
+                                <!--end::Menu item-->
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-5 my-1">
+                                    <a href="{% url 'change_password' %}" class="menu-link px-5">تغییر پسورد</a>
+                                </div>
+                                <!--end::Menu item-->
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-5">
+                                    <a href="{% url 'logout' %}"
+                                       class="menu-link px-5">خروج</a>
+                                </div>
+                                <!--end::Menu item-->
+                            </div>
+                            <!--end::کاربر account menu-->
+                            <!--end::Menu wrapper-->
+                        </div>
+                        <!--end::کاربر menu-->
+                        <!--begin::Sidebar menu toggle-->
+                        <!--end::Sidebar menu toggle-->
+                    </div>
+                    <!--end::Navbar-->
+                </div>
+                <!--end::Header wrapper-->
+            </div>
+            <!--end::Header container-->
+        </div>
+        <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
+            <!--begin::Toolbar-->
+            <div id="kt_app_toolbar" class="app-toolbar pt-4 pt-lg-7 mb-n2 mb-lg-n3">
+                <!--begin::Toolbar container-->
+                <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack flex-row-fluid">
+                    <!--begin::Toolbar container-->
+                    <div class="d-flex flex-stack flex-row-fluid">
+                        <!--begin::Toolbar container-->
+                        <div class="d-flex flex-column flex-row-fluid">
+                            <!--begin::Toolbar wrapper-->
+                            <!--begin::Breadcrumb-->
+                            <ul class="breadcrumb breadcrumb-separatorless fw-semibold mb-1 mb-lg-3 me-2 fs-7">
+                                <!--begin::item-->
+                                <li class="breadcrumb-item text-gray-700 fw-bold lh-1">
+                                    <a href="#" class="text-white text-hover-primary">
+                                        <i class="ki-outline  text-gray-700 fs-6"></i>
+                                    </a>
+                                </li>
+                                <!--end::item-->
+                                <!--begin::item-->
+                                <li class="breadcrumb-item">
+
+                                </li>
+                                <!--end::item-->
+                                <!--begin::item-->
+
+                                <!--end::item-->
+                            </ul>
+                            <!--end::Breadcrumb-->
+                            <!--begin::Page title-->
+                            <div class="page-title d-flex align-items-center me-3">
+                                <!--begin::Title-->
+                                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
+                                    </h1>
+                                <!--end::Title-->
+                            </div>
+                            <!--end::Page title-->
+                        </div>
+                        <!--end::Toolbar container-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center gap-3">
+                            <!--begin::Secondary button-->
+                            <div class="m-0">
+                                <!--begin::Menu-->
+
+                                <!--begin::Menu 1-->
+                                <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true"
+                                     id="kt_menu_64b780a6aea89">
+                                    <!--begin::Header-->
+
+                                    <!--end::Header-->
+                                    <!--begin::Menu separator-->
+                                    <div class="separator border-gray-200"></div>
+                                    <!--end::Menu separator-->
+                                    <!--begin::Form-->
+                                    <div class="px-7 py-5">
+                                        <!--begin::Input group-->
+                                        <div class="mb-10">
+                                            <!--begin::Tags-->
+
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="mb-10">
+
+                                            <!--end::تنظیمات-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="mb-10">
+                                            <!--begin::Tags-->
+
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Actions-->
+                                        <div class="d-flex justify-content-end">
+
+                                        <!--end::Actions-->
+                                    </div>
+                                    <!--end::Form-->
+                                </div>
+                                <!--end::Menu 1-->
+                                <!--end::Menu-->
+                            </div>
+                            <!--end::Secondary button-->
+                            <!--begin::اصلی button-->
+
+                            <!--end::اصلی button-->
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Toolbar container-->
+                </div>
+                <!--end::Toolbar container-->
+            </div>
+            <!--end::Toolbar-->
+            <!--begin::Wrapper container-->
+
+            <!--end::Wrapper container-->
+        </div>
+        <!--end::Header-->
+        <!--begin::Wrapper-->
+    </div>
+</div>
+</body>

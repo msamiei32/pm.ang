@@ -1,0 +1,664 @@
+{% load static %}
+{% load common %}
+{% load crispy_forms_tags %}
+{% load contains_building %}
+{% load order_tags %}
+{% load jalali_tags %}
+{% load contains_building %}
+
+{% include 'includs/header.html' %}
+
+<!--begin::Toolbar-->
+<div id="kt_app_toolbar" class="app-toolbar pt-4 pt-lg-7 mb-n2 mb-lg-n3">
+    <!--begin::Toolbar container-->
+    <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack flex-row-fluid">
+        <!--begin::Toolbar container-->
+
+        <div class="d-flex flex-column flex-row-fluid">
+            <div class="page-title d-flex align-items-center me-3">
+                <!--begin::Title-->
+                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
+                    لیست مدیریت درخواست ها</h1>
+                <!--end::Title-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--begin::Wrapper container-->
+<div class="app-container container-xxl d-flex">
+    <!--begin::اصلی-->
+    <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+        <!--begin::Content wrapper-->
+        <div class="d-flex flex-column flex-column-fluid">
+            <!--begin::Content-->
+            <div id="kt_app_content" class="app-content">
+                <!--begin::Row-->
+                <div class="row g-5 g-xl-8">
+                    <!--begin::Col-->
+
+                    <!--end::Col-->
+                    <!--begin::Col-->
+                    <div class="col-xl-6">
+                        <!--begin::جداول Widget 2-->
+
+                        <!--end::جداول Widget 2-->
+                    </div>
+                    <!--end::Col-->
+                </div>
+                {% for message in messages %}
+                    {% if message.tags == 'error' %}
+                        <div class="alert alert-danger">{{ message }}</div>
+                    {% else %}
+                        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                    {% endif %}
+                {% endfor %}
+                <form action="#">
+                    <!--begin::کارت-->
+                    <div class="card mb-7">
+                        <!--begin::کارت body-->
+                        <div class="card-body">
+                            <!--begin::Compact form-->
+                            <div class="d-flex align-items-center">
+                                <!--begin::Input group-->
+                                <div class="position-relative w-md-400px me-md-2">
+                                    <i class="ki-outline ki-magnifier fs-3 text-gray-500 position-absolute top-50 translate-middle ms-6"></i>
+                                    <input class="form-control form-control-solid ps-10" type="search" name="q"
+                                           value="{{ request.GET.q }}" placeholder=" جستجو براساس شماره درخواست">
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin:عملیات-->
+                                <div class="d-flex align-items-center">
+                                    <button type="submit" class="btn btn-primary me-5">جستجو</button>
+                                    <a href="#" id="kt_hیاizontal_search_advanced_link" class="btn btn-link"
+                                       data-bs-toggle="collapse" data-bs-target="#kt_advanced_search_form">جستجو
+                                        پیشرفته</a>
+                                </div>
+                                <!--end:عملیات-->
+                            </div>
+                            <!--end::Compact form-->
+                            <!--begin::Advance form-->
+                            <div class="collapse" id="kt_advanced_search_form">
+                                <!--begin::Separator-->
+                                <div class="separator separator-dashed mt-9 mb-6"></div>
+                                <!--end::Separator-->
+                                <!--begin::Row-->
+                                <div class="row g-8 mb-8">
+                                    <!--begin::Col-->
+                                    <div class="col-xxl-7">
+                                        <label for="" class="fs-6 form-label fw-bold text-dark">دپارتمان</label>
+                                        <select data-control="select2" class=" form-select form-select-solid "
+                                                name="department" id="">
+                                            <option value="">انتخاب واحد</option>
+                                            {% for department in departments %}
+                                                <option value="{{ department.id }}"
+                                                        {% if request.GET.department|add:0 == department.id %}
+                                                        selected {% endif %}>{{ department.name }}</option>
+                                            {% endfor %}
+                                        </select>
+
+
+                                    </div>
+                                    <!--end::Col-->
+                                    <!--begin::Col-->
+                                    <div class="col-xxl-5">
+                                        <!--begin::Row-->
+                                        <div class="row g-8">
+                                            <!--begin::Col-->
+                                            <div class="col-lg-6">
+                                                <label for="" class="fs-6 form-label fw-bold text-dark">دستگاه</label>
+                                                <select data-control="select2" class="form-select form-select-solid "
+                                                        name="operation"
+                                                        id="">
+                                                    <option value="">عملیات درخواستی</option>
+                                                    {% for operation in operations %}
+                                                        <option value="{{ operation.id }}"
+                                                                {% if request.GET.operation|add:0 == operation.id %}
+                                                                selected
+                                                                {% endif %}>{{ operation.name }}</option>
+                                                    {% endfor %}
+                                                </select>
+
+                                                <!--begin::انتخاب-->
+
+                                                <!--end::انتخاب-->
+                                            </div>
+                                            <!--end::Col-->
+                                            <!--begin::Col-->
+
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Row-->
+                                    </div>
+                                    <!--end::Col-->
+                                </div>
+                                <!--end::Row-->
+                                <!--begin::Row-->
+                                <div class="row g-8">
+                                    <!--begin::Col-->
+                                    <div class="col-xxl-7">
+                                        <!--begin::Row-->
+                                        <div class="row g-8">
+                                            <!--begin::Col-->
+                                            <div class="col-lg-4">
+                                                <label for="" class="fs-6 form-label fw-bold text-dark">وضعیت:</label>
+                                                <button type="button" class="btn btn-info btn-sm"
+                                                        onclick="selectStatusAll()">انتخاب
+                                                    همه
+                                                </button>
+                                                <select class="form-select form-select-solid select2" name="status"
+                                                        id=""
+                                                        multiple>
+                                                    {#                                <option value="">وضعیت</option>#}
+                                                    {#                                <option value="all">انتخاب همه</option>#}
+                                                    {% for key, text in status_choices %}
+                                                        <option value="{{ key }}"
+                                                                {% for status in request.GET|get_list:'status' %}
+                                                                    {% if status == key %}
+                                                                selected
+                                                                    {% endif %}
+                                                                {% endfor %}>
+                                                            {{ text }}
+                                                        </option>
+                                                    {% endfor %}
+                                                </select>
+                                                <!--end::Dialer-->
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <label for="" class="fs-6 form-label fw-bold text-dark">اپراتور
+                                                    فنی:</label>
+                                                <button type="button" class="btn btn-info btn-sm"
+                                                        onclick="selectOperatorAll()">
+                                                    انتخاب همه
+                                                </button>
+                                                <select class="form-select form-select-solid select2" name="operators"
+                                                        id=""
+                                                        multiple>
+                                                    {#                                <option value="">اپراتور</option>#}
+                                                    {% for operator in operators %}
+                                                        <option value="{{ operator.id }}"
+                                                                {% for inneroperator in request.GET|get_list:'operators' %}
+                                                                    {% with operator.id|stringformat:'i' as stringid %}
+                                                                        {% if stringid == inneroperator %}
+                                                                selected
+                                                                        {% endif %}
+                                                                    {% endwith %}
+                                                                {% endfor %}>
+                                                            {{ operator.get_full_name }}
+                                                        </option>
+                                                    {% endfor %}
+                                                </select>
+                                                <!--end::Dialer-->
+                                            </div>
+                                            <!--end::Col-->
+                                            <!--begin::Col-->
+
+                                            <!--end::Col-->
+                                            <!--begin::Col-->
+
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Row-->
+                                    </div>
+                                    <!--end::Col-->
+                                    <!--begin::Col-->
+                                    <div class="d-flex align-items-center">
+                                        <button type="submit" class="btn btn-primary me-5">جستجو</button>
+                                    </div>
+                                    <!--end::Col-->
+                                </div>
+                                <!--end::Row-->
+                            </div>
+                            <!--end::Advance form-->
+                        </div>
+                        <!--end::کارت body-->
+                    </div>
+                    <!--end::کارت-->
+                </form>
+
+
+                <div class="card mb-5 mb-xl-8">
+                    <!--begin::Header-->
+                    <div class="card-header border-0 pt-5">
+                        <h3 class="card-title align-items-start flex-column">
+                            <span class="card-label fw-bold fs-3 mb-1">لیست درخواست</span>
+
+                        </h3>
+                        <div class="card-toolbar">
+                            <!--begin::Menu-->
+                            <div class="card-toolbar">
+                                <!--begin::Toolbar-->
+                                <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+                                    <!--begin::فیلتر-->
+
+                                    <!--begin::Menu 1-->
+                                    <div class="menu menu-sub menu-sub-dropdown w-300px w-md-325px" data-kt-menu="true">
+                                        <!--begin::Header-->
+
+                                        <!--end::Header-->
+                                        <!--begin::Separator-->
+                                        <div class="separator border-gray-200"></div>
+                                        <!--end::Separator-->
+                                        <!--begin::Content-->
+                                        <!--end::Content-->
+                                    </div>
+                                    <!--end::Menu 1-->
+                                    <!--end::فیلتر-->
+                                    <!--begin::خروجی-->
+
+                                    <!--end::خروجی-->
+                                    <!--begin::افزودن user-->
+                                    <button type="button" class="btn btn-primary">
+                                        <i class="ki-outline ki-plus fs-2"></i><a style="color:black"
+                                                                                  href="{% url 'order_add' %}">ایجاد
+                                        درخواست</a>
+                                    </button>
+                                    <!--end::افزودن user-->
+                                </div>
+                                <!--end::Toolbar-->
+                                <!--begin::گروه actions-->
+
+                                <!--end::Modal - افزودن task-->
+                            </div>
+                        </div>
+
+
+                        <!--end::Header-->
+                        <!--begin::Body-->
+                        <div class="card-body px-2 py-3 w-100">
+
+                            <!--begin::Table container-->
+                            <div class="table-responsive">
+
+                                <!--begin::Table-->
+                                <table class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3">
+                                    <!--begin::Table head-->
+                                    <thead>
+
+                                    <tr class="fw-bold text-muted">
+                                        <th class="w-20px">
+                                            <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                <input class="form-check-input" type="checkbox" value="1"
+                                                       data-kt-check="true" data-kt-check-target=".widget-13-check"/>
+                                            </div>
+                                        </th>
+                                        <th class="min-w-100px">#</th>
+                                        <th class="min-w-200px">درخواست کننده</th>
+                                        <th class="min-w-100px text-start">شماره درخواست</th>
+                                        <th class="min-w-100px">تاریخ درخواست</th>
+                                        <th class="min-w-100px">عملیات</th>
+                                        <th class="min-w-120px">وضعیت</th>
+                                        <th class="min-w-5px text-center">اولویت</th>
+                                        <th class="min-w-150px text-center">عمل‌ها</th>
+                                    </tr>
+                                    </thead>
+                                    <!--end::Table head-->
+                                    <!--begin::Table body-->
+                                    <tbody>
+                                    {% for order in orders %}
+                                        <tr class="{% if order.status == 'SV' %}
+                                                            bg-white
+                                                    {% else %}
+                                                            bg-light
+                                                    {% endif %}">
+                                            <td>
+                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                    <input class="form-check-input widget-13-check" type="checkbox"
+                                                           value="1"/>
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                {#                                            <p class=" m-0{% if order.status == 'SV' %} rounded-pill text-white bg-google-plus{% endif %}">#}
+                                                {#                                                {{ forloop.counter }}#}
+                                                {##}
+                                                {#                                            </p>#}
+                                                <a href="#"
+                                                   class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6 m-0{% if order.status == 'SV' %} rounded-pill text-white bg-google-plus{% endif %}">{{ page_obj.start_index|add:forloop.counter0 }}</a>
+
+                                                {#                                            <span class="m-0{% if order.status == 'SV' %} rounded-pill text-white bg-google-plus{% endif %}" ></span>#}
+                                                {#                                                <a href="#"#}
+                                                {#                                                   class="text-dark fw-bold text-hover-primary fs-6">{{ page_obj.start_index|add:forloop.counter0 }}</a>#}
+
+
+                                            </td>
+                                            <td>
+                                                <a href="#"
+                                                   class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{ order.user.profile }}</a>
+                                            </td>
+                                            <td>
+                                                <a href="#"
+                                                   class="text-dark text-center fw-bold text-hover-primary d-block mb-1 fs-6">{{ order.orderId }}</a>
+
+                                            </td>
+                                            <td>
+                                                <a href="#"
+                                                   class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{ order.createdAt|to_jalali:'%y/%m/%d' }}</a>
+
+                                            </td>
+                                            <td class="text-dark fw-bold text-hover-primary fs-6">{{ order.operation }}</td>
+                                            <td>
+                                                <span class="badge badge-light-success">{{ order.get_status_display }}</span>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-light-success">{{ order.get_priority }}</span>
+                                            </td>
+                                            <td class="text-center">
+                                                {% if perms.base.change_order %}
+                                                    <a href="{% url 'order_edit' order.orderId %}"
+                                                       class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                                        <i class="ki-outline ki-pencil fs-2"></i>
+                                                    </a>
+                                                {% elif user == order.user %}
+                                                    {% is_24_hours order.createdAt as editable %}
+                                                    {% if editable %}
+                                                        <a href="{% url 'order_edit' order.orderId %}"
+                                                           class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                                            <i class="ki-outline ki-pencil fs-2"></i>
+                                                        </a>
+                                                    {% endif %}
+                                                {% endif %}
+
+                                                <button data-bs-toggle="modal" onclick="changeStatus('{{ order.id }}')"
+                                                        data-bs-target="#viewOrderDetail_{{ order.id }}"
+                                                        class="btn btn-sm btn-icon delete-record">
+                                                    <i class="ki-outline ki-printer fs-2"></i>
+
+                                                </button>
+                                                <div class="modal fade" id="viewOrderDetail_{{ order.id }}"
+                                                     tabindex="-1"
+                                                     aria-hidden="true">
+                                                    <div class="modal-dialog modal-xl modal-dialog-centered modal-add-new-role modal-fullscreen">
+                                                        <div class="modal-content table table-bordered p-3 p-md-5">
+                                                            <button type="button" class="btn-close btn-pinned"
+                                                                    data-bs-dismiss="modal"
+                                                                    aria-label="Close"></button>
+                                                            <div class="modal-body table-bordered ">
+                                                                <div class="mb-3 border text-center">
+                                                                    <label for="">وضعیت درخواست
+                                                                        : {{ order.get_status_display }}</label>
+                                                                    {% contains_building order as contains %}
+                                                                    {% if not order.isConfirmed and perms.base.change_order and contains %}
+                                                                        <button type="button"
+                                                                                class="btn btn-label-primary btn-sm"
+                                                                                data-orderid="{{ order.orderId }}"
+                                                                                id="confirmOrderBtn">تایید درخواست
+                                                                        </button>
+                                                                    {% endif %}
+                                                                </div>
+                                                                <div class="text-center table-bordered mb-4">
+                                                                    <h2 class="role-title">مشاهده درخواست</h2>
+                                                                </div>
+                                                                <div class="row text-center table-bordered  g-3">
+                                                                    <div class="table-responsive  ">
+                                                                        <table class="table table-bordered ">
+                                                                            <tr>
+                                                                                <td><b>درخواست کننده
+                                                                                    :</b> {{ order.user.profile }}
+                                                                                </td>
+                                                                                <td><b>شماره درخواست
+                                                                                    :</b>{{ order.orderId }}</td>
+                                                                                <td><b>تاریخ درخواست :</b>
+                                                                                    {{ order.createdAt|to_jalali:'%y/%m/%d' }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td><b>واحد
+                                                                                    :</b> {{ order.user.profile.department.name }}
+                                                                                </td>
+                                                                                <td><b>زیرگروه :</b>
+                                                                                    {% for sub in order.subGroup.all %}
+                                                                                        {{ sub.name }}
+                                                                                    {% endfor %}
+                                                                                </td>
+                                                                                <td><b>عملیات
+                                                                                    :</b>{{ order.operationName }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td><b>شرح درخواست</td>
+                                                                                <td colspan="2">
+                                                                                    {{ order.description|safe|wordwrap:50|linebreaks }}
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                    {% if order.task.all %}
+                                                                        <div class="table-responsive">
+                                                                            <h4>لیست کارهای انجام شده</h4>
+                                                                            <table class="table table-bordered text-center">
+                                                                                <thead>
+                                                                                <tr>
+                                                                                    <th>نام مجری</th>
+                                                                                    <th>شرح فعالیت</th>
+                                                                                    <th>شرح لوازم مصرفی</th>
+                                                                                    <th>تاریخ</th>
+                                                                                    <th>ساعت شروع</th>
+                                                                                    <th>ساعت پایان</th>
+                                                                                    <th>وضعیت</th>
+                                                                                </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                {% for task in order.task.all %}
+                                                                                    {#                                                                        {% if task in order.task.all %}#}
+                                                                                    <tr>
+                                                                                        <td>{{ task.user.profile }}</td>
+                                                                                        <td>{{ task.description|truncatewords:"10"|linebreaks }}
+                                                                                        </td>
+                                                                                        <td>{{ task.description2|truncatewords:"10"|linebreaks }}
+                                                                                        </td>
+                                                                                        <td>{{ task.date|to_jalali:'%y/%m/%d' }}</td>
+                                                                                        <td dir="ltr">{{ task.start_time|time:'H:i' }}</td>
+                                                                                        <td dir="ltr">{{ task.end_time|time:'H:i' }}</td>
+                                                                                        <td>
+                                                                                <span class="badge bg-label-success">
+                                                                                    {{ task.get_status_display }}
+                                                                                </span>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    {#                                                                        {% endif %}#}
+                                                                                {% endfor %}
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    {% endif %}
+
+                                                                    <div class="col-12 text-center">
+                                                                        {% if not order.isCompleted %}
+                                                                            {% if  order.status != 'DN' %}
+                                                                                {% if user.is_superuser or user.groups.all.0.name == 'کاربر فنی' %}
+                                                                                    <a href="{% url 'task_add' %}?orderId={{ order.orderId }}"
+                                                                                       class="btn btn-primary me-sm-3 me-1">ثبت
+                                                                                        اطلاعات
+                                                                                        مربوط به درخواست
+                                                                                    </a>
+                                                                                {% endif %}
+                                                                            {% endif %}
+                                                                        {% else %}
+                                                                            <a href="{% url 'order_detail' order.orderId %}"
+                                                                               class="btn btn-primary me-sm-3 me-1">مشاهده
+                                                                                درخواست</a>
+                                                                        {% endif %}
+                                                                        <a href="{% url 'order_invoice' order.orderId %}"
+                                                                           class="btn btn-primary me-sm-3 me-1"
+                                                                           target="_blank">پرینت
+                                                                            درخواست</a>
+                                                                        <button type="reset"
+                                                                                class="btn btn-label-secondary"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close">
+                                                                            انصراف
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% if user.is_superuser %}
+                                                    <a href="javascript:;" data-bs-toggle="modal"
+                                                       data-bs-target="#deleteOrderModal_{{ order.id }}"
+                                                       class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+                                                        <i class="ki-outline ki-trash fs-2"></i>
+                                                    </a>
+                                                    <div class="modal fade" id="deleteOrderModal_{{ order.id }}"
+                                                         tabindex="-1"
+                                                         aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg modal-dialog-centered modal-add-new-role">
+                                                            <div class="modal-content p-3 p-md-5">
+                                                                <button type="button" class="btn-close btn-pinned"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                <div class="modal-body">
+
+                                                                    <div class="text-center mb-4">
+                                                                        <h3 class="role-title">آیا میخواهید کارهای مرتبط
+                                                                            با
+                                                                            درخواست
+                                                                            حذف
+                                                                            شوند؟</h3>
+                                                                    </div>
+                                                                    <form method="post" class="row g-3"
+                                                                          action="{% url 'archive-order' order.id %}">
+                                                                        {% csrf_token %}
+                                                                        <div class="col-12 text-center">
+                                                                            <button type="submit" name="type_of_delete"
+                                                                                    value="delete_all"
+                                                                                    class="btn btn-danger me-sm-3 me-1">
+                                                                                بله
+                                                                            </button>
+
+                                                                        </div>
+
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+
+                                    {% endfor %}
+
+                                    </tbody>
+                                    <!--end::Table body-->
+                                </table>
+                                <!--end::Table-->
+                            </div>
+                            <!--end::Table container-->
+                        </div>
+                        <!--begin::Body-->
+                    </div>
+                    <div class="d   -flex flex-stack flex-wrap pt-10">
+                        <div class="fs-6 fw-semibold text-gray-700"></div>
+                        <!--begin::صفحات-->
+                        {% if is_paginated %}
+                            <ul class="pagination">
+
+                                {% if page_obj.has_previous %}
+                                    <li class="page-item previous">
+                                        <a href="?page=
+
+                                                {{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+                                           class="page-link">
+                                            <i class="previous"></i>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                {% for num in page_obj.paginator.page_range %}
+                                    {% if page_obj.number == num %}
+                                        <a class="btn btn-primary btn-sm  paging"
+                                           href="?page={{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+                                        >{{ num }}</a>
+                                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                                        <a class="btn btn-outline-primary btn-sm  paging"
+                                           href="?page={{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+                                        >{{ num }}</a>
+                                    {% endif %}
+                                {% endfor %}
+                                {#                                    <li class="page-item active">#}
+                                {#                                        <a href="#" class="page-link">1</a>#}
+                                {#                                    </li>#}
+
+                                {% if page_obj.has_next %}
+                                    <li class="page-item next">
+                                        <a href="?page=
+
+                                                {{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+                                           class="page-link">
+                                            <i class="next"></i>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                            <!--end::صفحات-->
+                        {% endif %}
+                    </div>
+
+                    <!--end::جداول Widget 13-->
+                </div>
+                <!--end::Content-->
+            </div>
+            <!--end::Content wrapper-->
+            <!--begin::Footer-->
+            {% include 'includs/footer.html' %}
+            <!--end::Footer-->
+        </div>
+        <!--end:::اصلی-->
+    </div>
+    <!--end::Wrapper container-->
+</div>
+<!--end::Wrapper-->
+
+<!--end::فعالیتها drawer-->
+<!--begin::چت drawer-->
+
+<!--end::چت drawer-->
+<!--begin::چت drawer-->
+
+<!--end::Modal - Users جستجو-->
+<!--end::Modals-->
+<!--begin::Javascript-->
+<script>var hostUrl = "assets/";</script>
+<!--begin::Global Javascript Bundle(mandatory for all pages)-->
+<script src="{% static "assets/plugins/global/plugins.bundle.js" %}"></script>
+<script src="{% static "assets/js/scripts.bundle.js" %}"></script>
+<script src="{% static 'vendor/libs/select2/select2.js' %}"></script>
+<!--end::Global Javascript Bundle-->
+<!--begin::Vendors Javascript(used for this page only)-->
+<script src="{% static "assets/plugins/custom/datatables/datatables.bundle.js" %}"></script>
+<!--end::Vendors Javascript-->
+<!--begin::سفارشی Javascript(used for this page only)-->
+<script src="{% static "assets/js/widgets.bundle.js" %}"></script>
+<script src="{% static "assets/js/custom/widgets.js" %}"></script>
+<script src="{% static "assets/js/custom/apps/chat/chat.js" %}"></script>
+<script src="{% static "assets/js/custom/utilities/modals/users-search.js" %}"></script>
+<script>
+    async function changeStatus(orderId) {
+        await fetch(`/order/change_status/${orderId}`).then((result) => {
+            console.log(result)
+        })
+        let response = await fetch(`/order/change_status/${orderId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        console.log(response)
+    }
+</script>
+{#<script>#}
+{#    function selectStatusAll() {#}
+{#        $(".fav_clr > option").prop("selected", true);#}
+{#        $(".fav_clr").trigger("change");#}
+{#    }#}
+{##}
+{#    function selectOperatorAll() {#}
+{#        $(".operator > option").prop("selected", true);#}
+{#        $(".operator").trigger("change");#}
+{#    }#}
+{##}
+{#</script>#}
+<!--end::سفارشی Javascript-->

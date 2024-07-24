@@ -1,0 +1,320 @@
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% include 'includs/header.html' %}
+<!--end::Header-->
+<!--begin::Wrapper-->
+
+
+<div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
+
+    <div id="kt_app_toolbar" class="app-toolbar pt-4 pt-lg-7 mb-n2 mb-lg-n3">
+
+        <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack flex-row-fluid">
+            <!--begin::Toolbar container-->
+            <div class="d-flex flex-stack flex-row-fluid">
+                <!--begin::Toolbar container-->
+                <div class="d-flex flex-column flex-row-fluid">
+
+                    <div class="page-title d-flex align-items-center me-3">
+
+                        <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
+                            ثبت درخواست بازدید دوره ای</h1>
+
+                    </div>
+                    {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                            <div class="alert alert-danger">{{ message }}</div>
+                        {% else %}
+                            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                <div class="d-flex align-items-center gap-3">
+                    <!--begin::Secondary button-->
+                    <div class="m-0">
+                        <!--begin::Menu-->
+
+                        <!--begin::Menu 1-->
+                        <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true"
+                             id="kt_menu_64b7809f794ed">
+                            <!--begin::Header-->
+
+                            <!--end::Header-->
+                            <!--begin::Menu separator-->
+                            <div class="separator border-gray-200"></div>
+                            <!--end::Menu separator-->
+                            <!--begin::Form-->
+                            <div class="px-7 py-5">
+                                <!--begin::Input group-->
+                                <div class="mb-10">
+                                    <!--begin::Tags-->
+
+                                    <!--end::Tags-->
+                                    <!--begin::Input-->
+
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin::Input group-->
+                                <div class="mb-10">
+                                    <!--begin::Tags-->
+
+                                    <!--end::Tags-->
+                                    <!--begin::تنظیمات-->
+                                    <div class="d-flex">
+                                        <!--begin::تنظیمات-->
+
+                                        <!--end::تنظیمات-->
+                                        <!--begin::تنظیمات-->
+
+                                        <!--end::تنظیمات-->
+                                    </div>
+                                    <!--end::تنظیمات-->
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin::Input group-->
+                                <div class="mb-10">
+                                    <!--begin::Tags-->
+
+                                    <!--end::Tags-->
+                                    <!--begin::Switch-->
+
+                                    <!--end::Switch-->
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin::Actions-->
+                                <div class="d-flex justify-content-end">
+
+                                </div>
+                                <!--end::Actions-->
+                            </div>
+                            <!--end::Form-->
+                        </div>
+                        <!--end::Menu 1-->
+                        <!--end::Menu-->
+                    </div>
+
+                </div>
+                <!--end::Actions-->
+            </div>
+            <!--end::Toolbar container-->
+        </div>
+        <!--end::Toolbar container-->
+    </div>
+    <!--end::Toolbar-->
+    <!--begin::Wrapper container-->
+    <div class="app-container container-xxl d-flex">
+        <!--begin::Sidebar-->
+
+        <!--end::Sidebar-->
+        <!--begin::اصلی-->
+        <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+            <!--begin::Content wrapper-->
+            <div class="d-flex flex-column flex-column-fluid">
+                <!--begin::Content-->
+                <div id="kt_app_content" class="app-content">
+                    <div class="card mb-5 mb-xl-10">
+                        <!--begin::کارت header-->
+                        <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
+                             data-bs-target="#kt_account_profile_details" aria-expanded="true"
+                             aria-controls="kt_account_profile_details">
+                            <!--begin::کارت title-->
+                            <div class="card-title m-0">
+                                <h3 class="fw-bold m-0">ثبت بازدید</h3>
+                            </div>
+                            <!--end::کارت title-->
+                        </div>
+                        <!--begin::کارت header-->
+                        <!--begin::Content-->
+                        <div id="kt_account_settings_profile_details" class="collapse show">
+                            <!--begin::Form-->
+                            <form method="post">
+                                {% csrf_token %}
+                                <!--begin::کارت body-->
+                                <div class="card-body border-top p-9">
+                                    <!--begin::Input group-->
+                                    <div class="row mb-6">
+                                        <!--begin::Tags-->
+
+                                        <!--end::Tags-->
+                                        <!--begin::Col-->
+
+                                        <!--begin::Image input-->
+                                        <div  data-kt-image-input="true"
+                                             style="background-image: url(
+                                            "
+                                        ")>
+                                        <!--begin::نمایش existing avatar-->
+                                        <div
+                                             style="background-image: url("
+                                        ")>
+
+                                        <!--end::نمایش existing avatar-->
+                                        <!--begin::Tags-->
+
+                                    </div>
+
+                                </div>
+
+                        </div>
+
+                    <div class="row mb-6 "  >{{ form.machine|as_crispy_field }}</div>
+                    <div class="row mb-6">{{ form.part|as_crispy_field }}</div>
+                    <div class="row mb-6">{{ form.reviewPeriod|as_crispy_field }}</div>
+                    <div class="row mb-6">{{ form.reviewCount|as_crispy_field }}</div>
+
+{#<div>{{ form.machine|as_crispy_field }}</div>#}
+{#                        <div class="row mb-6">#}
+
+{#                            <!--begin::Tags-->#}
+{#                            <label class="col-lg-4 col-form-label required fw-semibold fs-6">نقش</label>#}
+{#                            <!--end::Tags-->#}
+{#                            <!--begin::Col-->#}
+{#                            <div class="col-lg-8 fv-row">#}
+{#                                <!--begin::Input-->#}
+{#                                <select data-control="select2" name="role" onchange="handleShowUnit()" id="roleoption"#}
+{#                                        aria-label="انتخاب نقش"#}
+{#                                        data-placeholder="انتخاب یک نقش" class="form-select form-select-solid#}
+{#                                form-select-lg">#}
+{#                                    {% for role in roles %}#}
+{#                                        <option value="{{ role.id }}">{{ role.name }}</option>#}
+{#                                    {% endfor %}#}
+{#                                </select>#}
+{#                                <!--end::Input-->#}
+{#                                <!--begin::Hint-->#}
+{##}
+{#                                <!--end::Hint-->#}
+{#                            </div>#}
+{#                            <!--end::Col-->#}
+{#                        </div>#}
+
+{#                        <div class="row mb-6">#}
+{#                            <!--begin::Tags-->#}
+{#                            <label class="col-lg-4 col-form-label required fw-semibold fs-6">نقش</label>#}
+{#                            <!--end::Tags-->#}
+{#                            <!--begin::Col-->#}
+{#                            <div class="col-lg-8 fv-row">#}
+{#                                <!--begin::Input-->#}
+{#                                <select data-control="select2" name="role" onchange="handleShowUnit()" id="roleoption"#}
+{#                                        aria-label="انتخاب نقش"#}
+{#                                        data-placeholder="انتخاب یک نقش" class="form-select form-select-solid#}
+{#                                form-select-lg">#}
+{#                                    {% for role in roles %}#}
+{#                                        <option value="{{ role.id }}">{{ role.name }}</option>#}
+{#                                    {% endfor %}#}
+{#                                </select>#}
+{#                                <!--end::Input-->#}
+{#                                <!--begin::Hint-->#}
+{##}
+{#                                <!--end::Hint-->#}
+{#                            </div>#}
+{#                            <!--end::Col-->#}
+{#                        </div>#}
+
+{#                        <div class="row mb-6">#}
+{#                            <!--begin::Tags-->#}
+{#                            <label class="col-lg-4 col-form-label fw-semibold fs-6">#}
+{#                                <span class="required">واحد</span>#}
+{#                                <span class="ms-1" data-bs-toggle="tooltip" title="واحد">#}
+{#																<i class="ki-outline ki-information-5 text-gray-500 fs-6"></i>#}
+{#															</span>#}
+{#                            </label>#}
+{#                            <!--end::Tags-->#}
+{#                            <!--begin::Col-->#}
+{#                            <div class="col-lg-8 fv-row" id="unitoption">#}
+{#                                <select name="department" aria-label="انتخاب واحد مربوطه" data-control="select2"#}
+{#                                        data-placeholder="انتخاب یک واحد"#}
+{#                                        class="form-select form-select-solid form-select-lg fw-semibold">#}
+{#                                    {% for department in departments %}#}
+{#                                        <option value="{{ department.id }}">{{ department.name }}</option>#}
+{#                                    {% endfor %}#}
+{#                                </select>#}
+{#                            </div>#}
+{#                            <!--end::Col-->#}
+{#                        </div>#}
+
+{#                        <div class="row mb-6">#}
+{#                            <!--begin::Tags-->#}
+{#                            <label class="col-lg-4 col-form-label required fw-semibold fs-6">نقش</label>#}
+{#                            <!--end::Tags-->#}
+{#                            <!--begin::Col-->#}
+{#                            <div class="col-lg-8 fv-row">#}
+{#                                <!--begin::Input-->#}
+{#                                <select data-control="select2" name="role" onchange="handleShowUnit()" id="roleoption"#}
+{#                                        aria-label="انتخاب نقش"#}
+{#                                        data-placeholder="انتخاب یک نقش" class="form-select form-select-solid#}
+{#                                form-select-lg">#}
+{#                                    {% for role in roles %}#}
+{#                                        <option value="{{ role.id }}">{{ role.name }}</option>#}
+{#                                    {% endfor %}#}
+{#                                </select>#}
+{#                                <!--end::Input-->#}
+{#                                <!--begin::Hint-->#}
+{##}
+{#                                <!--end::Hint-->#}
+{#                            </div>#}
+{#                            <!--end::Col-->#}
+{#                        </div>#}
+
+                    </div>
+                    <!--end::کارت body-->
+                    <!--begin::Actions-->
+                    <div class="card-footer d-flex justify-content-end py-6 px-9">
+
+                        <button type="submit" class="btn btn-primary"
+                                id="kt_account_profile_details_submit">ذخیره تغییرات
+                        </button>
+                    </div>
+                    <!--end::Actions-->
+                    </form>
+                    <!--end::Form-->
+                </div>
+                <!--end::Content-->
+            </div>
+
+        </div>
+        <!--end::Content-->
+    </div>
+    <!--end::Content wrapper-->
+    <!--begin::Footer-->
+    {% include 'includs/footer.html' %}
+    <!--end::Footer-->
+</div>
+
+<!--begin::Javascript-->
+<script>var hostUrl = "assets/";</script>
+<!--begin::Global Javascript Bundle(mandatory for all pages)-->
+<script src="{% static "assets/plugins/global/plugins.bundle.js" %}"></script>
+<script src="{% static "assets/js/scripts.bundle.js" %}"></script>
+<!--end::Global Javascript Bundle-->
+<!--begin::Vendors Javascript(used for this page only)-->
+<script src="{% static "assets/plugins/custom/datatables/datatables.bundle.js" %}"></script>
+<!--end::Vendors Javascript-->
+<!--begin::سفارشی Javascript(used for this page only)-->
+<script src="{% static "assets/js/custom/account/settings/signin-methods.js" %}"></script>
+<script src="{% static "assets/js/custom/account/settings/profile-details.js" %}"></script>
+<script src="{% static "assets/js/custom/account/settings/deactivate-account.js" %}"></script>
+<script src="{% static "assets/js/custom/pages/user-profile/general.js" %}"></script>
+<script src="{% static "assets/js/widgets.bundle.js" %}"></script>
+<script src="{% static "assets/js/custom/widgets.js" %}"></script>
+<script src="{% static "assets/js/custom/apps/chat/chat.js" %}"></script>
+<script src="{% static "assets/js/custom/utilities/modals/offer-a-deal/type.js" %}"></script>
+<script src="{% static "assets/js/custom/utilities/modals/offer-a-deal/details.js" %}"></script>
+<script src="{% static "assets/js/custom/utilities/modals/offer-a-deal/finance.js" %}"></script>
+<script src="{% static "assets/js/custom/utilities/modals/offer-a-deal/complete.js" %}"></script>
+<script src="{% static "assets/js/custom/utilities/modals/offer-a-deal/main.js" %}"></script>
+<script src="{% static "assets/js/custom/utilities/modals/two-factor-authentication.js" %}"></script>
+<script src="{% static "assets/js/custom/utilities/modals/users-search.js" %}"></script>
+<script>
+    function handleShowUnit() {
+        const options = document.getElementById('roleoption');
+        const unit = document.getElementById('unitoption');
+        const value = options.value;
+        const text = options.options[options.selectedIndex].text;
+        if (text === 'اپراتور فنی') {
+            unit.style.display = 'none'
+        }
+    }
+</script>
+<!--end::سفارشی Javascript-->
