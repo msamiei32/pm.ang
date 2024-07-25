@@ -143,10 +143,10 @@
                                             <!--begin::Col-->
                                             <div class="col-lg-4">
                                                 <label for="" class="fs-6 form-label fw-bold text-dark">وضعیت:</label>
-                                                <button type="button" class="btn btn-info btn-sm"
-                                                        onclick="selectStatusAll()">انتخاب
-                                                    همه
-                                                </button>
+{#                                                <button type="button" class="btn btn-info btn-sm"#}
+{#                                                        onclick="selectStatusAll()">انتخاب#}
+{#                                                    همه#}
+{#                                                </button>#}
                                                 <select class="form-select form-select-solid select2" name="status"
                                                         id=""
                                                         multiple>
@@ -168,10 +168,10 @@
                                             <div class="col-lg-4">
                                                 <label for="" class="fs-6 form-label fw-bold text-dark">اپراتور
                                                     فنی:</label>
-                                                <button type="button" class="btn btn-info btn-sm"
-                                                        onclick="selectOperatorAll()">
-                                                    انتخاب همه
-                                                </button>
+{#                                                <button type="button" class="btn btn-info btn-sm"#}
+{#                                                        onclick="selectOperatorAll()">#}
+{#                                                    انتخاب همه#}
+{#                                                </button>#}
                                                 <select class="form-select form-select-solid select2" name="operators"
                                                         id=""
                                                         multiple>
@@ -283,11 +283,11 @@
                                                        data-kt-check="true" data-kt-check-target=".widget-13-check"/>
                                             </div>
                                         </th>
-                                        <th class="min-w-100px">#</th>
-                                        <th class="min-w-200px">درخواست کننده</th>
+                                        <th class="min-w-50px">#</th>
+                                        <th class="min-w-100px">درخواست کننده</th>
                                         <th class="min-w-100px text-start">شماره درخواست</th>
                                         <th class="min-w-100px">تاریخ درخواست</th>
-                                        <th class="min-w-100px">عملیات</th>
+                                        <th class="min-w-300px text-center">عملیات</th>
                                         <th class="min-w-120px">وضعیت</th>
                                         <th class="min-w-5px text-center">اولویت</th>
                                         <th class="min-w-150px text-center">عمل‌ها</th>
@@ -337,7 +337,7 @@
                                                    class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{ order.createdAt|to_jalali:'%y/%m/%d' }}</a>
 
                                             </td>
-                                            <td class="text-dark fw-bold text-hover-primary fs-6">{{ order.operation }}</td>
+                                            <td class="text-dark fw-bold text-center text-hover-primary fs-6">{{ order.operation }}</td>
                                             <td>
                                                 <span class="badge badge-light-success">{{ order.get_status_display }}</span>
                                             </td>
@@ -363,7 +363,7 @@
                                                 <button data-bs-toggle="modal" onclick="changeStatus('{{ order.id }}')"
                                                         data-bs-target="#viewOrderDetail_{{ order.id }}"
                                                         class="btn btn-sm btn-icon delete-record">
-                                                    <i class="ki-outline ki-printer fs-2"></i>
+                                                    <i class="ki-outline ki-eye fs-2"></i>
 
                                                 </button>
                                                 <div class="modal fade" id="viewOrderDetail_{{ order.id }}"

@@ -1,5 +1,16 @@
 from django.contrib import admin
-from .models import Order, Department, Task, Subgroup, Operation, Part, Station, Piece, Stuff,Logo
+from .models import (Order,
+                     Department,
+                     Task,
+                     Subgroup,
+                     Operation,
+                     Part,
+                     Station,
+                     Piece,
+                     Stuff,
+                     Logo,
+                     PhoneNumber,
+)
 
 
 @admin.register(Order)
@@ -33,3 +44,4 @@ admin.site.register(Station)
 admin.site.register(Piece)
 admin.site.register(Stuff)
 admin.site.register(Logo)
+admin.site.register(PhoneNumber)

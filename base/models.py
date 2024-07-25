@@ -166,3 +166,12 @@ class Logo(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class PhoneNumber(models.Model):
+    phone = models.CharField(max_length=14)
+
+
+    def __str__(self):
+        return self.phone
+

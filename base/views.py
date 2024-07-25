@@ -345,9 +345,9 @@ def order_edit(request, orderId):
             instance.departmentName = department.name
             instance.priority = priority
             if status == 'DN':
-                phone_numbers = [
-                    '09192955815',
-                    '09160485041']
+                phone_numbers = PhoneNumber.objects.all()
+                # ['09192955815',
+                #     '09160485041']
                 for phone_number in phone_numbers:
                     send_completed_message(instance, phone_number)
             instance.save()
