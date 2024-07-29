@@ -134,8 +134,8 @@
                                     <br/></p>
                                 <!--end::توضیحات-->
                                 <!--begin::Actions-->
-                                <a href="#" class="btn btn-primary er fs-6 px-8 py-4" data-bs-toggle="modal"
-                                   data-bs-target="#kt_modal_new_target">افزودن درخواست</a>
+                                <button id="clickit" href="#" class="btn btn-primary er fs-6 px-8 py-4" data-bs-toggle="modal"
+                                   data-bs-target="#kt_modal_new_target">افزودن درخواست</button>
                                 <!--end::Actions-->
                             </div>
                             <!--end::Heading-->
@@ -398,6 +398,9 @@
             });
         })();
     }
+    setTimeout(() => {
+        document.getElementById("clickit").click();
+    }, 1000);
 
 </script>
 <!--begin::Javascript-->

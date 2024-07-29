@@ -853,6 +853,7 @@ def seconds_to_time(raw_seconds):
 class ChartReportView(ListView):
     # person per hour report
     template_name = "chart/chart_report.html"
+    # template_name = "index.html"
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -1111,4 +1112,66 @@ def test(request):
 
 
 
+
+
+class ChartreportView(ListView):
+    # person per hour report
+    # template_name = "chart/chart_report.html"
+    template_name = "index.html"
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.due_date = None
+        self.tasks = None
+        self.end_date = None
+        self.start_date = None
+        self.executor_name = None
+
+    def get_queryset(self):
+        self.executor_name = self.request.GET.get('executor_name')
+        self.start_date = to_gregorian(self.request.GET.get('start_date'))
+        self.due_date = to_gregorian(self.request.GET.get('due_date'))
+        tasks = Task.objects.all()
+
+        if self.start_date:
+            tasks = tasks.filter(date__gte=self.start_date)
+        if self.due_date:
+            tasks = tasks.filter(date__lte=self.due_date)
+        if self.executor_name:
+            first_name, last_name = self.executor_name.split(' ')
+            tasks = tasks.filter(user__first_name=first_name, user__last_name=last_name)
+
+        return tasks
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data()
+        all_user = Task.objects.values('operators__last_name')
+        list_operators = []
+        task_count = []
+        sum_hours = []
+        maximmum = []
+        for item in all_user:
+            if item["operators__last_name"] not in list_operators and item["operators__last_name"] is not None:
+                list_operators.append(item["operators__last_name"])
+
+                count = Task.objects.filter(operators__last_name=item["operators__last_name"]).count()
+                task_count.append(count[:3])
+
+                tasks = Task.objects.filter(operators__last_name=item["operators__last_name"])
+                time_spent=0
+                for task in tasks:
+                    time_spent += task.get_time_diff
+
+                to_time = seconds_to_time(time_spent)
+                sum_hours.append(to_time)
+                # for tasks in task_count:
+                #     maximmum.append(max(tasks)[:3])
+
+        context['time_spent'] = sum_hours
+
+        context["opera"] = list_operators
+        context["task_count"] = task_count
+        context["max"] = maximmum
+
+        return context
 

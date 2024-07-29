@@ -545,7 +545,20 @@
     </div>
     <!--end::Wrapper container-->
 </div>
-<!--end::Wrapper-->
+
+{#<script>#}
+{#    var chartdata = {{ task_count }};#}
+    {#var lable = {{ operators }};#}
+{#    var category = {{ operators }};#}
+    {#var lablename = {#}
+    {#    formatter: function (val) {#}
+    {#        return "$" + val + " thousands"#}
+    {#    }#}
+    {#};#}
+{##}
+{##}
+{##}
+{#</script>#}
 
 
 <script>var hostUrl = "assets/";</script>
