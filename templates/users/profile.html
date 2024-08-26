@@ -113,6 +113,8 @@
             <div class="d-flex flex-column flex-column-fluid">
                 <!--begin::Content-->
                 <div id="kt_app_content" class="app-content">
+
+
                     <div class="card mb-5 mb-xl-10">
                         <!--begin::کارت header-->
                         <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
@@ -128,149 +130,347 @@
                         <!--begin::Content-->
                         <div id="kt_account_settings_profile_details" class="collapse show">
                             <!--begin::Form-->
-                            <form id="formValidationExamples" action="{% url 'profile' %}" method="post">
+                            <form action="{% url 'profile' %}" method="post"
+                                  class="form fv-plugins-bootstrap5 fv-plugins-framework" enctype="multipart/form-data" >
                                 {% csrf_token %}
                                 <!--begin::کارت body-->
                                 <div class="card-body border-top p-9">
                                     <!--begin::Input group-->
                                     <div class="row mb-6">
                                         <!--begin::Tags-->
-                                        <label class="col-lg-4 col-form-label fw-semibold fs-6">عکس پروفایل</label>
+                                        <label class="col-lg-4 col-form-label fw-semibold fs-6">آواتار</label>
                                         <!--end::Tags-->
                                         <!--begin::Col-->
                                         <div class="col-lg-8">
                                             <!--begin::Image input-->
                                             <div class="image-input image-input-outline" data-kt-image-input="true"
-                                                 style="background-image: url(
-                                            "
-                                            {% static 'assets/media/svg/avatars/blank.svg' %}")>
-                                            <!--begin::نمایش existing avatar-->
-                                            <div class="image-input-wrapper w-125px h-125px"
-                                                 style="background-image: url("
-                                            {% static 'assets/media/avatars/300-1.jpg' %}")>
+                                                 style="background-image: url('{% static 'assets/media/svg/avatars/blank.svg' %}')">
+
+                                                {% if request.user.profile.image %}
+                                                    <div class="image-input-wrapper w-125px h-125px"
+                                                     style="background-image: url('{{ request.user.profile.image.url }}')"></div>
+                                                {% endif %}
+
+
+                                                <label  class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                       data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                                       aria-label="تعویض آواتار" data-bs-original-title="تعویض آواتار"
+                                                       data-kt-initialized="1">
+                                                    <i class="ki-outline ki-pencil fs-7"></i>
+                                                    <!--begin::Inputs-->
+                                                    <input type="file"   name="image" accept="png, .jpg, .jpeg">
+                                                    <input type="hidden" name="image">
+                                                    <!--end::Inputs-->
+                                                </label>
+                                                <!--end::Tags-->
+                                                <!--begin::انصراف-->
+                                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                      data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                                      aria-label="انصراف avatar" data-bs-original-title="انصراف avatar"
+                                                      data-kt-initialized="1">
+																	<i class="ki-outline ki-cross fs-2"></i>
+																</span>
+                                                <!--end::انصراف-->
+                                                <!--begin::حذف-->
+{#                                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"#}
+{#                                                      data-kt-image-input-action="remove" data-bs-toggle="tooltip"#}
+{#                                                      aria-label="حذف آواتار" data-bs-original-title="حذف آواتار"#}
+{#                                                      data-kt-initialized="1">#}
+{#																	<i class="ki-outline ki-cross fs-2"></i>#}
+{#																</span>#}
+                                                <!--end::حذف-->
+                                            </div>
+                                            <!--end::Image input-->
+                                            <!--begin::Hint-->
+                                            <div class="form-text"> فرمت های قابل قبول: png, jpg, jpeg</div>
+                                            <!--end::Hint-->
                                         </div>
-                                        <!--end::نمایش existing avatar-->
+                                        <!--end::Col-->
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="row mb-6">
                                         <!--begin::Tags-->
-                                        <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                               data-kt-image-input-action="change" data-bs-toggle="tooltip"
-                                               title="تعویض آواتار">
-                                            <i class="ki-outline ki-pencil fs-7"></i>
-                                            <!--begin::Inputs-->
-                                            <input type="file" name="avatar" accept=".png, .jpg, .jpeg"/>
-                                            <input type="hidden" name="avatar_remove"/>
-                                            <!--end::Inputs-->
-                                        </label>
+                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">نام
+                                            کامل</label>
                                         <!--end::Tags-->
-                                        <!--begin::انصراف-->
-                                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                              data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
-                                              title="انصراف avatar">
-																	<i class="ki-outline ki-cross fs-2"></i>
-																</span>
-                                        <!--end::انصراف-->
-                                        <!--begin::حذف-->
-                                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                              data-kt-image-input-action="remove" data-bs-toggle="tooltip"
-                                              title="حذف آواتار">
-																	<i class="ki-outline ki-cross fs-2"></i>
-																</span>
-                                        <!--end::حذف-->
+                                        <!--begin::Col-->
+                                        <div class="col-lg-8">
+                                            <!--begin::Row-->
+                                            <div class="row">
+                                                <!--begin::Col-->
+                                                <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                                                    <input type="text" name="fname"
+                                                           class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                           placeholder="نام" value="{{ user.first_name }}">
+                                                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                                                </div>
+                                                <!--end::Col-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                                                    <input type="text" name="lname"
+                                                           class="form-control form-control-lg form-control-solid"
+                                                           placeholder="نام خانوادگی" value="{{ user.last_name }}">
+                                                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <!--end::Row-->
+                                        </div>
+                                        <!--end::Col-->
                                     </div>
-                                    <!--end::Image input-->
-                                    <!--begin::Hint-->
-
-                                    <!--end::Hint-->
-                                </div>
-                                <!--end::Col-->
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="row mb-6">
-                            <!--begin::Tags-->
-                            <label class="col-lg-4 col-form-label required fw-semibold fs-6">نام
-                                کامل</label>
-                            <!--end::Tags-->
-                            <!--begin::Col-->
-                            <div class="col-lg-8">
-                                <!--begin::Row-->
-                                <div class="row">
-                                    <!--begin::Col-->
-                                    <div class="col-lg-6 fv-row">
-                                        <input type="text" name="fname"
-                                               class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                               placeholder="نام" value="{{ user.first_name }}"/>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="row mb-6">
+                                        <!--begin::Tags-->
+                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">نام کاربری</label>
+                                        <!--end::Tags-->
+                                        <!--begin::Col-->
+                                        <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                            <input type="text" name="username"
+                                                   class="form-control form-control-lg form-control-solid"
+                                                   placeholder="نام کاربری" value="{{ user.username }}">
+                                            <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                                        </div>
+                                        <!--end::Col-->
                                     </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
-                                    <div class="col-lg-6 fv-row">
-                                        <input type="text" name="lname"
-                                               class="form-control form-control-lg form-control-solid"
-                                               placeholder="نام خانوادگی" value="{{ user.last_name }}"/>
-                                    </div>
-                                    <!--end::Col-->
-                                </div>
-                                <!--end::Row-->
-                            </div>
-                            <!--end::Col-->
-                        </div>
-
-                        <div class="row mb-6">
-                            <!--begin::Tags-->
-                            <label class="col-lg-4 col-form-label  fw-semibold fs-6">نام کاربری</label>
-                            <!--end::Tags-->
-                            <!--begin::Col-->
-                            <div class="col-lg-8 fv-row">
-                                <input  name="username"
-                                       class="form-control form-control-lg"
-                                       placeholder="نام کاربری را وارد نمایید" value="{{ user.username }}" required disabled/>
-                            </div>
-                            <!--end::Col-->
-                        </div>
-                        <div class="row mb-6">
-                            <!--begin::Tags-->
-                            <label class="col-lg-4 col-form-label fw-semibold fs-6">
-                                <span>شماره تلفن</span>
-                                <span class="ms-1" data-bs-toggle="tooltip"
-                                      title="شماره تلفن باید فعال باشد">
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="row mb-6">
+                                        <!--begin::Tags-->
+                                        <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                                            <span class="required">تلفن تماس</span>
+                                            <span class="ms-1" data-bs-toggle="tooltip"
+                                                  aria-label="شماره تلفن باید فعال باشد"
+                                                  data-bs-original-title="شماره تلفن باید فعال باشد"
+                                                  data-kt-initialized="1">
 																<i class="ki-outline ki-information-5 text-gray-500 fs-6"></i>
 															</span>
-                            </label>
-                            <!--end::Tags-->
-                            <!--begin::Col-->
-                            <div class="col-lg-8 fv-row">
-                                <input type="tel" name="mobile"
-                                       class="form-control form-control-lg form-control-solid"
-                                       placeholder="شماره تلفن معتبر وارد کنید"
-                                       value="{{ user.profile.mobileNumber }}"/>
-                            </div>
-                            <!--end::Col-->
+                                        </label>
+                                        <!--end::Tags-->
+                                        <!--begin::Col-->
+                                        <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                            <input type="tel" name="mobile"
+                                                   class="form-control form-control-lg form-control-solid"
+                                                   placeholder="تلفن تماس را وارد کنید " value="{{ user.profile.mobileNumber }}">
+                                            <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                                        </div>
+                                        <!--end::Col-->
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="row mb-6">
+                                        <!--begin::Tags-->
+                                        <label class="col-lg-4 col-form-label fw-semibold fs-6">ایمیل</label>
+                                        <!--end::Tags-->
+                                        <!--begin::Col-->
+                                        <div class="col-lg-8 fv-row">
+                                            <input type="text" name="email"
+                                                   class="form-control form-control-lg form-control-solid"
+                                                   placeholder="ایمیل را وارد کنید" value="{{ user.email }}">
+                                        </div>
+                                        <!--end::Col-->
+                                    </div>
+
+                                </div>
+                                <!--end::کارت body-->
+                                <!--begin::Actions-->
+                                <div class="card-footer d-flex justify-content-end py-6 px-9">
+
+                                    <button type="submit" class="btn btn-primary"
+                                            >ذخیره تغییرات
+                                    </button>
+                                </div>
+                                <!--end::Actions-->
+
+                            </form>
+                            <!--end::Form-->
                         </div>
-
-                        <div class="row mb-6">
-                            <!--begin::Tags-->
-                            <label class="col-lg-4 col-form-label fw-semibold fs-6">ایمیل</label>
-                            <!--end::Tags-->
-                            <!--begin::Col-->
-                            <div class="col-lg-8 fv-row">
-                                <input type="text" name="email"
-                                       class="form-control form-control-lg form-control-solid"
-                                       placeholder="نشانی ایمیل" value="{{ user.email }}"/>
-                            </div>
-                            <!--end::Col-->
-                        </div>
-
+                        <!--end::Content-->
                     </div>
-                    <!--end::کارت body-->
-                    <!--begin::Actions-->
-                    <div class="card-footer d-flex justify-content-end py-6 px-9">
 
-                        <button type="submit" class="btn btn-primary">
-                            ذخیره تغییرات
 
-                        </button>
-                    </div>
-                    <!--end::Actions-->
-                    </form>
+                    {#                    <div class="card mb-5 mb-xl-10">#}
+                    {#                        <!--begin::کارت header-->#}
+                    {#                        <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse"#}
+                    {#                             data-bs-target="#kt_account_profile_details" aria-expanded="true"#}
+                    {#                             aria-controls="kt_account_profile_details">#}
+                    {#                            <!--begin::کارت title-->#}
+                    {#                            <div class="card-title m-0">#}
+                    {#                                <h3 class="fw-bold m-0">پروفایل جزییات</h3>#}
+                    {#                            </div>#}
+                    {#                            <!--end::کارت title-->#}
+                    {#                        </div>#}
+                    {#                        <!--begin::کارت header-->#}
+                    {#                        <!--begin::Content-->#}
+                    {#                        <div id="kt_account_settings_profile_details" class="collapse show">#}
+                    {#                            <!--begin::Form-->#}
+                    {#                            <form id="formValidationExamples" action="{% url 'profile' %}" method="post">#}
+                    {#                                {% csrf_token %}#}
+                    {#                                <!--begin::کارت body-->#}
+                    {#                                <div class="card-body border-top p-9">#}
+                    {#                                    <!--begin::Input group-->#}
+                    {#                                    <div class="row mb-6">#}
+                    {#                                        <!--begin::Tags-->#}
+                    {#                                        <label class="col-lg-4 col-form-label fw-semibold fs-6">عکس پروفایل</label>#}
+                    {#                                        <!--end::Tags-->#}
+                    {#                                        <!--begin::Col-->#}
+                    {##}
+                    {#                                            <img style="height:70px;width: 70px" src="{{ request.user.profile.image.url }}" alt="">#}
+                    {##}
+                    {#                                        <div class="col-lg-8">#}
+                    {##}
+                    {#                                            <!--begin::Image placeholder-->#}
+                    {#                                            <style>.image-input-placeholder {#}
+                    {#                                                background-image: url('{% static 'assets/media/svg/files/blank-image.svg' %}');#}
+                    {#                                            }#}
+                    {##}
+                    {#                                            [data-bs-theme="dark"] .image-input-placeholder {#}
+                    {#                                                background-image: url('{% static 'assets/media/svg/files/blank-image-dark.svg' %}');#}
+                    {#                                            }</style>#}
+                    {#                                            <!--end::Image placeholder-->#}
+                    {#                                            <!--begin::Image input-->#}
+                    {#                                            <div class="image-input image-input-outline image-input-placeholder"#}
+                    {#                                                 data-kt-image-input="true">#}
+                    {#                                                <!--begin::نمایش existing avatar-->#}
+                    {#                                                <div class="image-input-wrapper w-100px h-100px"#}
+                    {#                                                     style="background-image: url(&quot;&quot;);"></div>#}
+                    {#                                                <!--end::نمایش existing avatar-->#}
+                    {#                                                <!--begin::-->#}
+                    {#                                                <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"#}
+                    {#                                                       data-kt-image-input-action="change" data-bs-toggle="tooltip"#}
+                    {#                                                       aria-label="تعویض آواتار" data-bs-original-title="تعویض آواتار"#}
+                    {#                                                       data-kt-initialized="1">#}
+                    {#                                                    <i class="ki-outline ki-pencil fs-7"></i>#}
+                    {#                                                    <!--begin::Inputs-->#}
+                    {#                                                    <img style="height:70px;width: 70px" src="{{ request.user.profile.image.url }}" alt="">#}
+                    {#                                                    {% if request.user.profile.image %}#}
+                    {#                                                        <img style="height:70px;width: 70px" src="{{ request.user.profile.image.url }}" alt="">#}
+                    {#                                                        <input  name="image" type="file"  accept=".png, .jpg, .jpeg">#}
+                    {#                                                    {% endif %}#}
+                    {#                                                    <input type="hidden" name="avatar_remove" value="0">#}
+                    {#                                                    <!--end::Inputs-->#}
+                    {#                                                </label>#}
+                    {#                                                <!--end::-->#}
+                    {#                                                <!--begin::انصراف-->#}
+                    {#                                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"#}
+                    {#                                                      data-kt-image-input-action="cancel" data-bs-toggle="tooltip"#}
+                    {#                                                      aria-label="انصراف avatar" data-bs-original-title="انصراف avatar"#}
+                    {#                                                      data-kt-initialized="1">#}
+                    {#																		<i class="ki-outline ki-cross fs-2"></i>#}
+                    {#																	</span>#}
+                    {#                                                <!--end::انصراف-->#}
+                    {#                                                <!--begin::حذف-->#}
+                    {#                                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"#}
+                    {#                                                      data-kt-image-input-action="remove" data-bs-toggle="tooltip"#}
+                    {#                                                      aria-label="حذف آواتار" data-bs-original-title="حذف آواتار"#}
+                    {#                                                      data-kt-initialized="1">#}
+                    {#																		<i class="ki-outline ki-cross fs-2"></i>#}
+                    {#																	</span>#}
+                    {#                                                <!--end::حذف-->#}
+                    {#                                            </div>#}
+                    {#                                            <!--end::Image input-->#}
+                    {##}
+                    {##}
+                    {#                                    </div>#}
+                    {##}
+                    {#                                </div>#}
+                    {#                                <!--end::Image input-->#}
+                    {#                                <!--begin::Hint-->#}
+                    {##}
+                    {#                                <!--end::Hint-->#}
+                    {#                        </div>#}
+                    {#                        <!--end::Col-->#}
+                    {#                    </div>#}
+                    {#                    <!--end::Input group-->#}
+                    {#                    <!--begin::Input group-->#}
+                    {#                    <div class="row mb-6">#}
+                    {#                        <!--begin::Tags-->#}
+                    {#                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">نام#}
+                    {#                            کامل</label>#}
+                    {#                        <!--end::Tags-->#}
+                    {#                        <!--begin::Col-->#}
+                    {#                        <div class="col-lg-8">#}
+                    {#                            <!--begin::Row-->#}
+                    {#                            <div class="row">#}
+                    {#                                <!--begin::Col-->#}
+                    {#                                <div class="col-lg-6 fv-row">#}
+                    {#                                    <input type="text" name="fname"#}
+                    {#                                           class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"#}
+                    {#                                           placeholder="نام" value="{{ user.first_name }}"/>#}
+                    {#                                </div>#}
+                    {#                                <!--end::Col-->#}
+                    {#                                <!--begin::Col-->#}
+                    {#                                <div class="col-lg-6 fv-row">#}
+                    {#                                    <input type="text" name="lname"#}
+                    {#                                           class="form-control form-control-lg form-control-solid"#}
+                    {#                                           placeholder="نام خانوادگی" value="{{ user.last_name }}"/>#}
+                    {#                                </div>#}
+                    {#                                <!--end::Col-->#}
+                    {#                            </div>#}
+                    {#                            <!--end::Row-->#}
+                    {#                        </div>#}
+                    {#                        <!--end::Col-->#}
+                    {#                    </div>#}
+                    {##}
+                    {#                    <div class="row mb-6">#}
+                    {#                        <!--begin::Tags-->#}
+                    {#                        <label class="col-lg-4 col-form-label  fw-semibold fs-6">نام کاربری</label>#}
+                    {#                        <!--end::Tags-->#}
+                    {#                        <!--begin::Col-->#}
+                    {#                        <div class="col-lg-8 fv-row">#}
+                    {#                            <input name="username"#}
+                    {#                                   class="form-control form-control-lg"#}
+                    {#                                   placeholder="نام کاربری را وارد نمایید" value="{{ user.username }}"#}
+                    {#                                   />#}
+                    {#                        </div>#}
+                    {#                        <!--end::Col-->#}
+                    {#                    </div>#}
+                    {#                    <div class="row mb-6">#}
+                    {#                        <!--begin::Tags-->#}
+                    {#                        <label class="col-lg-4 col-form-label fw-semibold fs-6">#}
+                    {#                            <span>شماره تلفن</span>#}
+                    {#                            <span class="ms-1" data-bs-toggle="tooltip"#}
+                    {#                                  title="شماره تلفن باید فعال باشد">#}
+                    {#																<i class="ki-outline ki-information-5 text-gray-500 fs-6"></i>#}
+                    {#															</span>#}
+                    {#                        </label>#}
+                    {#                        <!--end::Tags-->#}
+                    {#                        <!--begin::Col-->#}
+                    {#                        <div class="col-lg-8 fv-row">#}
+                    {#                            <input type="tel" name="mobile"#}
+                    {#                                   class="form-control form-control-lg form-control-solid"#}
+                    {#                                   placeholder="شماره تلفن معتبر وارد کنید"#}
+                    {#                                   value="{{ user.profile.mobileNumber }}"/>#}
+                    {#                        </div>#}
+                    {#                        <!--end::Col-->#}
+                    {#                    </div>#}
+                    {##}
+                    {#                    <div class="row mb-6">#}
+                    {#                        <!--begin::Tags-->#}
+                    {#                        <label class="col-lg-4 col-form-label fw-semibold fs-6">ایمیل</label>#}
+                    {#                        <!--end::Tags-->#}
+                    {#                        <!--begin::Col-->#}
+                    {#                        <div class="col-lg-8 fv-row">#}
+                    {#                            <input type="text" name="email"#}
+                    {#                                   class="form-control form-control-lg form-control-solid"#}
+                    {#                                   placeholder="نشانی ایمیل" value="{{ user.email }}"/>#}
+                    {#                        </div>#}
+                    {#                        <!--end::Col-->#}
+                    {#                    </div>#}
+                    {##}
+                    {#                </div>#}
+                    {#                <!--end::کارت body-->#}
+                    {#                <!--begin::Actions-->#}
+                    {#                <div class="card-footer d-flex justify-content-end py-6 px-9">#}
+                    {##}
+                    {#                    <button type="submit" class="btn btn-primary">#}
+                    {#                        ذخیره تغییرات#}
+                    {##}
+                    {#                    </button>#}
+                    {#                </div>#}
+                    {#                <!--end::Actions-->#}
+                    {#                </form>#}
                     <!--end::Form-->
                 </div>
                 <!--end::Content-->

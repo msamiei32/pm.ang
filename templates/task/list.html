@@ -7,7 +7,17 @@
 {% load seconds_to_time %}
 {% load contains_building %}
 
+
 {% include 'includs/header.html' %}
+
+
+
+
+
+
+
+
+
 
 <!--begin::Toolbar-->
 <div id="kt_app_toolbar" class="app-toolbar pt-4 pt-lg-7 mb-n2 mb-lg-n3">
@@ -89,7 +99,8 @@
                                     <!--begin::Col-->
                                     <div class="col-xxl-5">
                                         <label for="" class="fs-6 form-label fw-bold text-dark">دپارتمان</label>
-                                        <select data-control="select2" class="form-select form-select-solid " name="department" id="">
+                                        <select data-control="select2" class="form-select form-select-solid "
+                                                name="department" id="">
                                             <option value="">انتخاب واحد</option>
                                             {% for department in departments %}
                                                 <option value="{{ department.id }}"
@@ -108,7 +119,7 @@
                                             <!--begin::Col-->
                                             <div class="col-lg-6 user_plan">
                                                 <label for="operationfield" class="fs-6 form-label fw-bold text-dark">عملیات</label>
-                                                <select data-control="select2"  class="form-select  form-select-solid "
+                                                <select data-control="select2" class="form-select  form-select-solid "
                                                         name="operation"
                                                         name="operation" id="operationfield">
                                                     <option value="">انتخاب عملیات</option>
@@ -183,11 +194,12 @@
                                                 </select>
                                                 <!--end::Dialer-->
                                             </div>
+
                                             <div class="col-lg-4">
                                                 <label class="fs-6 form-label fw-bold text-dark"
                                                        for="dt_date">تاریخ</label>
-                                                <input type="text" id="dt_date"
-                                                       class="form-control dt-date flatpickr-range dt-input form-select form-select-solid select2"
+                                                <input id="dt_date" type="text"
+                                                       class="form-control dt-date flatpickr-range dt-input form-select form-select-solid "
                                                        data-column="5"
                                                        placeholder="تاریخ شروع تا پایان" data-column-index="4"
                                                        name="dt_date"
@@ -274,7 +286,7 @@
 
                         <!--end::Header-->
                         <!--begin::Body-->
-                        <div class="card-body py-3">
+                        <div class="card-body W-100 py-3">
 
                             <!--begin::Table container-->
                             <div class="table-responsive">
@@ -425,6 +437,7 @@
                                             {% if page_obj.has_previous %}
                                                 <li class="page-item previous">
                                                     <a href="?page=
+
                                                             {{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
                                                        class="page-link">
                                                         <i class="previous"></i>
@@ -434,10 +447,12 @@
                                             {% for num in page_obj.paginator.page_range %}
                                                 {% if page_obj.number == num %}
                                                     <a class="btn btn-primary btn-sm  paging" href="?page=
+
                                                             {{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
                                                     >{{ num }}</a>
                                                 {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
                                                     <a class="btn btn-outline-primary btn-sm  paging" href="?page=
+
                                                             {{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
                                                     >{{ num }}</a>
                                                 {% endif %}
@@ -449,6 +464,7 @@
                                             {% if page_obj.has_next %}
                                                 <li class="page-item next">
                                                     <a href="?page=
+
                                                             {{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
                                                        class="page-link">
                                                         <i class="next"></i>
@@ -486,6 +502,7 @@
 <script>var hostUrl = "assets/";</script>
 <!--begin::Global Javascript Bundle(mandatory for all pages)-->
 <script src="{% static "assets/plugins/global/plugins.bundle.js" %}"></script>
+<script src="{% static "assets/plugins/global/plugins.bundle.css" %}"></script>
 <script src="{% static "assets/js/scripts.bundle.js" %}"></script>
 <!--end::Global Javascript Bundle-->
 <!--begin::Vendors Javascript(used for this page only)-->

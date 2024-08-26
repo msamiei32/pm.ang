@@ -37,7 +37,7 @@ def index(request):
     list_machine = []
     sum_hours = []
     all_machine = Order.objects.values('operation__name')
-    last = Order.objects.all().order_by('-createdAt')[:10]
+    last = Order.published.all().order_by('-createdAt')[:10]
     logo = Logo.objects.all()
     task = Task.published.filter(order__status='WG')
     orde = Order.published.all()
@@ -85,6 +85,7 @@ def index(request):
         tasks_doing = Task.published.filter(order__status='DG')
         tasks_waiting = Task.published.filter(order__status='WG')
         tasks_sent = Task.published.filter(order__status='ST')
+        list_department = ['ali', 'hasan', 'gholam']
         # cala = round(((len(tasks_waiting) / len(orders)) * 100))
 
 
@@ -98,6 +99,7 @@ def index(request):
         tasks_waiting = Task.published.filter(user=user, order__status='WG')
         tasks_sent = Task.published.filter(user=user, order__status='ST')
         # cala = round(((len(tasks_waiting) / len(orders)) * 100))
+        # list_department = ['ali','hasan','gholam']
 
 
     context = {'users': users, 'orders': orders, 'tasks': tasks,
@@ -249,7 +251,7 @@ def order_add(request):
         lastOrder = Order.objects.last()
         code = int(lastOrder.orderId) + 1
         print(code)
-        code = f'402{str(code)[3:]}'
+        code = f'403{str(code)[3:]}'
 
         # print(str(jdatetime.datetime.now().year)[1:])
         # if jdatetime.datetime.now() == 1402 and str(code).startswith('401'):
@@ -288,7 +290,7 @@ def order_add(request):
                 return redirect('orders_list')
             instance.isConfirmed = True
             # id of ساخت subgroup is 4
-            building_subgroup = Subgroup.objects.get(id=4)
+            building_subgroup = Subgroup.objects.get(id=1)
 
             for subgroupId in subgropuIds:
                 subgroup_item = Subgroup.objects.get(id=subgroupId)
@@ -671,15 +673,21 @@ def task_invoice(request, taskId):
 class DepartmentList(ListView):
     model = Department
     template_name = 'department/list.html'
-    paginate_by = 50
+    paginate_by = 1
     context_object_name = 'departments'
 
 
 def department_add(request):
     if request.method == 'POST':
+
         name = request.POST.get('departmentName')
-        Department.objects.get_or_create(name=name)
-        messages.success(request, 'واحد ایجاد شد')
+        if  Department.objects.filter(name=name).exists():
+            messages.error(request,'با این نام قبلا ثبت شده است')
+        else:
+            Department.objects.get_or_create(name=name)
+            messages.success(request, 'واحد ایجاد شد')
+        # if Department.objects.filter(name=name).exists():
+        #     messages.error(request,'با این نام قبلا ثبت شده است')
         return redirect('department_list')
 
 
@@ -700,7 +708,7 @@ class OperationList(ListView):
     def get_queryset(self):
         operation = Operation.objects.all().order_by('-created_at')
         q = self.request.GET.get('q')
-        print("q",q)
+        # print("q",q)
         if q:
             operation = Operation.objects.filter(Q(name__contains=q))
 
@@ -720,8 +728,11 @@ def operation_add(request):
         station_id = request.POST.get('station')
         area = Department.objects.get(id=area_id)
         station = Station.objects.get(id=station_id)
-        Operation.objects.get_or_create(name=name, area=area, station=station)
-        messages.success(request, 'عملیات ایجاد شد')
+        if Operation.objects.filter(name=name).exists():
+            messages.error(request,'با این نام قبلا ماشین ثبت شده است')
+        else:
+            Operation.objects.get_or_create(name=name, area=area, station=station)
+            messages.success(request, 'عملیات ایجاد شد')
         return redirect('operation_list')
 
 
@@ -900,10 +911,10 @@ class ChartReportView(ListView):
                 to_time = seconds_to_time(time_spent)
                 sum_hours.append(to_time)
 
-        context['time_spent'] = sum_hours
+        context['time_spent'] = [1,2,3,4,5,6]
 
-        context["operators"] = list_operators
-        context["task_count"] = task_count
+        context["operators"] = ['ali','mohammad','mahdi','hadi','kian','moktar']
+        context["task_count"] = [1,2,3,4,5,6]
 
         return context
 
@@ -1060,8 +1071,11 @@ def machine_part_add(request):
         part_name = request.POST.get('part_name')
         # print("machine_name",machine_name)
         machine = Operation.objects.get(id=machine_name)
-        Part.objects.create(machine=machine, name=part_name)
-        messages.success(request, 'با موفقیت ایجاد شد')
+        if Part.objects.filter(machine_name=machine_name).exists():
+            messages.error(request,'قطعه قبلا ثبت شده است')
+        else:
+            Part.objects.create(machine=machine, name=part_name)
+            messages.success(request, 'با موفقیت ایجاد شد')
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
@@ -1069,7 +1083,6 @@ def machine_stuff_add(request):
     if request.method == 'POST':
         department_name = request.POST.get('department')
         stuff_name = request.POST.get('stuff_name')
-        print(department_name)
         department = Department.objects.get(id=department_name)
         Stuff.objects.create(department=department, name=stuff_name)
         return redirect('stuff_list')
@@ -1105,9 +1118,7 @@ class StuffList(ListView):
 
 
 
-def test(request):
 
-    return render(request, 'chart/chart_report.html')
 
 
 
@@ -1175,3 +1186,71 @@ class ChartreportView(ListView):
 
         return context
 
+# 
+# @login_required(login_url='/users/login/')
+# def index(request):
+#     user = request.user
+#     tasks = None
+#     all_department = Order.objects.values('department__name')
+#     list_departement = []
+#     order_count = []
+#     list_machine = []
+#     sum_hours = []
+#     all_machine = Order.objects.values('operation__name')
+#     last = Order.objects.all().order_by('-createdAt')[:10]
+#     logo = Logo.objects.all()
+#     task = Task.published.filter(order__status='WG')
+#     orde = Order.published.all()
+#     s = len(task)
+#     b = len(orde)
+#     if s or b == 0:
+#         return render(request,'index.html')
+#     else:
+#         cala = round((s / b) * 100)
+# 
+#     # if (s / b) * 100 == 0:
+#     #     cala = round((s / b) * 100)
+#     #     print(cala)
+#     # if round(((s / b) * 100)) == 0:
+#     #     print(round(((len(task) / len(orde)) * 100)))
+#     # cala = round(((len(task) / len(orde)) * 100))
+#     # if cala > 0:
+#     #     print(cala)
+# 
+# 
+#     for tem in all_machine:
+#         if tem["operation__name"] not in list_machine and tem["operation__name"] is not None:
+#             tasks = Task.objects.filter(order__operation__name=tem["operation__name"])
+#             time_spent = 0
+#             for task in tasks:
+#                 time_spent += task.get_time_diff
+#             to_time = seconds_to_time(time_spent)
+#             if to_time > 10:
+#                 sum_hours.append(to_time)
+#                 list_machine.append(tem["operation__name"])
+#     for item in all_department:
+#         if item["department__name"] not in list_departement and item["department__name"] is not None:
+#             list_departement.append(item["department__name"])
+# 
+#             count = Order.objects.filter(department__name=item["department__name"]).count()
+#             order_count.append(count)
+# 
+#             context = {'users': users, 'orders': orders, 'tasks': tasks,
+#                        'tasks_done': tasks_done,
+#                        'tasks_saved': tasks_saved,
+#                        'tasks_seen': tasks_seen,
+#                        'tasks_doing': tasks_doing,
+#                        'tasks_waiting': tasks_waiting,
+#                        'tasks_sent': tasks_sent, 'list_department': list_departement, 'order_count': order_count,
+#                        'list_machine': list_machine, 'time_spent': sum_hours, 'order_last': last, 'logo': logo,
+#                        'cal': cala
+#                        }
+#             return render(request, 'index.html', context)
+
+
+
+
+
+def test(request):
+
+    return render(request, 'review/detail1.html')

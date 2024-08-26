@@ -1,17 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<!--
-نویسنده: ساتراس وب
-محصولات نام: مترونیک
-محصولات Version: 8.2.0
-خرید: https://1.envato.market/EA4JP
-وب سایت: http://www.keenthemes.com
-تماس با ما: support@keenthemes.com
-دنبال کردن: www.twitter.com/keenthemes
-دریبل: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-لاینسس شده: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
--->
+
 <html direction="rtl" dir="rtl" style="direction: rtl">
 <!--begin::Head-->
 <head>
@@ -19,38 +8,35 @@ Like: www.facebook.com/keenthemes
     <title>آسیا نگار گلسار</title>
     <meta charset="utf-8"/>
     <meta name="description"
-          content="The most advanced Bootstrap 5 Admin Theme with 40 unique prebuilt layouts on Themeforest trusted by 100,000 beginners and professionals. Multi-demo, حالت تیره, RTL support and complete React, Angular, Vue, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel versions. Grab your copy now and get life-time updates for free."/>
+          content="سامانه تعمیرات و نگهداری آسیا نگار گلسار "/>
     <meta name="keywords"
-          content="metronic, bootstrap, bootstrap 5, angular, VueJs, React, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel starter kits, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon"/>
+          content="آسیا نگار -گلسار"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta property="og:locale" content="en_US"/>
+    <meta property="og:locale" content="fa_ir"/>
     <meta property="og:type" content="article"/>
     <meta property="og:title"
-          content="مترونیک - پنل ادمین بوت استراپ Template, HTML, VueJS, React, Angular. Laravel, Asp.Net Core, روبی روی ریل, Spring Boot, Blazor, Django, Express.js, Node.js, Flask Admin داشبورد Theme & Template"/>
+          content="گروه صنعتی ang"/>
     <meta property="og:url" content="#"/>
     <meta property="og:site_name" content="#"/>
     <link rel="canonical" href="#"/>
     <link rel="shortcut icon" style="height: 10px;width: 10px" href="{% static "assets/logo session.jpg" %}"/>
-    {#    assets/media/logos/favicon.ico#}
-    <!--begin::Fonts(mandatory for all pages)-->
+
     <link rel="stylesheet" href="#"/>
-    {#    <!--end::Fonts-->https://fonts.googleapis.com/cssfamily=Inter:300,400,500,600,700#}
-    <!--begin::Vendor Stylesheets(used for this page only)-->
+
     <link href="{% static "assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" %}" rel="stylesheet"
           type="text/css"/>
     <link href="{% static "assets/plugins/custom/datatables/datatables.bundle.css" %}" rel="stylesheet"
           type="text/css"/>
-    <!--end::Vendor Stylesheets-->
-    <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
+
     <link href="{% static "assets/plugins/global/plugins.bundle.rtl.css" %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'assets/plugins/global/plugins.bundle.css' %}" rel="stylesheet" type="text/css"/>
     <link href="{% static "assets/css/style.bundle.rtl.css" %}" rel="stylesheet" type="text/css"/>
-    <!--end::Global Stylesheets Bundle-->
+
     <script>// Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }</script>
 </head>
-<!--end::Head-->
-<!--begin::Body-->
+
 <body id="kt_app_body" data-kt-app-header-fixed-mobile="true" data-kt-app-toolbar-enabled="true" class="app-default">
-<!--begin::Theme mode setup on page load-->
+
 <script>var defaultThemeMode = "light";
 var thememode;
 if (document.documentElement) {
@@ -64,31 +50,28 @@ if (document.documentElement) {
         }
     }
     if (thememode === "system") {
-        // thememode = window.matchMedia("(prefers-color-scheme: dark)").matches
-        // "dark":"light";
+
     }
     document.documentElement.setAttribute("data-bs-theme", thememode);
 }</script>
-<!--end::Theme mode setup on page load-->
-<!--begin::اپلیکیشن-->
+
 <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
-    <!--begin::Page-->
+
     <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
-        <!--begin::Header-->
+
         <div id="kt_app_header" class="app-header" data-kt-sticky="true"
              data-kt-sticky-activate="{default: false, lg: true}" data-kt-sticky-name="app-header-sticky"
              data-kt-sticky-offset="{default: false, lg: '300px'}">
-            <!--begin::Header container-->
+
             <div class="app-container container-xxl d-flex align-items-stretch justify-content-between"
                  id="kt_app_header_container">
-                <!--begin::Header mobile toggle-->
+
                 <div class="d-flex align-items-center d-lg-none ms-n2 me-2" title="مشاهده">
                     <div class="btn btn-icon btn-active-color-primary w-35px h-35px" id="kt_app_header_menu_toggle">
                         <i class="ki-outline ki-abstract-14 fs-2"></i>
                     </div>
                 </div>
-                <!--end::Header mobile toggle-->
-                <!--begin::Logo-->
+
                 <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-1 me-lg-13">
                     <a href="#">
                         <img alt="Logo" src="{% static "assets/logo1.jpg" %}"
@@ -97,12 +80,10 @@ if (document.documentElement) {
                              class="h-30px w-150px rounded h-lg-30px theme-dark-show"/>
                     </a>
                 </div>
-                <!--end::Logo-->
-                {#            assets/media/logos/demo43-dark.svg#}
-                <!--begin::Header wrapper-->
+
                 <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1"
                      id="kt_app_header_wrapper">
-                    <!--begin::Menu wrapper-->
+
                     <div class="d-flex align-items-stretch" id="kt_app_header_menu_wrapper">
                         <!--begin::Menu holder-->
                         <div class="app-header-menu app-header-mobile-drawer align-items-stretch" data-kt-drawer="true"
@@ -111,35 +92,31 @@ if (document.documentElement) {
                              data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_header_menu_toggle"
                              data-kt-swapper="true" data-kt-swapper-mode="prepend"
                              data-kt-swapper-parent="{default: '#kt_app_body', lg: '#kt_app_header_menu_wrapper'}">
-                            <!--begin::Menu-->
+
                             <div class="menu menu-rounded menu-column menu-lg-row menu-active-bg menu-title-gray-600 menu-state-dark menu-arrow-gray-400 fw-semibold fw-semibold fs-6 align-items-stretch my-5 my-lg-0 px-2 px-lg-0"
                                  id="#kt_app_header_menu" data-kt-menu="true">
-                                <!--begin:Menu item-->
+
 
                                 <div onclick="window.location.href='{% url 'index' %}';"
                                      data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
                                      data-kt-menu-placement="bottom-end" data-kt-menu-offset="-220,0"
                                      class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
-                                    <!--begin:Menu link-->
+
                                     <span class="menu-link">
 												<span class="menu-icon">
 													<i class="ki-outline ki-graph-3"></i>
 												</span>
 												<span><a class="menu-title" href="{% url 'index' %}">داشبورد</a></span>
-{#												<span class="menu-arrow d-lg-none"></span>#}
-											</span>
-                                    <!--end:Menu link-->
-                                    <!--begin:Menu sub-->
-                                    <div class="menu-sub menu-sub-lg-down-accordion  p-0 w-100 w-lg-850px">
-                                        <!--begin:داشبورد ها menu-->
 
-                                        <!--end:داشبورد ها menu-->
+											</span>
+
+                                    <div class="menu-sub menu-sub-lg-down-accordion  p-0 w-100 w-lg-850px">
+
                                     </div>
-                                    <!--end:Menu sub-->
+
                                 </div>
 
-                                <!--end:Menu item-->
-                                <!--begin:Menu item-->
+
 
 
 
@@ -708,8 +685,8 @@ if (document.documentElement) {
                                  data-kt-menu-placement="bottom-end">
                                 <!--begin::user-->
                                 <div class="cursor-pointer symbol me-3 symbol-35px symbol-lg-45px">
-                                    {% if request.user.image.url %}
-                                        <img class="" src="{{ reqeust.user.image.url }}" alt="user"/>
+                                    {% if request.user.profile.image %}
+                                        <img class="" src="{{ request.user.profile.image.url }}" alt="user"/>
                                     {% else %}
                                         <img class="" src="{% static 'assets/media/avatars/blank.png' %}" alt="user"/>
                                     {% endif %}
@@ -734,8 +711,8 @@ if (document.documentElement) {
                                     <div class="menu-content d-flex align-items-center px-3">
                                         <!--begin::Avatar-->
                                         <div class="symbol symbol-50px me-5">
-                                            {% if request.user.image.url %}
-                                                <img class="" src="{{ reqeust.user.image.url }}" alt="user"/>
+                                            {% if request.user.profile.image %}
+                                                <img class="" src="{{ request.user.profile.image.url }}" alt="user"/>
                                             {% else %}
                                                 <img class="" src="{% static 'assets/media/avatars/blank.png' %}"
                                                      alt="user"/>

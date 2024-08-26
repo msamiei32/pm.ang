@@ -546,19 +546,21 @@
     <!--end::Wrapper container-->
 </div>
 
-{#<script>#}
-{#    var chartdata = {{ task_count }};#}
-    {#var lable = {{ operators }};#}
-{#    var category = {{ operators }};#}
-    {#var lablename = {#}
-    {#    formatter: function (val) {#}
-    {#        return "$" + val + " thousands"#}
-    {#    }#}
-    {#};#}
-{##}
-{##}
-{##}
-{#</script>#}
+
+
+<script>
+
+    var category = {% autoescape off %}
+                    {{ operators }}
+                {% endautoescape %};
+    var chartdata = {% autoescape off %}{{ task_count }}{% endautoescape %};
+    var chartdata3 = {% autoescape off %}{{ time_spent }}{% endautoescape %};
+    var lable = {% autoescape off %}{{ task_count }}{% endautoescape %};
+    var lablechart3 = {% autoescape off %}{{ operators }}{% endautoescape %};
+    var chartlable2 = ['ali', 'mmamad', 'hasan', 'akbar', 'hosin', 'mahmou'];
+    var chartdata2 = [1,2,3,4,5,6];
+
+</script>
 
 
 <script>var hostUrl = "assets/";</script>
@@ -576,6 +578,3 @@
 <script src="{% static "assets/js/custom/utilities/modals/users-search.js" %}"></script>
 <!--end::سفارشی Javascript-->
 <!--end::Javascript-->
-</body>
-<!--end::Body-->
-</html>

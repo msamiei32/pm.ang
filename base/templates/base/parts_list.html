@@ -209,14 +209,16 @@
                                                                 </div>
                                                                 <div class="fv-row mb-7 fv-plugins-icon-container">
                                                                     <!--begin::Tags-->
-                                                                    <label for="emailWithTitle"
+                                                                    <label
                                                                            class=" fw-semibold fs-6 mb-2">ماشین</label>
-                                                                    <select name="machine" id=""
+                                                                    <select  name="machine" id=""
                                                                             class="form-control  fs-6 mb-2">
+
                                                                         {% for machine in machines %}
                                                                             <option value="{{ machine.id }}"
                                                                                     {% if create_for == machine.name %}selected{% endif %}>{{ machine.name }}</option>
                                                                         {% endfor %}
+
                                                                     </select>
                                                                     <!--end::Input-->
                                                                     <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>

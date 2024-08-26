@@ -109,7 +109,7 @@
                                                         <!--begin::Icon-->
                                                         <i class="ki-outline ki-profile-user fs-2x fs-lg-2hx text-gray-500 ms-n1"></i>
                                                         <!--end::Icon-->
-{#                                                        ki-rocket#}
+                                                        {#                                                        ki-rocket#}
                                                         <!--begin::Desc-->
                                                         <div class="fw-bold fs-5 pt-4">کاربران</div>
                                                         <!--end::Desc-->
@@ -241,38 +241,38 @@
                                     <!--end::Title-->
                                     <!--begin::کاربران group-->
                                     <div class="symbol-group symbol-hover flex-nowrap">
-{#                                        <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"#}
-{#                                             data-bs-original-title="آرش کمری" data-kt-initialized="1">#}
-{#                                            <span class="symbol-label bg-warning text-inverse-warning fw-bold">{{ opera }}</span>#}
-{#                                        </div>#}
-{#                                        <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"#}
-{#                                             data-bs-original-title="آرش کمری" data-kt-initialized="1">#}
-{#                                            <span class="symbol-label bg-warning text-inverse-warning fw-bold">A</span>#}
-{#                                        </div>#}
+                                        {#                                        <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"#}
+                                        {#                                             data-bs-original-title="آرش کمری" data-kt-initialized="1">#}
+                                        {#                                            <span class="symbol-label bg-warning text-inverse-warning fw-bold">{{ opera }}</span>#}
+                                        {#                                        </div>#}
+                                        {#                                        <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"#}
+                                        {#                                             data-bs-original-title="آرش کمری" data-kt-initialized="1">#}
+                                        {#                                            <span class="symbol-label bg-warning text-inverse-warning fw-bold">A</span>#}
+                                        {#                                        </div>#}
 
                                         <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"
                                              aria-label="میکائیل احمدی" data-bs-original-title="میکائیل احمدی"
                                              data-kt-initialized="1">{{ opera }}
                                             <img alt="Pic" src="{% static "assets/media/avatars/300-11.jpg" %}">
                                         </div>
-{#                                        <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"#}
-{#                                             data-bs-original-title="سوسن موسوی" data-kt-initialized="1">#}
-{#                                            <span class="symbol-label bg-primary text-inverse-primary fw-bold">S</span>#}
-{#                                        </div>#}
-{#                                        <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"#}
-{#                                             aria-label="میلاد مرادی" data-bs-original-title="میلاد مرادی"#}
-{#                                             data-kt-initialized="1">#}
-{#                                            <img alt="Pic" src="{% static "assets/media/avatars/300-2.jpg" %}">#}
-{#                                        </div>#}
-{#                                        <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"#}
-{#                                             data-bs-original-title="حسینی" data-kt-initialized="1">#}
-{#                                            <span class="symbol-label bg-danger text-inverse-danger fw-bold">P</span>#}
-{#                                        </div>#}
-{#                                        <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"#}
-{#                                             aria-label="بهروز ازادی" data-bs-original-title="بهروز ازادی"#}
-{#                                             data-kt-initialized="1">#}
-{#                                            <img alt="Pic" src="{% static 'assets/media/avatars/300-12.jpg' %}">#}
-{#                                        </div>#}
+                                        {#                                        <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"#}
+                                        {#                                             data-bs-original-title="سوسن موسوی" data-kt-initialized="1">#}
+                                        {#                                            <span class="symbol-label bg-primary text-inverse-primary fw-bold">S</span>#}
+                                        {#                                        </div>#}
+                                        {#                                        <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"#}
+                                        {#                                             aria-label="میلاد مرادی" data-bs-original-title="میلاد مرادی"#}
+                                        {#                                             data-kt-initialized="1">#}
+                                        {#                                            <img alt="Pic" src="{% static "assets/media/avatars/300-2.jpg" %}">#}
+                                        {#                                        </div>#}
+                                        {#                                        <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"#}
+                                        {#                                             data-bs-original-title="حسینی" data-kt-initialized="1">#}
+                                        {#                                            <span class="symbol-label bg-danger text-inverse-danger fw-bold">P</span>#}
+                                        {#                                        </div>#}
+                                        {#                                        <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"#}
+                                        {#                                             aria-label="بهروز ازادی" data-bs-original-title="بهروز ازادی"#}
+                                        {#                                             data-kt-initialized="1">#}
+                                        {#                                            <img alt="Pic" src="{% static 'assets/media/avatars/300-12.jpg' %}">#}
+                                        {#                                        </div>#}
                                         <a href="{% url 'chart_report' %}" class="symbol symbol-35px symbol-circle"
                                            data-bs-toggle="modal" data-bs-target="#kt_modal_view_users">
                                             <span class="symbol-label bg-dark text-gray-300 fs-8 fw-bold">+42</span>
@@ -423,7 +423,11 @@
                                                             <span class="badge py-3 px-4 fs-7 badge-light-primary">{{ item.operation }}</span>
                                                         </td>
                                                         <td class="text-end ">
-                                                            <span class="badge py-3 px-4 fs-7 badge-light-primary">{{ item.get_priority }}</span>
+                                                            {% if item.priority == '1' %}
+                                                                <span class="badge py-3 px-4 fs-7 badge-light-danger">{{ item.get_priority }}</span>
+                                                            {% else %}
+                                                                <span class="badge py-3 px-4 fs-7 badge-light-warning">{{ item.get_priority }}</span>
+                                                            {% endif %}
                                                         </td>
 
 

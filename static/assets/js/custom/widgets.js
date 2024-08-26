@@ -305,8 +305,8 @@ var KTWidgets = function () {
 
             var options = {
                 series: [{
-                    name: 'Revenue',
-                    data: [76, 85, 101, 98, 87, 105]
+                    name: lable,
+                    data: chartdata
                 }],
                 chart: {
                     fontFamily: 'inherit',
@@ -335,7 +335,7 @@ var KTWidgets = function () {
                     colors: ['transparent']
                 },
                 xaxis: {
-                    categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                    categories: category,
                     axisBorder: {
                         show: false,
                     },
@@ -387,7 +387,7 @@ var KTWidgets = function () {
                     },
                     y: {
                         formatter: function (val) {
-                            return "$" + val + " thousands"
+                            return  val + " اپراتور فنی و مجموع کارکرد آنها"
                         }
                     }
                 },
@@ -442,11 +442,8 @@ var KTWidgets = function () {
 
             var options = {
                 series: [{
-                    name: 'Net Profit',
-                    data: [44, 55, 57, 56, 61, 58]
-                }, {
-                    name: 'Revenue',
-                    data: [76, 85, 101, 98, 87, 105]
+                    name: '',
+                    data: chartdata2
                 }],
                 chart: {
                     fontFamily: 'inherit',
@@ -475,7 +472,7 @@ var KTWidgets = function () {
                     colors: ['transparent']
                 },
                 xaxis: {
-                    categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                    categories: chartlable2,
                     axisBorder: {
                         show: false,
                     },
@@ -527,7 +524,7 @@ var KTWidgets = function () {
                     },
                     y: {
                         formatter: function (val) {
-                            return "$" + val + " thousands"
+                            return   val + " مجموع ساعت کاری ماشین ها"
                         }
                     }
                 },
@@ -582,8 +579,8 @@ var KTWidgets = function () {
 
             var options = {
                 series: [{
-                    name: 'Net Profit',
-                    data: [30, 40, 40, 90, 90, 70, 70]
+                    name: lablechart3,
+                    data: chartdata3
                 }],
                 chart: {
                     fontFamily: 'inherit',
@@ -613,7 +610,7 @@ var KTWidgets = function () {
                     colors: [baseColor]
                 },
                 xaxis: {
-                    categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                    categories: category,
                     axisBorder: {
                         show: false,
                     },
@@ -678,7 +675,7 @@ var KTWidgets = function () {
                     },
                     y: {
                         formatter: function (val) {
-                            return "$" + val + " thousands"
+                            return  + val + " مجموع ساعت کاری"
                         }
                     }
                 },

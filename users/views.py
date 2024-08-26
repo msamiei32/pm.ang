@@ -9,6 +9,8 @@ from django.db.models import Q
 from .models import *
 from .forms import PasswordChangeForm
 
+# from .models import User
+# from django.contrib.auth.models import User
 User = get_user_model()
 
 
@@ -66,6 +68,7 @@ def user_add(request):
         role = request.POST.get('role')
         department = request.POST.get('department')
         mobile = request.POST.get('mobile')
+        img = request.POST.get('image')
         email = request.POST.get('email')
         password = request.POST.get('password')
 
@@ -86,6 +89,7 @@ def user_add(request):
 
             profile = Profile.objects.get(user=user)
             profile.mobileNumber = mobile
+            profile.image = img
             profile.department = Department.objects.get(id=department)
             profile.save()
             messages.success(request, 'کاربر ایجاد شد')
@@ -232,11 +236,13 @@ def profile(request):
         fname = request.POST.get('fname')
         lname = request.POST.get('lname')
         username = request.POST.get('username')
+        image = request.FILES['image']
         mobile = request.POST.get('mobile')
         email = request.POST.get('email')
 
+
         if User.objects.filter(username=username).exclude(id=request.user.id).exists():
-            messages.error(request, 'نام کابری ثبت شده است')
+            messages.error(request, 'این نام کاربری قبلا ثبت شده است')
         else:
             user.first_name = fname
             user.last_name = lname
@@ -246,15 +252,13 @@ def profile(request):
 
             profile = Profile.objects.get(user=user)
             profile.mobileNumber = mobile
+            profile.image = image
             profile.save()
             messages.success(request, 'پروفایل ویرایش شد')
 
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     context = {'user': user}
     return render(request, 'users/profile.html', context)
-
-
-
 
 # def test(request):
 #     roles = Group.objects.all()

@@ -29,7 +29,7 @@ urlpatterns = [
 
     path('operation/list/', views.OperationList.as_view(), name='operation_list'),
     path('operation/add/', views.operation_add, name='operation_add'),
-    path('operation/edit/<operationId>/', views.operation_edit, name='operation_edit'),
+    path('operation/edit/<int:operationId>/', views.operation_edit, name='operation_edit'),
 
     path('subgroup/list/', views.SubgroupList.as_view(), name='subgroup_list'),
     path('subgroup/add/', views.subgroup_add, name='subgroup_add'),

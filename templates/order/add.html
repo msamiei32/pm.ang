@@ -1,6 +1,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+
 {% include 'includs/header.html' %}
 
 
@@ -134,8 +135,10 @@
                                     <br/></p>
                                 <!--end::توضیحات-->
                                 <!--begin::Actions-->
-                                <button id="clickit" href="#" class="btn btn-primary er fs-6 px-8 py-4" data-bs-toggle="modal"
-                                   data-bs-target="#kt_modal_new_target">افزودن درخواست</button>
+                                <button id="clickit" href="#" class="btn btn-primary er fs-6 px-8 py-4"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#kt_modal_new_target">افزودن درخواست
+                                </button>
                                 <!--end::Actions-->
                             </div>
                             <!--end::Heading-->
@@ -209,7 +212,7 @@
                                                 <input class="form-check-input h-20px w-20px" type="checkbox"
                                                        id="is_machine" onchange="changePartDisplay('m')"
                                                        name="create_machine"><span
-                                                    class="form-check-label required fw-semibold">ثبت درخواست ماشین</span>
+                                                    class="form-check-label required fw-semibold">ثبت درخواست تعمیر ماشین آلان کارخانه و خط تولید</span>
                                             </label>
 
 
@@ -219,7 +222,7 @@
                                                        id="is_department"
                                                        onchange="changePartDisplay('d')"
                                                        name="create_department"><span
-                                                    class="form-check-label required fw-semibold">ثبت درخواست محیط</span>
+                                                    class="form-check-label required fw-semibold">ثبت درخواست سایر تعمیرات</span>
                                             </label>
                                         </div>
                                     </div>
@@ -227,26 +230,30 @@
                                 <div class="row g-9 mb-8">
                                     <div class="col-md-6 fv-row fv-plugins-icon-container" id="operation_div">
                                         <label for="" class="form-label">عملیات درخواستی</label>
-                                        <select data-controls="select2" class="form-select   form-select-lg"
+                                        <input list="selectoperation" class="form-control form-control-lg-sm"
+                                                     data-close-on-select="false"
+                                                    placeholder="جستجو کنید ..."  data-allow-clear="true"
                                                 id="operationselect"
-                                                {#                                                data-allow-clear="true"#}
                                                 onchange="getParts()" name="operation">
-                                            <option value="">لطفا انتخاب کنید</option>
+                                            <datalist id="selectoperation">
                                             {% for operation in operations %}
                                                 <option value="{{ operation.id }}">{{ operation.name }}</option>
                                             {% endfor %}
-                                        </select>
+                                            </datalist>
+                                        </input>
                                     </div>
                                     <div class="col-md-6 fv-row fv-plugins-icon-container" id="department_div">
                                         <label for="" class="form-label">محیط درخواستی</label>
-                                        <select class="select2 form-select form-select-lg" id="departmentselect"
-                                                data-allow-clear="true"
+                                        <input list="selectdepartment" class=" form-control form-control-lg"
+                                                id="departmentselect"
+                                                placeholder="جستجو کنید ..."
                                                 onchange="getStuff()" name="department">
-                                            <option value="">لطفا انتخاب کنید</option>
+                                            <datalist id="selectdepartment">
                                             {% for department in departments %}
                                                 <option value="{{ department.id }}">{{ department.name }}</option>
                                             {% endfor %}
-                                        </select>
+                                            </datalist>
+                                        </input>
                                     </div>
                                     <div class="col-md-6 fv-row fv-plugins-icon-container" id="part_div">
                                         <label for="" class="form-label">قطعات مربوطه</label>
@@ -256,23 +263,30 @@
                                             <option value="">لطفا انتخاب کنید</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-6 fv-row fv-plugins-icon-container" id="stuff_div">
-                                        <label for="" class="form-label">وسایل مربوطه</label>
-                                        <select class="select2 form-select form-select-lg" id="stuffselect"
-                                                data-allow-clear="true"
+                                    <div class="col-md-6 select2-success  fv-row fv-plugins-icon-container" id="stuff_div">
+                                        <label for="select2Success" class="form-label ">وسایل مربوطه</label>
+                                        <select data-control="select2"  class="form-select form-select-lg" id="stuffselect"
+                                                data-close-on-select="false"
                                                 name="stuff">
                                             <option value="">لطفا انتخاب کنید</option>
                                         </select>
                                     </div>
                                 </div>
+
+
+
+
+
                                 <div class="d-flex flex-column mb-8 fv-row">
                                     <div class="col-md-12 mb-1">
                                         <label for="select2Success"
                                                class="form-label d-flex align-items-center fs-6 fw-semibold mb-2">زیرگروه</label>
                                         <div class="select2-success">
-                                            <select id="select2Success" class="select2 form-select" name="subgroup"
-                                                    multiple
-                                                    required>
+                                            <select class="form-select form-select-sm form-select-solid"
+                                                    data-control="select2" data-close-on-select="false"
+                                                    data-placeholder="لطفا انتخاب کنید" data-allow-clear="true"
+                                                    multiple="multiple"
+                                                    name="subgroup">
                                                 {% for subgroup in subgroups %}
                                                     <option value="{{ subgroup.id }}">{{ subgroup.name }} </option>
                                                 {% endfor %}
@@ -285,16 +299,16 @@
                                         <label for="" class="form-label select2-selection">اولویت</label>
                                         <select class="form-select" name="priority" id="">
                                             <option value="">انتخاب کنید</option>
-                                            <option value="1">کم</option>
-                                            <option value="2">متوسط</option>
-                                            <option value="3">زیاد</option>
+                                            <option value="1">فوری</option>
+                                            <option value="2">قابل برنامه ریزی</option>
+
                                         </select>
                                     </div>
                                 </div>
                                 <div class="d-flex flex-column mb-8">
 
                                     <label for="" class="fs-6 fw-semibold mb-2">توضیحات</label>
-                                    <textarea  class="form-control form-control-solid" rows="2"
+                                    <textarea class="form-control form-control-solid" rows="2"
                                               placeholder="توضیح"
                                               name='description'>  </textarea>
 
@@ -398,6 +412,7 @@
             });
         })();
     }
+
     setTimeout(() => {
         document.getElementById("clickit").click();
     }, 1000);
@@ -409,7 +424,7 @@
 <!--begin::Global Javascript Bundle(mandatory for all pages)-->
 <script src="{% static "assets/plugins/global/plugins.bundle.js" %}"></script>
 <script src="{% static "assets/js/scripts.bundle.js" %}"></script>
-<script src="{% static 'vendor/libs/select2/select2.js' %}"></script>
+
 <!--end::Global Javascript Bundle-->
 <!--begin::Vendors Javascript(used for this page only)-->
 <script src="{% static "assets/plugins/custom/datatables/datatables.bundle.js" %}"></script>
@@ -420,6 +435,7 @@
 <script src="{% static "assets/js/custom/apps/chat/chat.js" %}"></script>
 <script src="{% static "assets/js/custom/utilities/modals/new-target.js" %}"></script>
 <script src="{% static "assets/js/custom/utilities/modals/users-search.js" %}"></script>
+<script src="{% static 'assets/js/custom/apps/ecommerce/sales/listing.js' %}"></script>
 
 
 

@@ -130,17 +130,17 @@
                                         نقش: {{ role.user_set.all|length }}</div>
                                     <!--end::users-->
                                     <!--begin::مجوزها-->
-                                    <div class="d-flex flex-column text-gray-600">
-                                        {% for per in role.permissions.all %}
-                                            <div class="d-flex align-items-center py-2">
-                                                <span class="bullet bg-primary me-3"></span>{{ per.codename }}
-                                            </div>
-                                        {% endfor %}
+{#                                    <div class="d-flex flex-column text-gray-600">#}
+{#                                        {% for per in role.permissions.all %}#}
+{#                                            <div class="d-flex align-items-center py-2">#}
+{#                                                <span class="bullet bg-primary me-3"></span>{{ per.codename }}#}
+{#                                            </div>#}
+{#                                        {% endfor %}#}
                                         {#                                            <div class='d-flex align-items-center py-2'>#}
                                         {#                                                <span class='bullet bg-primary me-3'></span>#}
                                         {#                                                <em>بیشتر</em>#}
                                         {#                                            </div>#}
-                                    </div>
+{#                                    </div>#}
                                     <!--end::مجوزها-->
                                 </div>
                                 <!--end::کارت body-->

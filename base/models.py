@@ -52,15 +52,20 @@ class Order(models.Model):
     @property
     def get_priority(self):
         if self.priority == '1':
-            return 'کم'
+            return 'فوری'
         elif self.priority == '2':
-            return 'متوسط'
-        elif self.priority == '3':
-            return 'زیاد'
+            return 'قابل برنامه ریزی'
 
 
 class Department(models.Model):
     name = models.CharField(max_length=50)
+
+
+
+
+
+
+
 
     def __str__(self):
         return self.name
@@ -153,8 +158,15 @@ class Stuff(models.Model):
         return self.name
 
 
+
+
+
+
+
+
 class Station(models.Model):
     name = models.CharField(max_length=200)
+
 
     def __str__(self):
         return self.name

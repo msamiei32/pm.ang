@@ -8,6 +8,7 @@
 
 {% include 'includs/header.html' %}
 
+
 <!--begin::Toolbar-->
 <div id="kt_app_toolbar" class="app-toolbar pt-4 pt-lg-7 mb-n2 mb-lg-n3">
     <!--begin::Toolbar container-->
@@ -135,6 +136,8 @@
                                 </div>
                                 <!--end::Row-->
                                 <!--begin::Row-->
+
+
                                 <div class="row g-8">
                                     <!--begin::Col-->
                                     <div class="col-xxl-7">
@@ -143,15 +146,17 @@
                                             <!--begin::Col-->
                                             <div class="col-lg-4">
                                                 <label for="" class="fs-6 form-label fw-bold text-dark">وضعیت:</label>
-{#                                                <button type="button" class="btn btn-info btn-sm"#}
-{#                                                        onclick="selectStatusAll()">انتخاب#}
-{#                                                    همه#}
-{#                                                </button>#}
-                                                <select class="form-select form-select-solid select2" name="status"
+                                                {#                                                <button type="button" class="btn btn-info btn-sm"#}
+                                                {#                                                        onclick="selectStatusAll()">انتخاب#}
+                                                {#                                                    همه#}
+                                                {#                                                </button>#}
+                                                <select class="form-select form-select-sm form-select-solid"
+                                                        data-control="select2" data-close-on-select="false"
+                                                        data-placeholder="لطفا انتخاب کنید" data-allow-clear="true"
+                                                        name="status"
                                                         id=""
-                                                        multiple>
-                                                    {#                                <option value="">وضعیت</option>#}
-                                                    {#                                <option value="all">انتخاب همه</option>#}
+                                                        multiple="multiple">
+                                                    <option value=""></option>
                                                     {% for key, text in status_choices %}
                                                         <option value="{{ key }}"
                                                                 {% for status in request.GET|get_list:'status' %}
@@ -165,16 +170,20 @@
                                                 </select>
                                                 <!--end::Dialer-->
                                             </div>
+
                                             <div class="col-lg-4">
                                                 <label for="" class="fs-6 form-label fw-bold text-dark">اپراتور
                                                     فنی:</label>
-{#                                                <button type="button" class="btn btn-info btn-sm"#}
-{#                                                        onclick="selectOperatorAll()">#}
-{#                                                    انتخاب همه#}
-{#                                                </button>#}
-                                                <select class="form-select form-select-solid select2" name="operators"
+                                                {#                                                <button type="button" class="btn btn-info btn-sm"#}
+                                                {#                                                        onclick="selectOperatorAll()">#}
+                                                {#                                                    انتخاب همه#}
+                                                {#                                                </button>#}
+                                                <select class="form-select form-select-sm form-select-solid"
+                                                        data-control="select2" data-close-on-select="false"
+                                                        data-placeholder="لطفا انتخاب کنید" data-allow-clear="true"
+                                                        name="operators"
                                                         id=""
-                                                        multiple>
+                                                        multiple="multiple">
                                                     {#                                <option value="">اپراتور</option>#}
                                                     {% for operator in operators %}
                                                         <option value="{{ operator.id }}"
@@ -288,7 +297,7 @@
                                         <th class="min-w-100px text-start">شماره درخواست</th>
                                         <th class="min-w-100px">تاریخ درخواست</th>
                                         <th class="min-w-300px text-center">عملیات</th>
-                                        <th class="min-w-120px">وضعیت</th>
+                                        <th class="min-w-120px sorting sorting_asc" aria-sort="ascending">وضعیت</th>
                                         <th class="min-w-5px text-center">اولویت</th>
                                         <th class="min-w-150px text-center">عمل‌ها</th>
                                     </tr>
@@ -342,7 +351,11 @@
                                                 <span class="badge badge-light-success">{{ order.get_status_display }}</span>
                                             </td>
                                             <td>
-                                                <span class="badge badge-light-success">{{ order.get_priority }}</span>
+                                                {% if order.priority == '1' %}
+                                                    <span class="badge badge-light-danger">{{ order.get_priority }}</span>
+                                                {% else %}
+                                                    <span class="badge badge-light-warning">{{ order.get_priority }}</span>
+                                                {% endif %}
                                             </td>
                                             <td class="text-center">
                                                 {% if perms.base.change_order %}
@@ -559,10 +572,8 @@
 
                                 {% if page_obj.has_previous %}
                                     <li class="page-item previous">
-                                        <a href="?page=
-
-                                                {{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
-                                           class="page-link">
+                                        <a href="?page= {{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+                                           class="page-link" >
                                             <i class="previous"></i>
                                         </a>
                                     </li>
@@ -585,6 +596,20 @@
                                 {% if page_obj.has_next %}
                                     <li class="page-item next">
                                         <a href="?page=
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                                                 {{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
                                            class="page-link">
@@ -626,6 +651,8 @@
 <script src="{% static "assets/plugins/global/plugins.bundle.js" %}"></script>
 <script src="{% static "assets/js/scripts.bundle.js" %}"></script>
 <script src="{% static 'vendor/libs/select2/select2.js' %}"></script>
+<script src="{% static 'assets/plugins/custom/formrepeater/formrepeater.bundle.js' %}"></script>
+<script src="{% static 'assets/js/custom/apps/ecommerce/catalog/save-product.js' %}"></script>
 <!--end::Global Javascript Bundle-->
 <!--begin::Vendors Javascript(used for this page only)-->
 <script src="{% static "assets/plugins/custom/datatables/datatables.bundle.js" %}"></script>

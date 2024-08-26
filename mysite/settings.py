@@ -1,7 +1,7 @@
 from pathlib import Path
 import os
-import django_heroku
-from dotenv import load_dotenv
+# import django_heroku
+# from dotenv import load_dotenv
 
 # load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 
@@ -139,14 +139,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 
+# Media
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -213,4 +211,6 @@ CELERY_ENABLE_UTC = False
 
 LOGIN_URL = '/login/'
 
-django_heroku.settings(locals())
+# AUTH_USER_MODEL = 'users.User'
+
+# django_heroku.settings(locals())
