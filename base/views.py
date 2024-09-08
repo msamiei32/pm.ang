@@ -673,13 +673,12 @@ def task_invoice(request, taskId):
 class DepartmentList(ListView):
     model = Department
     template_name = 'department/list.html'
-    paginate_by = 1
+    paginate_by = 10
     context_object_name = 'departments'
 
 
 def department_add(request):
     if request.method == 'POST':
-
         name = request.POST.get('departmentName')
         if  Department.objects.filter(name=name).exists():
             messages.error(request,'با این نام قبلا ثبت شده است')
@@ -688,7 +687,7 @@ def department_add(request):
             messages.success(request, 'واحد ایجاد شد')
         # if Department.objects.filter(name=name).exists():
         #     messages.error(request,'با این نام قبلا ثبت شده است')
-        return redirect('department_list')
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 def department_edit(request, departmentId):
@@ -696,7 +695,7 @@ def department_edit(request, departmentId):
         name = request.POST.get('departmentName')
         Department.objects.filter(id=departmentId).update(name=name)
         messages.success(request, 'واحد ویرایش شد')
-        return redirect('department_list')
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 class OperationList(ListView):
@@ -733,7 +732,7 @@ def operation_add(request):
         else:
             Operation.objects.get_or_create(name=name, area=area, station=station)
             messages.success(request, 'عملیات ایجاد شد')
-        return redirect('operation_list')
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 def operation_edit(request, operationId):
@@ -745,7 +744,7 @@ def operation_edit(request, operationId):
         area = Department.objects.get(id=area_id)
         Operation.objects.filter(id=operationId).update(name=name, station=station, area=area)
         messages.success(request, 'عملیات ویرایش شد')
-        return redirect('operation_list')
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 class SubgroupList(ListView):
@@ -1085,11 +1084,12 @@ def machine_stuff_add(request):
         stuff_name = request.POST.get('stuff_name')
         department = Department.objects.get(id=department_name)
         Stuff.objects.create(department=department, name=stuff_name)
-        return redirect('stuff_list')
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 class StationList(ListView):
     model = Station
+    paginate_by = 10
     template_name = 'base/station_list.html'
 
 
@@ -1097,7 +1097,23 @@ def station_add(request):
     if request.method == 'POST':
         station_name = request.POST.get('station_name')
         Station.objects.create(name=station_name)
-        return redirect('station_list')
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+
+
+
+
+
+def station_edit(request, stationId):
+    if request.method == 'POST':
+        name = request.POST.get('station_name')
+        Station.objects.filter(id=stationId).update(name=name)
+        messages.success(request, 'واحد ویرایش شد')
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+
 
 
 class StuffList(ListView):
@@ -1253,4 +1269,4 @@ class ChartreportView(ListView):
 
 def test(request):
 
-    return render(request, 'review/detail1.html')
+    return render(request, 'order/test.html')

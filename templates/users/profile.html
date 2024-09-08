@@ -131,7 +131,7 @@
                         <div id="kt_account_settings_profile_details" class="collapse show">
                             <!--begin::Form-->
                             <form action="{% url 'profile' %}" method="post"
-                                  class="form fv-plugins-bootstrap5 fv-plugins-framework" enctype="multipart/form-data" >
+                                  class="form fv-plugins-bootstrap5 fv-plugins-framework" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <!--begin::کارت body-->
                                 <div class="card-body border-top p-9">
@@ -158,7 +158,7 @@
                                                        data-kt-initialized="1">
                                                     <i class="ki-outline ki-pencil fs-7"></i>
                                                     <!--begin::Inputs-->
-                                                    <input type="file"   name="image" accept="png, .jpg, .jpeg">
+                                                    <input type="file"  name="image" accept="png, .jpg, .jpeg">
                                                     <input type="hidden" name="image">
                                                     <!--end::Inputs-->
                                                 </label>
@@ -178,7 +178,7 @@
 {#                                                      data-kt-initialized="1">#}
 {#																	<i class="ki-outline ki-cross fs-2"></i>#}
 {#																</span>#}
-                                                <!--end::حذف-->
+{#                                                <!--end::حذف-->#}
                                             </div>
                                             <!--end::Image input-->
                                             <!--begin::Hint-->

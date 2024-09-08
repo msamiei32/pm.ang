@@ -26,6 +26,7 @@ urlpatterns = [
     path('department/list/', views.DepartmentList.as_view(), name='department_list'),
     path('department/add/', views.department_add, name='department_add'),
     path('department/edit/<departmentId>/', views.department_edit, name='department_edit'),
+    path('department/edit/<departmentId>/', views.department_edit, name='department_edit'),
 
     path('operation/list/', views.OperationList.as_view(), name='operation_list'),
     path('operation/add/', views.operation_add, name='operation_add'),
@@ -58,7 +59,7 @@ urlpatterns = [
     path('stuff/add/', views.machine_stuff_add, name='stuff_add'),
 
     path('stations/', views.StationList.as_view(), name='station_list'),
-    path('station/edit/<int:pk>/', views.StationList.as_view(), name='station_edit'),
+    path('station/edit/<stationId>/', views.station_edit, name='station_edit'),
     path('station/add/', views.station_add, name='station_add'),
     # ajax
     path('task/list_task_of_order', views.list_task_of_order, name="list_task_of_order"),

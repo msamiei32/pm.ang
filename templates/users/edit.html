@@ -128,261 +128,262 @@
                         <!--begin::Content-->
                         <div id="kt_account_settings_profile_details" class="collapse show">
                             <!--begin::Form-->
-                            <form id="formValidationExamples" action="{% url 'user_edit' user.username %}"
-                                  method="post">
+                            <form  action="{% url 'user_edit' user.username %}"
+                                  method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <!--begin::کارت body-->
                                 <div class="card-body border-top p-9">
-                                    <!--begin::Input group-->
+
                                     <div class="row mb-6">
                                         <!--begin::Tags-->
-
+                                        <label class="col-lg-4 col-form-label fw-semibold fs-6">آواتار</label>
                                         <!--end::Tags-->
                                         <!--begin::Col-->
                                         <div class="col-lg-8">
                                             <!--begin::Image input-->
-                                            <div data-kt-image-input="true"
-                                                 style="background-image: url(
-                                            "
-                                            ")>
-                                            <!--begin::نمایش existing avatar-->
-                                            <div
-                                                    style="background-image: url("
-                                            ")>
+                                            <div class="image-input image-input-outline" data-kt-image-input="true"
+                                                 style="background-image: url('{% static 'assets/media/svg/avatars/blank.svg' %}')">
+
+                                                {% if user.profile.image %}
+                                                    <div class="image-input-wrapper w-125px h-125px"
+                                                         style="background-image: url('{{ user.profile.image.url }}')"></div>
+                                                {% endif %}
+
+
+                                                <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                       data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                                       aria-label="تعویض آواتار" data-bs-original-title="تعویض آواتار"
+                                                       data-kt-initialized="1">
+                                                    <i class="ki-outline ki-pencil fs-7"></i>
+                                                    <!--begin::Inputs-->
+                                                    <input type="file" name="image" accept="png, .jpg, .jpeg">
+                                                    <input type="hidden" name="image">
+                                                    <!--end::Inputs-->
+                                                </label>
+                                                <!--end::Tags-->
+                                                <!--begin::انصراف-->
+                                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                      data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                                      aria-label="انصراف avatar" data-bs-original-title="انصراف avatar"
+                                                      data-kt-initialized="1">
+																	<i class="ki-outline ki-cross fs-2"></i>
+																</span>
+                                                <!--end::انصراف-->
+                                                <!--begin::حذف-->
+                                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                      data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                                      aria-label="حذف آواتار" data-bs-original-title="حذف آواتار"
+                                                      data-kt-initialized="1">
+                                                																	<i class="ki-outline ki-cross fs-2"></i>
+                                                																</span>
+
+                                            </div>
+                                            <!--end::Image input-->
+                                            <!--begin::Hint-->
+                                            <div class="form-text"> فرمت های قابل قبول: png, jpg, jpeg</div>
+                                            <!--end::Hint-->
                                         </div>
-                                        <!--end::نمایش existing avatar-->
+                                        <!--end::Col-->
+                                    </div>
+                                    <div class="row mb-6">
                                         <!--begin::Tags-->
-
+                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">نام
+                                            کامل</label>
+                                        <!--end::Tags-->
+                                        <!--begin::Col-->
+                                        <div class="col-lg-8">
+                                            <!--begin::Row-->
+                                            <div class="row">
+                                                <!--begin::Col-->
+                                                <div class="col-lg-6 fv-row">
+                                                    <input type="text" name="fname"
+                                                           class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                                           placeholder="نام" value="{{ user.first_name }}"/>
+                                                </div>
+                                                <!--end::Col-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-6 fv-row">
+                                                    <input type="text" name="lname"
+                                                           class="form-control form-control-lg form-control-solid"
+                                                           placeholder="نام خانوادگی" value="{{ user.last_name }}"/>
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <!--end::Row-->
+                                        </div>
+                                        <!--end::Col-->
                                     </div>
-                                    <!--end::Image input-->
-                                    <!--begin::Hint-->
 
-                                    <!--end::Hint-->
-                                </div>
-                                <!--end::Col-->
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="row mb-6">
-                            <!--begin::Tags-->
-                            <label class="col-lg-4 col-form-label required fw-semibold fs-6">تصویر</label>
-                            <!--end::Tags-->
-                            <!--begin::Col-->
-                            <div class="col-lg-8">
-                                <!--begin::Row-->
-                                <div class="row">
-                                    <!--begin::Col-->
-                                    <div class="col-lg-12 fv-row">
-                                        {% if user.profile.image %}
-                                            <img style="width: 50px;height: 50px" src="{{ user.profile.image.url }}"
-                                                                                                            alt="">
-                                        {% endif %}
+                                    <div class="row mb-6">
+                                        <!--begin::Tags-->
+                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">نام
+                                            کاربری</label>
+                                        <!--end::Tags-->
+                                        <!--begin::Col-->
+                                        <div class="col-lg-8 fv-row">
+                                            <input type="text" name="username"
+                                                   class="form-control form-control-lg form-control-solid"
+                                                   placeholder="نام کاربری را وارد نمایید" value="{{ user.username }}"/>
+                                        </div>
+                                        <!--end::Col-->
                                     </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
-
-                                    <!--end::Col-->
-                                </div>
-                                <!--end::Row-->
-                            </div>
-                            <!--end::Col-->
-                        </div>
-                        <div class="row mb-6">
-                            <!--begin::Tags-->
-                            <label class="col-lg-4 col-form-label required fw-semibold fs-6">نام
-                                کامل</label>
-                            <!--end::Tags-->
-                            <!--begin::Col-->
-                            <div class="col-lg-8">
-                                <!--begin::Row-->
-                                <div class="row">
-                                    <!--begin::Col-->
-                                    <div class="col-lg-6 fv-row">
-                                        <input type="text" name="fname"
-                                               class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                               placeholder="نام" value="{{ user.first_name }}"/>
+                                    <div class="row mb-6">
+                                        <!--begin::Tags-->
+                                        <label for="password" class="col-lg-4 col-form-label required fw-semibold fs-6">رمز
+                                            عبور</label>
+                                        <!--end::Tags-->
+                                        <!--begin::Col-->
+                                        <div class="col-lg-8 fv-row">
+                                            <input type="password" id="password"
+                                                   name="password"
+                                                   class="form-control form-control-lg form-control-solid"
+                                                   placeholder="رمز عبور را وارد کنید" value=""/>
+                                        </div>
+                                        <!--end::Col-->
                                     </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
-                                    <div class="col-lg-6 fv-row">
-                                        <input type="text" name="lname"
-                                               class="form-control form-control-lg form-control-solid"
-                                               placeholder="نام خانوادگی" value="{{ user.last_name }}"/>
-                                    </div>
-                                    <!--end::Col-->
-                                </div>
-                                <!--end::Row-->
-                            </div>
-                            <!--end::Col-->
-                        </div>
 
-                        <div class="row mb-6">
-                            <!--begin::Tags-->
-                            <label class="col-lg-4 col-form-label required fw-semibold fs-6">نام کاربری</label>
-                            <!--end::Tags-->
-                            <!--begin::Col-->
-                            <div class="col-lg-8 fv-row">
-                                <input type="text" name="username"
-                                       class="form-control form-control-lg form-control-solid"
-                                       placeholder="نام کاربری را وارد نمایید" value="{{ user.username }}"/>
-                            </div>
-                            <!--end::Col-->
-                        </div>
-                        <div class="row mb-6">
-                            <!--begin::Tags-->
-                            <label for="password" class="col-lg-4 col-form-label required fw-semibold fs-6">رمز
-                                عبور</label>
-                            <!--end::Tags-->
-                            <!--begin::Col-->
-                            <div class="col-lg-8 fv-row">
-                                <input type="password" id="password"
-                                       name="password"
-                                       class="form-control form-control-lg form-control-solid"
-                                       placeholder="رمز عبور را وارد کنید" value=""/>
-                            </div>
-                            <!--end::Col-->
-                        </div>
-
-                        <div class="row mb-6">
-                            <!--begin::Tags-->
-                            <label class="col-lg-4 col-form-label fw-semibold fs-6">
-                                <span>شماره تلفن</span>
-                                <span class="ms-1" data-bs-toggle="tooltip"
-                                      title="شماره تلفن باید فعال باشد">
+                                    <div class="row mb-6">
+                                        <!--begin::Tags-->
+                                        <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                                            <span>شماره تلفن</span>
+                                            <span class="ms-1" data-bs-toggle="tooltip"
+                                                  title="شماره تلفن باید فعال باشد">
 																<i class="ki-outline ki-information-5 text-gray-500 fs-6"></i>
 															</span>
-                            </label>
-                            <!--end::Tags-->
-                            <!--begin::Col-->
-                            <div class="col-lg-8 fv-row">
-                                <input type="tel" name="mobile"
-                                       class="form-control form-control-lg form-control-solid"
-                                       placeholder="شماره تلفن معتبر وارد کنید"
-                                       value="{{ user.profile.mobileNumber }}"/>
-                            </div>
-                            <!--end::Col-->
-                        </div>
+                                        </label>
+                                        <!--end::Tags-->
+                                        <!--begin::Col-->
+                                        <div class="col-lg-8 fv-row">
+                                            <input type="tel" name="mobile"
+                                                   class="form-control form-control-lg form-control-solid"
+                                                   placeholder="شماره تلفن معتبر وارد کنید"
+                                                   value="{{ user.profile.mobileNumber }}"/>
+                                        </div>
+                                        <!--end::Col-->
+                                    </div>
 
-                        <div class="row mb-6">
-                            <!--begin::Tags-->
-                            <label class="col-lg-4 col-form-label fw-semibold fs-6">ایمیل</label>
-                            <!--end::Tags-->
-                            <!--begin::Col-->
-                            <div class="col-lg-8 fv-row">
-                                <input type="text" name="email"
-                                       class="form-control form-control-lg form-control-solid"
-                                       placeholder="نشانی ایمیل" value="{{ user.email }}"/>
-                            </div>
-                            <!--end::Col-->
-                        </div>
+                                    <div class="row mb-6">
+                                        <!--begin::Tags-->
+                                        <label class="col-lg-4 col-form-label fw-semibold fs-6">ایمیل</label>
+                                        <!--end::Tags-->
+                                        <!--begin::Col-->
+                                        <div class="col-lg-8 fv-row">
+                                            <input type="text" name="email"
+                                                   class="form-control form-control-lg form-control-solid"
+                                                   placeholder="نشانی ایمیل" value="{{ user.email }}"/>
+                                        </div>
+                                        <!--end::Col-->
+                                    </div>
 
-                        <div class="row mb-6">
-                            <!--begin::Tags-->
-                            <label class="col-lg-4 col-form-label fw-semibold fs-6">
-                                <span class="required">واحد</span>
-                                <span class="ms-1" data-bs-toggle="tooltip" title="واحد">
+                                    <div class="row mb-6">
+                                        <!--begin::Tags-->
+                                        <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                                            <span class="required">واحد</span>
+                                            <span class="ms-1" data-bs-toggle="tooltip" title="واحد">
 																<i class="ki-outline ki-information-5 text-gray-500 fs-6"></i>
 															</span>
-                            </label>
-                            <!--end::Tags-->
-                            <!--begin::Col-->
-                            <div class="col-lg-8 fv-row" id="unitoption">
-                                <select name="department" aria-label="انتخاب واحد مربوطه" data-control="select2"
-                                        data-placeholder="انتخاب یک واحد"
-                                        class="form-select form-select-solid form-select-lg fw-semibold">
-                                    {% for department in departments %}
-                                        <option value="{{ department.id }}"
-                                                {% if user.profile.department.id == department.id %}
-                                                selected {% endif %}>{{ department.name }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <!--end::Col-->
-                        </div>
+                                        </label>
+                                        <!--end::Tags-->
+                                        <!--begin::Col-->
+                                        <div class="col-lg-8 fv-row" id="unitoption">
+                                            <select name="department" aria-label="انتخاب واحد مربوطه"
+                                                    data-control="select2"
+                                                    data-placeholder="انتخاب یک واحد"
+                                                    class="form-select form-select-solid form-select-lg fw-semibold">
+                                                {% for department in departments %}
+                                                    <option value="{{ department.id }}"
+                                                            {% if user.profile.department.id == department.id %}
+                                                            selected {% endif %}>{{ department.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <!--end::Col-->
+                                    </div>
 
-                        <div class="row mb-6">
-                            <!--begin::Tags-->
-                            <label class="col-lg-4 col-form-label required fw-semibold fs-6">نقش</label>
-                            <!--end::Tags-->
-                            <!--begin::Col-->
-                            <div class="col-lg-8 fv-row">
-                                <!--begin::Input-->
-                                <select data-control="select2" name="role" id="roleoption"
-                                        aria-label="انتخاب نقش"
-                                        data-placeholder="انتخاب یک نقش" class="form-select form-select-solid
+                                    <div class="row mb-6">
+                                        <!--begin::Tags-->
+                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">نقش</label>
+                                        <!--end::Tags-->
+                                        <!--begin::Col-->
+                                        <div class="col-lg-8 fv-row">
+                                            <!--begin::Input-->
+                                            <select data-control="select2" name="role" id="roleoption"
+                                                    aria-label="انتخاب نقش"
+                                                    data-placeholder="انتخاب یک نقش" class="form-select form-select-solid
                                 form-select-lg">
-                                    {% for role in roles %}
-                                        <option value="{{ role.id }}" {% if user.groups.first.id == role.id %}
-                                                selected {% endif %}>
-                                            {{ role.name }}</option>
-                                    {% endfor %}
-                                </select>
-                                <!--end::Input-->
-                                <!--begin::Hint-->
+                                                {% for role in roles %}
+                                                    <option value="{{ role.id }}"
+                                                            {% if user.groups.first.id == role.id %}
+                                                            selected {% endif %}>
+                                                        {{ role.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                            <!--end::Input-->
+                                            <!--begin::Hint-->
 
-                                <!--end::Hint-->
-                            </div>
-                            <!--end::Col-->
+                                            <!--end::Hint-->
+                                        </div>
+                                        <!--end::Col-->
+                                    </div>
+
+                                </div>
+                                <!--end::کارت body-->
+                                <!--begin::Actions-->
+                                <div class="card-footer d-flex justify-content-end py-6 px-9">
+
+                                    <button type="submit" class="btn btn-primary"
+                                            id="kt_account_profile_details_submit">ذخیره تغییرات
+                                    </button>
+                                </div>
+                                <!--end::Actions-->
+                            </form>
+                            <!--end::Form-->
                         </div>
-
+                        <!--end::Content-->
                     </div>
-                    <!--end::کارت body-->
-                    <!--begin::Actions-->
-                    <div class="card-footer d-flex justify-content-end py-6 px-9">
 
-                        <button type="submit" class="btn btn-primary"
-                                id="kt_account_profile_details_submit">ذخیره تغییرات
-                        </button>
-                    </div>
-                    <!--end::Actions-->
-                    </form>
-                    <!--end::Form-->
                 </div>
                 <!--end::Content-->
             </div>
-
+            <!--end::Content wrapper-->
+            <!--begin::Footer-->
+            {% include 'includs/footer.html' %}
+            <!--end::Footer-->
         </div>
-        <!--end::Content-->
-    </div>
-    <!--end::Content wrapper-->
-    <!--begin::Footer-->
-    {% include 'includs/footer.html' %}
-    <!--end::Footer-->
-</div>
 
-<!--begin::Javascript-->
-<script>var hostUrl = "assets/";</script>
-<!--begin::Global Javascript Bundle(mandatory for all pages)-->
-<script src="{% static "assets/plugins/global/plugins.bundle.js" %}"></script>
-<script src="{% static "assets/js/scripts.bundle.js" %}"></script>
-<!--end::Global Javascript Bundle-->
-<!--begin::Vendors Javascript(used for this page only)-->
-<script src="{% static "assets/plugins/custom/datatables/datatables.bundle.js" %}"></script>
-<!--end::Vendors Javascript-->
-<!--begin::سفارشی Javascript(used for this page only)-->
-<script src="{% static "assets/js/custom/account/settings/signin-methods.js" %}"></script>
-<script src="{% static "assets/js/custom/account/settings/profile-details.js" %}"></script>
-<script src="{% static "assets/js/custom/account/settings/deactivate-account.js" %}"></script>
-<script src="{% static "assets/js/custom/pages/user-profile/general.js" %}"></script>
-<script src="{% static "assets/js/widgets.bundle.js" %}"></script>
-<script src="{% static "assets/js/custom/widgets.js" %}"></script>
-<script src="{% static "assets/js/custom/apps/chat/chat.js" %}"></script>
-<script src="{% static "assets/js/custom/utilities/modals/offer-a-deal/type.js" %}"></script>
-<script src="{% static "assets/js/custom/utilities/modals/offer-a-deal/details.js" %}"></script>
-<script src="{% static "assets/js/custom/utilities/modals/offer-a-deal/finance.js" %}"></script>
-<script src="{% static "assets/js/custom/utilities/modals/offer-a-deal/complete.js" %}"></script>
-<script src="{% static "assets/js/custom/utilities/modals/offer-a-deal/main.js" %}"></script>
-<script src="{% static "assets/js/custom/utilities/modals/two-factor-authentication.js" %}"></script>
-<script src="{% static "assets/js/custom/utilities/modals/users-search.js" %}"></script>
-<script>
-    function handleShowUnit() {
-        const options = document.getElementById('roleoption');
-        const unit = document.getElementById('unitoption');
-        const value = options.value;
-        const text = options.options[options.selectedIndex].text;
-        if (text === 'اپراتور فنی') {
-            unit.style.display = 'none'
-        }
-    }
-</script>
-<!--end::سفارشی Javascript-->
+        <!--begin::Javascript-->
+        <script>var hostUrl = "assets/";</script>
+        <!--begin::Global Javascript Bundle(mandatory for all pages)-->
+        <script src="{% static "assets/plugins/global/plugins.bundle.js" %}"></script>
+        <script src="{% static "assets/js/scripts.bundle.js" %}"></script>
+        <!--end::Global Javascript Bundle-->
+        <!--begin::Vendors Javascript(used for this page only)-->
+        <script src="{% static "assets/plugins/custom/datatables/datatables.bundle.js" %}"></script>
+        <!--end::Vendors Javascript-->
+        <!--begin::سفارشی Javascript(used for this page only)-->
+        <script src="{% static "assets/js/custom/account/settings/signin-methods.js" %}"></script>
+        <script src="{% static "assets/js/custom/account/settings/profile-details.js" %}"></script>
+        <script src="{% static "assets/js/custom/account/settings/deactivate-account.js" %}"></script>
+        <script src="{% static "assets/js/custom/pages/user-profile/general.js" %}"></script>
+        <script src="{% static "assets/js/widgets.bundle.js" %}"></script>
+        <script src="{% static "assets/js/custom/widgets.js" %}"></script>
+        <script src="{% static "assets/js/custom/apps/chat/chat.js" %}"></script>
+        <script src="{% static "assets/js/custom/utilities/modals/offer-a-deal/type.js" %}"></script>
+        <script src="{% static "assets/js/custom/utilities/modals/offer-a-deal/details.js" %}"></script>
+        <script src="{% static "assets/js/custom/utilities/modals/offer-a-deal/finance.js" %}"></script>
+        <script src="{% static "assets/js/custom/utilities/modals/offer-a-deal/complete.js" %}"></script>
+        <script src="{% static "assets/js/custom/utilities/modals/offer-a-deal/main.js" %}"></script>
+        <script src="{% static "assets/js/custom/utilities/modals/two-factor-authentication.js" %}"></script>
+        <script src="{% static "assets/js/custom/utilities/modals/users-search.js" %}"></script>
+        <script>
+            function handleShowUnit() {
+                const options = document.getElementById('roleoption');
+                const unit = document.getElementById('unitoption');
+                const value = options.value;
+                const text = options.options[options.selectedIndex].text;
+                if (text === 'اپراتور فنی') {
+                    unit.style.display = 'none'
+                }
+            }
+        </script>
+        <!--end::سفارشی Javascript-->

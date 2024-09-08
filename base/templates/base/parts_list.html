@@ -3,6 +3,7 @@
 {% load jalali_tags %}
 
 
+
 {% include 'includs/header.html' %}
 
 <!--begin::Toolbar-->
@@ -144,7 +145,7 @@
                                             <!--end::خروجی-->
                                             <!--begin::افزودن user-->
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#kt_modal_add_user">
+                                                    data-bs-target="#kt_modal_new_address">
                                                 <i class="ki-outline ki-plus fs-2"></i>اضافه کردن قطعه
                                             </button>
                                             <!--end::افزودن user-->
@@ -154,20 +155,20 @@
 
                                         <!--end::Modal - کارت جدید-->
                                         <!--begin::Modal - افزودن task-->
-                                        <div class="modal fade" id="kt_modal_add_user" tabindex="-1"
+                                        <div class="modal fade" id="kt_modal_new_address" tabindex="-1"
                                              style="display: none;" aria-hidden="true">
                                             <!--begin::Modal dialog-->
                                             <div class="modal-dialog modal-dialog-centered mw-650px">
                                                 <!--begin::Modal content-->
                                                 <div class="modal-content">
                                                     <!--begin::Modal header-->
-                                                    <div class="modal-header" id="kt_modal_add_user_header">
+                                                    <div class="modal-header" id="kt_modal_new_address_header">
                                                         <!--begin::Modal title-->
                                                         <h2 class="fw-bold">اضافه کردن قطعه جدید</h2>
                                                         <!--end::Modal title-->
                                                         <!--begin::Close-->
                                                         <div class="btn btn-icon btn-sm btn-active-icon-primary"
-                                                             data-kt-users-modal-action="close">
+                                                             data-kt-users-modal-action="close" data-bs-dismiss="modal">
                                                             <i class="ki-outline ki-cross fs-1"></i>
                                                         </div>
                                                         <!--end::Close-->
@@ -176,17 +177,17 @@
                                                     <!--begin::Modal body-->
                                                     <div class="modal-body px-5 my-7">
                                                         <!--begin::Form-->
-                                                        <form id="kt_modal_add_user_form"
+                                                        <form id="kt_modal_new_address_form"
                                                               class="form fv-plugins-bootstrap5 fv-plugins-framework"
                                                               action="{% url 'machine_part_add' %}" method="post">
                                                             {% csrf_token %}
                                                             <!--begin::Scroll-->
                                                             <div class="d-flex flex-column scroll-y px-5 px-lg-10"
-                                                                 id="kt_modal_add_user_scroll" data-kt-scroll="true"
+                                                                 id="kt_modal_new_address_scroll" data-kt-scroll="true"
                                                                  data-kt-scroll-activate="true"
                                                                  data-kt-scroll-max-height="auto"
-                                                                 data-kt-scroll-dependencies="#kt_modal_add_user_header"
-                                                                 data-kt-scroll-wrappers="#kt_modal_add_user_scroll"
+                                                                 data-kt-scroll-dependencies="#kt_modal_new_address_header"
+                                                                 data-kt-scroll-wrappers="#kt_modal_new_address_scroll"
                                                                  data-kt-scroll-offset="300px"
                                                                  style="max-height: 152px;">
                                                                 <!--begin::Input group-->
@@ -210,9 +211,11 @@
                                                                 <div class="fv-row mb-7 fv-plugins-icon-container">
                                                                     <!--begin::Tags-->
                                                                     <label
-                                                                           class=" fw-semibold fs-6 mb-2">ماشین</label>
-                                                                    <select  name="machine" id=""
-                                                                            class="form-control  fs-6 mb-2">
+                                                                            class=" fw-semibold fs-6 mb-2">ماشین</label>
+                                                                    <select name="machine" id=""
+                                                                            class="form-select  form-select-solid fs-6 mb-2"
+                                                                            data-control="select2"
+                                                                            data-dropdown-parent="#kt_modal_new_address">
 
                                                                         {% for machine in machines %}
                                                                             <option value="{{ machine.id }}"
@@ -224,13 +227,8 @@
                                                                     <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
                                                                 </div>
 
-                                                                <!--end::Input group-->
-                                                                <!--begin::Input group-->
 
-                                                                <!--end::Input group-->
-                                                                <!--begin::Input group-->
 
-                                                                <!--end::Input group-->
                                                             </div>
                                                             <!--end::Scroll-->
                                                             <!--begin::Actions-->
@@ -324,7 +322,7 @@
                                             </td>
 
                                             <td>
-                                                <div class="d-flex justify-content-end flex-shrink-0">
+                                                <div class="d-flex justify-content-end flex-shrink-0" id="kt_modal_new_address_header">
                                                     {% if perms.base.change_task %}
                                                         <a href="javascript:;" data-bs-toggle="modal"
                                                            data-bs-target="#editOperationModal_{{ part.id }}"
@@ -334,30 +332,30 @@
                                                         <div class="modal fade" id="editOperationModal_{{ part.id }}"
                                                              tabindex="-1"
                                                              aria-hidden="true">
-                                                            <div class="modal-dialog modal-lg modal-dialog-centered modal-add-new-role">
+                                                            <div class="modal-dialog modal-lg modal-dialog-centered modal_new_address_header">
                                                                 <div class="modal-content p-3 p-md-5">
                                                                     <button type="button" class="btn-close btn-pinned"
                                                                             data-bs-dismiss="modal"
                                                                             aria-label="Close"></button>
                                                                     <div class="modal-body">
 
-                                                                        <div class="text-center mb-4">
+                                                                        <div class="text-center mb-4" id="kt_modal_new_address">
                                                                             <h3 class="role-title">ویرایش قطعه
                                                                             </h3>
                                                                         </div>
-                                                                        <form id="kt_modal_add_user_form"
+                                                                        <form id="kt_modal_new_address_form"
                                                                               class="form fv-plugins-bootstrap5 fv-plugins-framework"
                                                                               action="{% url 'machine_part_edit' part.id %}"
                                                                               method="post">
                                                                             {% csrf_token %}
                                                                             <!--begin::Scroll-->
                                                                             <div class="d-flex flex-column scroll-y px-5 px-lg-10"
-                                                                                 id="kt_modal_add_user_scroll"
+                                                                                 id="kt_modal_new_address_scroll"
                                                                                  data-kt-scroll="true"
                                                                                  data-kt-scroll-activate="true"
                                                                                  data-kt-scroll-max-height="auto"
-                                                                                 data-kt-scroll-dependencies="#kt_modal_add_user_header"
-                                                                                 data-kt-scroll-wrappers="#kt_modal_add_user_scroll"
+                                                                                 data-kt-scroll-dependencies="#kt_modal_new_address_header"
+                                                                                 data-kt-scroll-wrappers="#kt_modal_new_address_scroll"
                                                                                  data-kt-scroll-offset="300px"
                                                                                  style="max-height: 152px;">
                                                                                 <!--begin::Input group-->
@@ -373,7 +371,7 @@
                                                                                     <input type="text"
                                                                                            id="PartName"
                                                                                            name="PartName"
-                                                                                           class="form-control"
+                                                                                           class="form-control form-control-solid"
                                                                                            value="{{ part.name }}"
                                                                                            tabindex="-1"
                                                                                            required>
@@ -382,15 +380,12 @@
                                                                                 </div>
                                                                                 <div class="fv-row mb-7 fv-plugins-icon-container">
                                                                                     <!--begin::Tags-->
-                                                                                    <label class=" fw-semibold fs-6 mb-2"
+                                                                                    <label class="fw-semibold fs-6 mb-2"
                                                                                            for="MachineName">نام
                                                                                         ماشین</label>
-                                                                                    <select class="form-control  fs-6 mb-2"
-                                                                                            name="MachineName"
-                                                                                            id="MachineName">
-                                                                                        <option value="">ماشین را انتخاب
-                                                                                            کنید
-                                                                                        </option>
+                                                                                    <select  class="form-select form-select-solid  fs-6 mb-2"
+                                                                                            name="MachineName" data-control="select2"
+                                                                                            id="kt_modal_new_address" data-dropdown-parent="#kt_modal_new_address">
                                                                                         {% for machine in machines %}
                                                                                             <option value="{{ machine.id }}"
                                                                                                     {% if part.machine == machine %}selected{% endif %}>{{ machine.name }}</option>
@@ -497,7 +492,8 @@
 
                                     {% if page_obj.has_previous %}
                                         <li class="page-item previous">
-                                            <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+                                            <a href="?page=
+                                                    {{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
                                                class="page-link">
                                                 <i class="previous"></i>
                                             </a>
@@ -520,7 +516,8 @@
 
                                     {% if page_obj.has_next %}
                                         <li class="page-item next">
-                                            <a href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+                                            <a href="?page=
+                                                    {{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
                                                class="page-link">
                                                 <i class="next"></i>
                                             </a>
@@ -588,6 +585,7 @@
 <script src="{% static "assets/js/widgets.bundle.js" %}"></script>
 <script src="{% static "assets/js/custom/widgets.js" %}"></script>
 <script src="{% static "assets/js/custom/apps/chat/chat.js" %}"></script>
+<script src="{% static "assets/js/custom/utilities/modals/new-address.js" %}"></script>
 <script src="{% static "assets/js/custom/utilities/modals/users-search.js" %}"></script>
 <script>
     async function changeStatus(orderId) {

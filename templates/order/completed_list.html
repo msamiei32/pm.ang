@@ -8,6 +8,21 @@
 
 {% include 'includs/header.html' %}
 
+
+
+<link rel="stylesheet" href="{% static 'vendor/css/rtl/core.css' %}" class="template-customizer-core-css">
+<link rel="stylesheet" href="{% static 'vendor/css/rtl/theme-default.css' %}" class="template-customizer-theme-css">
+<link rel="stylesheet" href="{% static 'vendor/css/rtl/rtl.css' %}">
+<script src="{% static 'vendor/js/helpers.js' %}"></script>
+<script src="{% static 'vendor/js/template-customizer.js' %}"></script>
+<script src="{% static 'js/config.js' %}"></script>
+
+
+
+
+
+
+
 <!--begin::Toolbar-->
 <div id="kt_app_toolbar" class="app-toolbar pt-4 pt-lg-7 mb-n2 mb-lg-n3">
     <!--begin::Toolbar container-->
@@ -135,20 +150,27 @@
                                 </div>
                                 <!--end::Row-->
                                 <!--begin::Row-->
-                                <div class="row g-8">
+
+
+                                <div class="row g-12">
                                     <!--begin::Col-->
-                                    <div class="col-xxl-7">
+                                    <div class="col-xxl-12">
                                         <!--begin::Row-->
-                                        <div class="row g-8">
+                                        <div class="row g-12">
                                             <!--begin::Col-->
                                             <div class="col-lg-4">
                                                 <label for="" class="fs-6 form-label fw-bold text-dark">وضعیت:</label>
-
-                                                <select class="form-select form-select-solid select2" name="status"
+                                                {#                                                <button type="button" class="btn btn-info btn-sm"#}
+                                                {#                                                        onclick="selectStatusAll()">انتخاب#}
+                                                {#                                                    همه#}
+                                                {#                                                </button>#}
+                                                <select class="form-select form-select-sm form-select-solid"
+                                                        data-control="select2" data-close-on-select="false"
+                                                        data-placeholder="لطفا انتخاب کنید" data-allow-clear="true"
+                                                        name="status"
                                                         id=""
-                                                        multiple>
-                                                    {#                                <option value="">وضعیت</option>#}
-                                                    {#                                <option value="all">انتخاب همه</option>#}
+                                                        multiple="multiple">
+                                                    <option value=""></option>
                                                     {% for key, text in status_choices %}
                                                         <option value="{{ key }}"
                                                                 {% for status in request.GET|get_list:'status' %}
@@ -162,13 +184,20 @@
                                                 </select>
                                                 <!--end::Dialer-->
                                             </div>
+
                                             <div class="col-lg-4">
                                                 <label for="" class="fs-6 form-label fw-bold text-dark">اپراتور
                                                     فنی:</label>
-
-                                                <select class="form-select form-select-solid select2" name="operators"
+                                                {#                                                <button type="button" class="btn btn-info btn-sm"#}
+                                                {#                                                        onclick="selectOperatorAll()">#}
+                                                {#                                                    انتخاب همه#}
+                                                {#                                                </button>#}
+                                                <select class="form-select form-select-sm form-select-solid"
+                                                        data-control="select2" data-close-on-select="false"
+                                                        data-placeholder="لطفا انتخاب کنید" data-allow-clear="true"
+                                                        name="operators"
                                                         id=""
-                                                        multiple>
+                                                        multiple="multiple">
                                                     {#                                <option value="">اپراتور</option>#}
                                                     {% for operator in operators %}
                                                         <option value="{{ operator.id }}"
@@ -185,33 +214,31 @@
                                                 </select>
                                                 <!--end::Dialer-->
                                             </div>
-                                            <div class="col-lg-4 order_status">
-                                                <label for="dt_date" class="form-label">تاریخ</label>
-                                                <input type="text" id="dt_date"
-                                                       class="form-control dt-date flatpickr-range dt-input"
-                                                       data-column="5"
-                                                       placeholder="تاریخ شروع تا پایان" data-column-index="4"
-                                                       name="dt_date"
-                                                       value="{{ request.GET.dt_date }}">
-                                                <input type="hidden" class="form-control dt-date start_date dt-input"
-                                                       data-column="5"
-                                                       data-column-index="4" name="value_from_start_date">
-                                                <input type="hidden" class="form-control dt-date end_date dt-input"
-                                                       name="value_from_end_date"
-                                                       data-column="5" data-column-index="4">
+
+                                            <div class="col-lg-4">
+                                                <div class="order_status">
+                                                    <label for="dt_date" class="form-label fw-bold text-dark">تاریخ</label>
+                                                    <input type="text" id="dt_date"
+                                                           class="form-control form-control-solid dt-date flatpickr-range dt-input"
+                                                           data-column="5"
+                                                           placeholder="تاریخ شروع تا پایان" data-column-index="4"
+                                                           name="dt_date"
+                                                           value="{{ request.GET.dt_date }}">
+                                                    <input type="hidden"
+                                                           class="form-control form-control-solid dt-date start_date dt-input"
+                                                           data-column="5"
+                                                           data-column-index="4" name="value_from_start_date">
+                                                    <input type="hidden" class="form-control form-control-solid dt-date end_date dt-input"
+                                                           name="value_from_end_date"
+                                                           data-column="5" data-column-index="4">
+                                                </div>
                                             </div>
-                                            <!--end::Col-->
-                                            <!--begin::Col-->
 
-                                            <!--end::Col-->
-                                            <!--begin::Col-->
 
-                                            <!--end::Col-->
                                         </div>
-                                        <!--end::Row-->
+
                                     </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
+
                                     <div class="d-flex align-items-center">
                                         <button type="submit" class="btn btn-primary me-5">جستجو</button>
                                     </div>
@@ -275,7 +302,7 @@
 
                         <!--end::Header-->
                         <!--begin::Body-->
-                        <div class="card-body py-3">
+                        <div class="card-body w-100 px-2 py-3">
 
                             <!--begin::Table container-->
                             <div class="table-responsive">
@@ -292,14 +319,14 @@
                                                        data-kt-check="true" data-kt-check-target=".widget-13-check"/>
                                             </div>
                                         </th>
-                                        <th class="min-w-150px">#</th>
-                                        <th class="min-w-250px">درخواست کننده</th>
-                                        <th class="min-w-100px">شماره درخواست</th>
+                                        <th class="min-w-50px">#</th>
+                                        <th class="min-w-100px">درخواست کننده</th>
+                                        <th class="min-w-100px text-start">شماره درخواست</th>
                                         <th class="min-w-100px">تاریخ درخواست</th>
-                                        <th class="min-w-100px">عملیات</th>
-                                        <th class="min-w-120px">وضعیت</th>
-                                        <th class="min-w-5px text-end">اولویت</th>
-                                        <th class="min-w-150px text-end">عمل‌ها</th>
+                                        <th class="min-w-300px text-center">عملیات</th>
+                                        <th class="min-w-120px sorting sorting_asc" aria-sort="ascending">وضعیت</th>
+                                        <th class="min-w-5px text-center">اولویت</th>
+                                        <th class="min-w-150px text-center">عمل‌ها</th>
                                     </tr>
                                     </thead>
                                     <!--end::Table head-->
@@ -613,16 +640,10 @@
     </div>
     <!--end::Wrapper container-->
 </div>
-<!--end::Wrapper-->
 
-<!--end::فعالیتها drawer-->
-<!--begin::چت drawer-->
 
-<!--end::چت drawer-->
-<!--begin::چت drawer-->
 
-<!--end::Modal - Users جستجو-->
-<!--end::Modals-->
+
 <!--begin::Javascript-->
 <script>var hostUrl = "assets/";</script>
 <!--begin::Global Javascript Bundle(mandatory for all pages)-->
@@ -641,7 +662,11 @@
 
 
 
-
+<script src="{% static 'vendor/libs/jdate/jdate.js' %}"></script>
+<script src="{% static 'vendor/libs/flatpickr/flatpickr-jdate.js' %}"></script>
+<script src="{% static 'vendor/libs/flatpickr/l10n/fa-jdate.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/tables-datatables-advanced.js' %}"></script>
 
 
 

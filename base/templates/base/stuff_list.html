@@ -107,7 +107,7 @@
                                             <!--end::خروجی-->
                                             <!--begin::افزودن user-->
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#kt_modal_add_user">
+                                                    data-bs-target="#kt_modal_new_address">
                                                 <i class="ki-outline ki-plus fs-2"></i>اضافه کردن وسایل ساختمان
                                             </button>
                                             <!--end::افزودن user-->
@@ -117,20 +117,20 @@
 
                                         <!--end::Modal - کارت جدید-->
                                         <!--begin::Modal - افزودن task-->
-                                        <div class="modal fade" id="kt_modal_add_user" tabindex="-1"
+                                        <div class="modal fade" id="kt_modal_new_address" tabindex="-1"
                                              style="display: none;" aria-hidden="true">
                                             <!--begin::Modal dialog-->
                                             <div class="modal-dialog modal-dialog-centered mw-650px">
                                                 <!--begin::Modal content-->
                                                 <div class="modal-content">
                                                     <!--begin::Modal header-->
-                                                    <div class="modal-header" id="kt_modal_add_user_header">
+                                                    <div class="modal-header" id="kt_modal_new_address_header">
                                                         <!--begin::Modal title-->
                                                         <h2 class="fw-bold">اضافه کردن</h2>
                                                         <!--end::Modal title-->
                                                         <!--begin::Close-->
                                                         <div class="btn btn-icon btn-sm btn-active-icon-primary"
-                                                             data-kt-users-modal-action="close">
+                                                             data-kt-users-modal-action="close"  data-bs-dismiss="modal">
                                                             <i class="ki-outline ki-cross fs-1"></i>
                                                         </div>
                                                         <!--end::Close-->
@@ -139,17 +139,17 @@
                                                     <!--begin::Modal body-->
                                                     <div class="modal-body px-5 my-7">
                                                         <!--begin::Form-->
-                                                        <form id="kt_modal_add_user_form"
+                                                        <form id="kt_modal_new_address_form"
                                                               class="form fv-plugins-bootstrap5 fv-plugins-framework"
                                                               action="{% url 'stuff_add' %}" method="post">
                                                             {% csrf_token %}
                                                             <!--begin::Scroll-->
                                                             <div class="d-flex flex-column scroll-y px-5 px-lg-10"
-                                                                 id="kt_modal_add_user_scroll" data-kt-scroll="true"
+                                                                 id="kt_modal_new_address_scroll" data-kt-scroll="true"
                                                                  data-kt-scroll-activate="true"
                                                                  data-kt-scroll-max-height="auto"
-                                                                 data-kt-scroll-dependencies="#kt_modal_add_user_header"
-                                                                 data-kt-scroll-wrappers="#kt_modal_add_user_scroll"
+                                                                 data-kt-scroll-dependencies="#kt_modal_new_address_header"
+                                                                 data-kt-scroll-wrappers="#kt_modal_new_address_scroll"
                                                                  data-kt-scroll-offset="300px"
                                                                  style="max-height: 152px;">
                                                                 <!--begin::Input group-->
@@ -172,9 +172,9 @@
                                                                 </div>
                                                                 <div class="fv-row mb-7 fv-plugins-icon-container">
                                                                     <!--begin::Tags-->
-                                                                    <label data-control="select2" class=" fw-semibold fs-6 mb-2">ساختمان</label>
-                                                                    <select name="department" id=""
-                                                                            class="form-control fs-6 mb-2" data-control="select2" >
+                                                                    <label  class=" fw-semibold fs-6 mb-2">ساختمان</label>
+                                                                    <select name="department" id="" data-dropdown-parent="#kt_modal_new_address"
+                                                                            class="form-select form-select-solid fs-6 mb-2" data-control="select2" >
                                                                         {% for department in departments %}
                                                                             <option value="{{ department.id }}"
                                                                                     {% if create_for == department.name %}selected{% endif %}>{{ department.name }}</option>

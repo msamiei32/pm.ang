@@ -9,6 +9,15 @@
 {% include 'includs/header.html' %}
 
 
+<!-- Core CSS -->
+<link rel="stylesheet" href="{% static 'vendor/css/rtl/core.css' %}" class="template-customizer-core-css">
+<link rel="stylesheet" href="{% static 'vendor/css/rtl/theme-default.css' %}" class="template-customizer-theme-css">
+<link rel="stylesheet" href="{% static 'vendor/css/rtl/rtl.css' %}">
+<script src="{% static 'vendor/js/helpers.js' %}"></script>
+<script src="{% static 'vendor/js/template-customizer.js' %}"></script>
+<script src="{% static 'js/config.js' %}"></script>
+
+
 <!--begin::Toolbar-->
 <div id="kt_app_toolbar" class="app-toolbar pt-4 pt-lg-7 mb-n2 mb-lg-n3">
     <!--begin::Toolbar container-->
@@ -138,11 +147,11 @@
                                 <!--begin::Row-->
 
 
-                                <div class="row g-8">
+                                <div class="row g-12">
                                     <!--begin::Col-->
-                                    <div class="col-xxl-7">
+                                    <div class="col-xxl-12">
                                         <!--begin::Row-->
-                                        <div class="row g-8">
+                                        <div class="row g-12">
                                             <!--begin::Col-->
                                             <div class="col-lg-4">
                                                 <label for="" class="fs-6 form-label fw-bold text-dark">وضعیت:</label>
@@ -200,18 +209,31 @@
                                                 </select>
                                                 <!--end::Dialer-->
                                             </div>
-                                            <!--end::Col-->
-                                            <!--begin::Col-->
 
-                                            <!--end::Col-->
-                                            <!--begin::Col-->
+                                            <div class="col-lg-4">
+                                                <div class="order_status">
+                                                    <label for="dt_date" class="form-label fw-bold text-dark">تاریخ</label>
+                                                    <input type="text" id="dt_date"
+                                                           class="form-control form-control-solid dt-date flatpickr-range dt-input"
+                                                           data-column="5"
+                                                           placeholder="تاریخ شروع تا پایان" data-column-index="4"
+                                                           name="dt_date"
+                                                           value="{{ request.GET.dt_date }}">
+                                                    <input type="hidden"
+                                                           class="form-control form-control-solid dt-date start_date dt-input"
+                                                           data-column="5"
+                                                           data-column-index="4" name="value_from_start_date">
+                                                    <input type="hidden" class="form-control form-control-solid dt-date end_date dt-input"
+                                                           name="value_from_end_date"
+                                                           data-column="5" data-column-index="4">
+                                                </div>
+                                            </div>
 
-                                            <!--end::Col-->
+
                                         </div>
-                                        <!--end::Row-->
+
                                     </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
+
                                     <div class="d-flex align-items-center">
                                         <button type="submit" class="btn btn-primary me-5">جستجو</button>
                                     </div>
@@ -572,8 +594,15 @@
 
                                 {% if page_obj.has_previous %}
                                     <li class="page-item previous">
-                                        <a href="?page= {{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
-                                           class="page-link" >
+                                        <a href="?page=
+
+
+
+
+
+
+                                                {{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+                                           class="page-link">
                                             <i class="previous"></i>
                                         </a>
                                     </li>
@@ -596,6 +625,13 @@
                                 {% if page_obj.has_next %}
                                     <li class="page-item next">
                                         <a href="?page=
+
+
+
+
+
+
+
 
 
 
@@ -649,8 +685,10 @@
 <script>var hostUrl = "assets/";</script>
 <!--begin::Global Javascript Bundle(mandatory for all pages)-->
 <script src="{% static "assets/plugins/global/plugins.bundle.js" %}"></script>
+{#<script src="{% static 'js/order_handler.js' %}"></script>#}
+{#    <script src="{% static 'jquery/jquery3-7.js' %}"></script>#}
 <script src="{% static "assets/js/scripts.bundle.js" %}"></script>
-<script src="{% static 'vendor/libs/select2/select2.js' %}"></script>
+<script src="{% static 'assets/js/custom/apps/projects/settings/settings.js' %}"></script>
 <script src="{% static 'assets/plugins/custom/formrepeater/formrepeater.bundle.js' %}"></script>
 <script src="{% static 'assets/js/custom/apps/ecommerce/catalog/save-product.js' %}"></script>
 <!--end::Global Javascript Bundle-->
@@ -662,6 +700,16 @@
 <script src="{% static "assets/js/custom/widgets.js" %}"></script>
 <script src="{% static "assets/js/custom/apps/chat/chat.js" %}"></script>
 <script src="{% static "assets/js/custom/utilities/modals/users-search.js" %}"></script>
+
+
+<!-- Vendors JS -->
+<script src="{% static 'vendor/libs/jdate/jdate.js' %}"></script>
+<script src="{% static 'vendor/libs/flatpickr/flatpickr-jdate.js' %}"></script>
+<script src="{% static 'vendor/libs/flatpickr/l10n/fa-jdate.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/tables-datatables-advanced.js' %}"></script>
+
+
 <script>
     async function changeStatus(orderId) {
         await fetch(`/order/change_status/${orderId}`).then((result) => {

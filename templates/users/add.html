@@ -128,7 +128,7 @@
                         <!--begin::Content-->
                         <div id="kt_account_settings_profile_details" class="collapse show">
                             <!--begin::Form-->
-                            <form id="formValidationExamples" action="{% url 'user_add' %}" method="post">
+                            <form id="formValidationExamples" action="{% url 'user_add' %}" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <!--begin::کارت body-->
                                 <div class="card-body border-top p-9">
@@ -157,7 +157,7 @@
                                             <i class="ki-outline ki-pencil fs-7"></i>
                                             <!--begin::Inputs-->
                                             <input type="file" name="image" accept=".png, .jpg, .jpeg"/>
-                                            <input type="hidden" name="image_remove"/>
+                                            <input type="hidden" name="image"/>
                                             <!--end::Inputs-->
                                         </label>
                                         <!--end::Tags-->

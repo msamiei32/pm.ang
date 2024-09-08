@@ -68,7 +68,7 @@ def user_add(request):
         role = request.POST.get('role')
         department = request.POST.get('department')
         mobile = request.POST.get('mobile')
-        img = request.POST.get('image')
+        image = request.FILES['image']
         email = request.POST.get('email')
         password = request.POST.get('password')
 
@@ -89,7 +89,7 @@ def user_add(request):
 
             profile = Profile.objects.get(user=user)
             profile.mobileNumber = mobile
-            profile.image = img
+            profile.image = image
             profile.department = Department.objects.get(id=department)
             profile.save()
             messages.success(request, 'کاربر ایجاد شد')
@@ -104,12 +104,13 @@ def user_add(request):
 
 def user_edit(request, username):
     user = User.objects.get(username=username)
-    if request.method == 'POST':
+    if request.method == 'POST' and 'image' in request.FILES:
         fname = request.POST.get('fname')
         last_name = request.POST.get('lname')
         username = request.POST.get('username')
         role = request.POST.get('role')
         department = request.POST.get('department')
+        image = request.FILES['image']
         mobile = request.POST.get('mobile')
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -130,6 +131,7 @@ def user_edit(request, username):
             profile = Profile.objects.get(user=user)
             profile.department = Department.objects.get(id=department)
             profile.mobileNumber = mobile
+            profile.image = image
             profile.save()
             messages.success(request, 'کاربر ویرایش شد')
 
@@ -236,8 +238,8 @@ def profile(request):
         fname = request.POST.get('fname')
         lname = request.POST.get('lname')
         username = request.POST.get('username')
-        image = request.FILES['image']
         mobile = request.POST.get('mobile')
+        image = request.FILES['image']
         email = request.POST.get('email')
 
 

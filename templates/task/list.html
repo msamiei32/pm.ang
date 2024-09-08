@@ -12,7 +12,12 @@
 
 
 
-
+<link rel="stylesheet" href="{% static 'vendor/css/rtl/core.css' %}" class="template-customizer-core-css">
+<link rel="stylesheet" href="{% static 'vendor/css/rtl/theme-default.css' %}" class="template-customizer-theme-css">
+<link rel="stylesheet" href="{% static 'vendor/css/rtl/rtl.css' %}">
+<script src="{% static 'vendor/js/helpers.js' %}"></script>
+<script src="{% static 'vendor/js/template-customizer.js' %}"></script>
+<script src="{% static 'js/config.js' %}"></script>
 
 
 
@@ -97,9 +102,9 @@
                                 <!--begin::Row-->
                                 <div class="row g-8 mb-8">
                                     <!--begin::Col-->
-                                    <div class="col-xxl-5">
+                                    <div class="col-xxl-7">
                                         <label for="" class="fs-6 form-label fw-bold text-dark">دپارتمان</label>
-                                        <select data-control="select2" class="form-select form-select-solid "
+                                        <select data-control="select2" class=" form-select form-select-solid "
                                                 name="department" id="">
                                             <option value="">انتخاب واحد</option>
                                             {% for department in departments %}
@@ -117,16 +122,17 @@
                                         <!--begin::Row-->
                                         <div class="row g-8">
                                             <!--begin::Col-->
-                                            <div class="col-lg-6 user_plan">
-                                                <label for="operationfield" class="fs-6 form-label fw-bold text-dark">عملیات</label>
-                                                <select data-control="select2" class="form-select  form-select-solid "
+                                            <div class="col-lg-6">
+                                                <label for="" class="fs-6 form-label fw-bold text-dark">دستگاه</label>
+                                                <select data-control="select2" class="form-select form-select-solid "
                                                         name="operation"
-                                                        name="operation" id="operationfield">
-                                                    <option value="">انتخاب عملیات</option>
+                                                        id="">
+                                                    <option value="">عملیات درخواستی</option>
                                                     {% for operation in operations %}
                                                         <option value="{{ operation.id }}"
                                                                 {% if request.GET.operation|add:0 == operation.id %}
-                                                                selected {% endif %}>{{ operation.name }}</option>
+                                                                selected
+                                                                {% endif %}>{{ operation.name }}</option>
                                                     {% endfor %}
                                                 </select>
 
@@ -141,25 +147,31 @@
                                         </div>
                                         <!--end::Row-->
                                     </div>
-
                                     <!--end::Col-->
                                 </div>
                                 <!--end::Row-->
                                 <!--begin::Row-->
-                                <div class="row g-8">
+
+
+                                <div class="row g-12">
                                     <!--begin::Col-->
-                                    <div class="col-xxl-7">
+                                    <div class="col-xxl-12">
                                         <!--begin::Row-->
-                                        <div class="row g-8">
+                                        <div class="row g-12">
                                             <!--begin::Col-->
                                             <div class="col-lg-4">
                                                 <label for="" class="fs-6 form-label fw-bold text-dark">وضعیت:</label>
-
-                                                <select class="form-select form-select-solid select2" name="status"
+                                                {#                                                <button type="button" class="btn btn-info btn-sm"#}
+                                                {#                                                        onclick="selectStatusAll()">انتخاب#}
+                                                {#                                                    همه#}
+                                                {#                                                </button>#}
+                                                <select class="form-select form-select-sm form-select-solid"
+                                                        data-control="select2" data-close-on-select="false"
+                                                        data-placeholder="لطفا انتخاب کنید" data-allow-clear="true"
+                                                        name="status"
                                                         id=""
-                                                        multiple>
-                                                    {#                                <option value="">وضعیت</option>#}
-                                                    {#                                <option value="all">انتخاب همه</option>#}
+                                                        multiple="multiple">
+                                                    <option value=""></option>
                                                     {% for key, text in status_choices %}
                                                         <option value="{{ key }}"
                                                                 {% for status in request.GET|get_list:'status' %}
@@ -173,21 +185,30 @@
                                                 </select>
                                                 <!--end::Dialer-->
                                             </div>
+
                                             <div class="col-lg-4">
                                                 <label for="" class="fs-6 form-label fw-bold text-dark">اپراتور
                                                     فنی:</label>
-
-                                                <select class="form-select form-select-solid select2" name="operators"
+                                                {#                                                <button type="button" class="btn btn-info btn-sm"#}
+                                                {#                                                        onclick="selectOperatorAll()">#}
+                                                {#                                                    انتخاب همه#}
+                                                {#                                                </button>#}
+                                                <select class="form-select form-select-sm form-select-solid"
+                                                        data-control="select2" data-close-on-select="false"
+                                                        data-placeholder="لطفا انتخاب کنید" data-allow-clear="true"
+                                                        name="operators"
                                                         id=""
-                                                        multiple>
-
+                                                        multiple="multiple">
+                                                    {#                                <option value="">اپراتور</option>#}
                                                     {% for operator in operators %}
                                                         <option value="{{ operator.id }}"
-                                                                {% includes request.GET|get_list:'operator' operator.id as selected %}
-                                                                {% if selected %}
+                                                                {% for inneroperator in request.GET|get_list:'operators' %}
+                                                                    {% with operator.id|stringformat:'i' as stringid %}
+                                                                        {% if stringid == inneroperator %}
                                                                 selected
-                                                                {% endif %}
-                                                        >
+                                                                        {% endif %}
+                                                                    {% endwith %}
+                                                                {% endfor %}>
                                                             {{ operator.get_full_name }}
                                                         </option>
                                                     {% endfor %}
@@ -196,33 +217,29 @@
                                             </div>
 
                                             <div class="col-lg-4">
-                                                <label class="fs-6 form-label fw-bold text-dark"
-                                                       for="dt_date">تاریخ</label>
-                                                <input id="dt_date" type="text"
-                                                       class="form-control dt-date flatpickr-range dt-input form-select form-select-solid "
-                                                       data-column="5"
-                                                       placeholder="تاریخ شروع تا پایان" data-column-index="4"
-                                                       name="dt_date"
-                                                       value="{{ request.GET.dt_date }}">
-                                                <input type="hidden" class="form-control dt-date start_date dt-input"
-                                                       data-column="5"
-                                                       data-column-index="4" name="value_from_start_date">
-                                                <input type="hidden" class="form-control dt-date end_date dt-input"
-                                                       name="value_from_end_date"
-                                                       data-column="5" data-column-index="4">
+                                                <div class="order_status">
+                                                    <label for="dt_date" class="form-label fw-bold text-dark">تاریخ</label>
+                                                    <input type="text" id="dt_date"
+                                                           class="form-control form-control-solid dt-date flatpickr-range dt-input"
+                                                           data-column="5"
+                                                           placeholder="تاریخ شروع تا پایان" data-column-index="4"
+                                                           name="dt_date"
+                                                           value="{{ request.GET.dt_date }}">
+                                                    <input type="hidden"
+                                                           class="form-control form-control-solid dt-date start_date dt-input"
+                                                           data-column="5"
+                                                           data-column-index="4" name="value_from_start_date">
+                                                    <input type="hidden" class="form-control form-control-solid dt-date end_date dt-input"
+                                                           name="value_from_end_date"
+                                                           data-column="5" data-column-index="4">
+                                                </div>
                                             </div>
-                                            <!--end::Col-->
-                                            <!--begin::Col-->
 
-                                            <!--end::Col-->
-                                            <!--begin::Col-->
 
-                                            <!--end::Col-->
                                         </div>
-                                        <!--end::Row-->
+
                                     </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
+
                                     <div class="d-flex align-items-center">
                                         <button type="submit" class="btn btn-primary me-5">جستجو</button>
                                     </div>
@@ -513,6 +530,18 @@
 <script src="{% static "assets/js/custom/widgets.js" %}"></script>
 <script src="{% static "assets/js/custom/apps/chat/chat.js" %}"></script>
 <script src="{% static "assets/js/custom/utilities/modals/users-search.js" %}"></script>
+
+
+
+<script src="{% static 'vendor/libs/jdate/jdate.js' %}"></script>
+<script src="{% static 'vendor/libs/flatpickr/flatpickr-jdate.js' %}"></script>
+<script src="{% static 'vendor/libs/flatpickr/l10n/fa-jdate.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/tables-datatables-advanced.js' %}"></script>
+
+
+
+
 <script>
     async function changeStatus(orderId) {
         await fetch(`/order/change_status/${orderId}`).then((result) => {

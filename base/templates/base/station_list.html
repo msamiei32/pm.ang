@@ -18,16 +18,16 @@
                     لیست ایستگاه ها</h1>
                 <!--end::Title-->
             </div>
+            {% for message in messages %}
+                {% if message.tags == 'error' %}
+                    <div class="alert alert-danger">{{ message }}</div>
+                {% else %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
 </div>
-{% for message in messages %}
-    {% if message.tags == 'error' %}
-        <div class="alert alert-danger">{{ message }}</div>
-    {% else %}
-        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-    {% endif %}
-{% endfor %}
 
 
 <!--begin::Wrapper container-->
@@ -131,7 +131,7 @@
                                                         <!--end::Modal title-->
                                                         <!--begin::Close-->
                                                         <div class="btn btn-icon btn-sm btn-active-icon-primary"
-                                                             data-kt-users-modal-action="close">
+                                                             data-kt-users-modal-action="close" data-bs-dismiss="modal">
                                                             <i class="ki-outline ki-cross fs-1"></i>
                                                         </div>
                                                         <!--end::Close-->
@@ -268,109 +268,91 @@
                                                 <div class="d-flex justify-content-end flex-shrink-0">
                                                     {% if perms.base.change_task %}
                                                         <a href="javascript:;" data-bs-toggle="modal"
-                                                           data-bs-target="#editOperationModal_{% url 'station_edit' station.id %}"
+                                                           data-bs-target="#editOperationModal_{{ station.id }}"
                                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                                             <i class="ki-outline ki-pencil fs-2"></i>
                                                         </a>
-                                                        {#                                                        <div class="modal fade" id="editOperationModal_{{ stuff.id }}"#}
-                                                        {#                                                             tabindex="-1"#}
-                                                        {#                                                             aria-hidden="true">#}
-                                                        {#                                                            <div class="modal-dialog modal-lg modal-dialog-centered modal-add-new-role">#}
-                                                        {#                                                                <div class="modal-content p-3 p-md-5">#}
-                                                        {#                                                                    <button type="button" class="btn-close btn-pinned"#}
-                                                        {#                                                                            data-bs-dismiss="modal"#}
-                                                        {#                                                                            aria-label="Close"></button>#}
-                                                        {#                                                                    <div class="modal-body">#}
-                                                        {##}
-                                                        {#                                                                        <div class="text-center mb-4">#}
-                                                        {#                                                                            <h3 class="role-title">ویرایش وسیله#}
-                                                        {#                                                                            </h3>#}
-                                                        {#                                                                        </div>#}
-                                                        {#                                                                        <form id="kt_modal_add_user_form"#}
-                                                        {#                                                                              class="form fv-plugins-bootstrap5 fv-plugins-framework"#}
-                                                        {#                                                                              action="{% url 'archive-stuff' stuff.id %}"#}
-                                                        {#                                                                              method="post">#}
-                                                        {#                                                                            {% csrf_token %}#}
-                                                        {#                                                                            <!--begin::Scroll-->#}
-                                                        {#                                                                            <div class="d-flex flex-column scroll-y px-5 px-lg-10"#}
-                                                        {#                                                                                 id="kt_modal_add_user_scroll"#}
-                                                        {#                                                                                 data-kt-scroll="true"#}
-                                                        {#                                                                                 data-kt-scroll-activate="true"#}
-                                                        {#                                                                                 data-kt-scroll-max-height="auto"#}
-                                                        {#                                                                                 data-kt-scroll-dependencies="#kt_modal_add_user_header"#}
-                                                        {#                                                                                 data-kt-scroll-wrappers="#kt_modal_add_user_scroll"#}
-                                                        {#                                                                                 data-kt-scroll-offset="300px"#}
-                                                        {#                                                                                 style="max-height: 152px;">#}
-                                                        {#                                                                                <!--begin::Input group-->#}
-                                                        {##}
-                                                        {#                                                                                <!--end::Input group-->#}
-                                                        {#                                                                                <!--begin::Input group-->#}
-                                                        {#                                                                                <div class="fv-row mb-7 fv-plugins-icon-container">#}
-                                                        {#                                                                                    <!--begin::Tags-->#}
-                                                        {#                                                                                    <label class=" fw-semibold fs-6 mb-2">نام#}
-                                                        {#                                                                                        وسیله</label>#}
-                                                        {#                                                                                    <!--end::Tags-->#}
-                                                        {#                                                                                    <!--begin::Input-->#}
-                                                        {#                                                                                    <input type="text"#}
-                                                        {#                                                                                           id="PartName"#}
-                                                        {#                                                                                           name="PartName"#}
-                                                        {#                                                                                           class="form-control"#}
-                                                        {#                                                                                           value="{{ part.name }}"#}
-                                                        {#                                                                                           tabindex="-1"#}
-                                                        {#                                                                                           required>#}
-                                                        {#                                                                                    <!--end::Input-->#}
-                                                        {#                                                                                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>#}
-                                                        {#                                                                                </div>#}
-                                                        {#                                                                                <div class="fv-row mb-7 fv-plugins-icon-container">#}
-                                                        {#                                                                                    <!--begin::Tags-->#}
-                                                        {#                                                                                    <label class=" fw-semibold fs-6 mb-2"#}
-                                                        {#                                                                                           for="MachineName">نام#}
-                                                        {#                                                                                        ماشین</label>#}
-                                                        {#                                                                                    <select class="form-control  fs-6 mb-2"#}
-                                                        {#                                                                                            name="MachineName"#}
-                                                        {#                                                                                            id="MachineName">#}
-                                                        {#                                                                                        <option value="">ماشین را انتخاب#}
-                                                        {#                                                                                            کنید#}
-                                                        {#                                                                                        </option>#}
-                                                        {#                                                                                        {% for machine in machines %}#}
-                                                        {#                                                                                            <option value="{{ machine.id }}"#}
-                                                        {#                                                                                                    {% if part.machine == machine %}selected{% endif %}>{{ machine.name }}</option>#}
-                                                        {#                                                                                        {% endfor %}#}
-                                                        {#                                                                                    </select>#}
-                                                        {#                                                                                    <!--end::Input-->#}
-                                                        {#                                                                                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>#}
-                                                        {#                                                                                </div>#}
-                                                        {##}
-                                                        {#                                                                                <!--end::Input group-->#}
-                                                        {#                                                                                <!--begin::Input group-->#}
-                                                        {##}
-                                                        {#                                                                                <!--end::Input group-->#}
-                                                        {#                                                                                <!--begin::Input group-->#}
-                                                        {##}
-                                                        {#                                                                                <!--end::Input group-->#}
-                                                        {#                                                                            </div>#}
-                                                        {#                                                                            <!--end::Scroll-->#}
-                                                        {#                                                                            <!--begin::Actions-->#}
-                                                        {#                                                                            <div class="text-center pt-10">#}
-                                                        {#                                                                                <button type="reset"#}
-                                                        {#                                                                                        class="btn btn-label-secondary"#}
-                                                        {#                                                                                        data-bs-dismiss="modal"#}
-                                                        {#                                                                                        aria-label="Close">لغو#}
-                                                        {#                                                                                </button>#}
-                                                        {#                                                                                <button type="submit"#}
-                                                        {#                                                                                        class="btn btn-primary"#}
-                                                        {#                                                                                        data-kt-users-modal-action="submit">#}
-                                                        {#                                                                                    <span class="indicator-label">ثبت</span>#}
-                                                        {#                                                                                    <span class="indicator-progress">لطفا صبر کنید...#}
-                                                        {#																			<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>#}
-                                                        {#                                                                                </button>#}
-                                                        {#                                                                            </div>#}
-                                                        {#                                                                            <!--end::Actions-->#}
-                                                        {#                                                                        </form>#}
-                                                        {#                                                                    </div>#}
-                                                        {#                                                                </div>#}
-                                                        {#                                                            </div>#}
-                                                        {#                                                        </div>#}
+                                                        <div class="modal fade" id="editOperationModal_{{ station.id }}"
+                                                             tabindex="-1"
+                                                             aria-hidden="true">
+                                                            <div class="modal-dialog modal-lg modal-dialog-centered modal-add-new-role">
+                                                                <div class="modal-content p-3 p-md-5">
+                                                                    <button type="button" class="btn-close btn-pinned"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    <div class="modal-body">
+
+                                                                        <div class="text-center mb-4">
+                                                                            <h3 class="role-title">ویرایش ایستگاه
+                                                                            </h3>
+                                                                        </div>
+                                                                        <form id="kt_modal_add_user_form"
+                                                                              class="form fv-plugins-bootstrap5 fv-plugins-framework"
+                                                                              action="{% url 'station_edit'  station.id %}"
+                                                                              method="post">
+                                                                            {% csrf_token %}
+                                                                            <!--begin::Scroll-->
+                                                                            <div class="d-flex flex-column scroll-y px-5 px-lg-10"
+                                                                                 id="kt_modal_add_user_scroll"
+                                                                                 data-kt-scroll="true"
+                                                                                 data-kt-scroll-activate="true"
+                                                                                 data-kt-scroll-max-height="auto"
+                                                                                 data-kt-scroll-dependencies="#kt_modal_add_user_header"
+                                                                                 data-kt-scroll-wrappers="#kt_modal_add_user_scroll"
+                                                                                 data-kt-scroll-offset="300px"
+                                                                                 style="max-height: 152px;">
+                                                                                <!--begin::Input group-->
+
+                                                                                <!--end::Input group-->
+                                                                                <!--begin::Input group-->
+                                                                                <div class="fv-row mb-7 fv-plugins-icon-container">
+                                                                                    <!--begin::Tags-->
+                                                                                    <label class=" fw-semibold fs-6 mb-2">نام
+                                                                                        ایستگاه</label>
+                                                                                    <!--end::Tags-->
+                                                                                    <!--begin::Input-->
+                                                                                    <input type="text"
+
+                                                                                           name="station_name"
+                                                                                           class="form-control"
+                                                                                           value="{{ station.name }}"
+                                                                                           tabindex="-1"
+                                                                                           required>
+                                                                                    <!--end::Input-->
+                                                                                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                                                                                </div>
+
+
+                                                                                <!--end::Input group-->
+                                                                                <!--begin::Input group-->
+
+                                                                                <!--end::Input group-->
+                                                                                <!--begin::Input group-->
+
+                                                                                <!--end::Input group-->
+                                                                            </div>
+                                                                            <!--end::Scroll-->
+                                                                            <!--begin::Actions-->
+                                                                            <div class="text-center pt-10">
+                                                                                <button type="reset"
+                                                                                        class="btn btn-label-secondary"
+                                                                                        data-bs-dismiss="modal"
+                                                                                        aria-label="Close">لغو
+                                                                                </button>
+                                                                                <button type="submit"
+                                                                                        class="btn btn-primary"
+                                                                                        data-kt-users-modal-action="submit">
+                                                                                    <span class="indicator-label">ثبت</span>
+                                                                                    <span class="indicator-progress">لطفا صبر کنید...
+                                                        																			<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                                                </button>
+                                                                            </div>
+                                                                            <!--end::Actions-->
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
                                                     {% endif %}
                                                     {% if user.is_superuser %}
@@ -391,7 +373,7 @@
                                                                     <div class="modal-body">
 
                                                                         <div class="text-center mb-4">
-                                                                            <h3 class="role-title">آیا میخواهید قطعه
+                                                                            <h3 class="role-title">آیا میخواهید ایستگاه
                                                                                 مرتبط
                                                                                 با
                                                                                 درخواست
@@ -444,6 +426,7 @@
 
 
 
+
                                                     {{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
                                                class="page-link">
                                                 <i class="previous"></i>
@@ -468,6 +451,7 @@
                                     {% if page_obj.has_next %}
                                         <li class="page-item next">
                                             <a href="?page=
+
 
 
 

@@ -536,6 +536,7 @@
 
 
 
+
                                                     {{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
                                                class="page-link">
                                                 <i class="previous"></i>
@@ -560,6 +561,7 @@
                                     {% if page_obj.has_next %}
                                         <li class="page-item next">
                                             <a href="?page=
+
 
 
 
@@ -653,3 +655,30 @@
 {#</script>#}
 <!--end::سفارشی Javascript-->
 <!--end::Javascript-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="{% static 'vendor/libs/jdate/jdate.js' %}"></script>
+<script src="{% static 'vendor/libs/flatpickr/flatpickr-jdate.js' %}"></script>
+<script src="{% static 'vendor/libs/flatpickr/l10n/fa-jdate.js' %}"></script>
+<script src="{% static 'js/app-invoice-edit.js' %}"></script>
+
+
+
+
+
+
+
+
+
